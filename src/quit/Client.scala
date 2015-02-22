@@ -4,31 +4,46 @@ import com.loopj.android.http._
 import org.apache.http.Header
 import com.github.nscala_time.time.Imports._
 import upickle._
+import scala.concurrent._
 
 class Client(id: String) {
+  val API_URL = "https://arcane-beach-3744.herokuapp.com"
   val client = new AsyncHttpClient
 
-  def list(fn: List[DateTime] => Unit) =
-    client.get("http://10.0.2.2:9000/" + id, handle(fn))
+  def list: Future[List[DateTime]] = {
+    val p = promise[List[DateTime]]
+    client.get(API_URL + "/" + id, handle(p))
+    p.future
+  }
 
-  def put(fn: List[DateTime] => Unit) =
-    client.post("http://10.0.2.2:9000/" + id, handle(fn))
+  def put: Future[List[DateTime]] = {
+    val p = promise[List[DateTime]]
+    client.post(API_URL + "/" + id, handle(p))
+    p.future
+  }
 
-  def del(fn: List[DateTime] => Unit) =
-    client.delete("http://10.0.2.2:9000/" + id, handle(fn))
+  def del: Future[List[DateTime]] = {
+    val p = promise[List[DateTime]]
+    client.delete(API_URL + "/" + id, handle(p))
+    p.future
+  }
 
-  private def handle(fn: List[DateTime] => Unit) = new AsyncHttpResponseHandler {
+  private def handle(p: Promise[List[DateTime]]) = new AsyncHttpResponseHandler {
     def onSuccess(
       statusCode: Int,
       headers: Array[Header],
       responseBody: Array[Byte]
-    ) = fn(read[List[String]](new String(responseBody)) map DateTime.parse)
+    ) = {
+      val list = read[List[String]](new String(responseBody))
+      val dates = list map DateTime.parse
+      p success dates
+    }
 
     def onFailure(
       statusCode: Int,
       headers: Array[Header],
       responseBody: Array[Byte],
       error: Throwable
-    ) = android.util.Log.e("API-ERROR", "")
+    ) = p failure error
   }
 }

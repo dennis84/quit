@@ -2,6 +2,9 @@ package quit.android
 
 import org.scaloid.common._
 import android.content.Context
+import android.widget.TextView
+import android.widget.Button
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class MainActivity extends SActivity {
 
@@ -14,13 +17,18 @@ class MainActivity extends SActivity {
     }
 
     val client = new Client(id)
+    setContentView(R.layout.main)
 
-    contentView = new SVerticalLayout {
-      STextView("You are %s h smokefree.") textSize 15.dip
-      SButton("Press me", client.put(res => {
-        val out = res.map(_.toString)
-        toast(out.mkString(", "))
-      }))
-    } padding 20.dip
+    val text = find[TextView](R.id.text)
+    val btn = find[Button](R.id.button)
+
+    btn.onClick(client.put.onSuccess {
+      case xs => runOnUiThread(text.setText(Date.humanize(xs.last)))
+    })
+
+    client.list.onSuccess {
+      case Nil => toast("...")
+      case xs => runOnUiThread(text.setText(Date.humanize(xs.last)))
+    }
   }
 }

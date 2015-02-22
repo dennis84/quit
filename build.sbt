@@ -18,6 +18,7 @@ proguardOptions in Android ++= Seq(
   "-keepattributes Signature",
   "-printseeds target/seeds.txt",
   "-printusage target/usage.txt",
+  "-keep class org.ocpsoft.prettytime.i18n.**",
   "-dontwarn scala.collection.**" // required from Scala 2.11.4
 )
 
@@ -30,7 +31,8 @@ libraryDependencies ++= Seq(
   "org.scaloid"            %% "scaloid"            % "3.6.1-10" withSources() withJavadoc(),
   "com.lihaoyi"            %% "upickle"            % "0.2.6",
   "com.github.nscala-time" %% "nscala-time"        % "1.8.0",
-  "com.loopj.android"      %  "android-async-http" % "1.4.5"
+  "com.loopj.android"      %  "android-async-http" % "1.4.5",
+  "org.ocpsoft.prettytime" %  "prettytime"         % "3.2.7.Final"
 )
 
 scalacOptions in Compile += "-feature"
