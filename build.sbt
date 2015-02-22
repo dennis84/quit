@@ -6,7 +6,7 @@ android.Plugin.androidBuild
 
 name := "quit"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
 
 proguardCache in Android ++= Seq(
   ProguardCache("org.scaloid") % "org.scaloid"
@@ -21,7 +21,17 @@ proguardOptions in Android ++= Seq(
   "-dontwarn scala.collection.**" // required from Scala 2.11.4
 )
 
-libraryDependencies += "org.scaloid" %% "scaloid" % "3.6.1-10" withSources() withJavadoc()
+apkbuildExcludes in Android ++= Seq(
+  "META-INF/LICENSE.txt",
+  "META-INF/NOTICE.txt"
+)
+
+libraryDependencies ++= Seq(
+  "org.scaloid"            %% "scaloid"            % "3.6.1-10" withSources() withJavadoc(),
+  "com.lihaoyi"            %% "upickle"            % "0.2.6",
+  "com.github.nscala-time" %% "nscala-time"        % "1.8.0",
+  "com.loopj.android"      %  "android-async-http" % "1.4.5"
+)
 
 scalacOptions in Compile += "-feature"
 
