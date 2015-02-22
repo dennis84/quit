@@ -7,6 +7,7 @@ object Date {
 
   def humanize(date: DateTime): String = {
     val p = new PrettyTime
-    p.format(date.toDate)
+    val durations = p.calculatePreciseDuration(date.toDate)
+    p.format(durations)
   }
 }

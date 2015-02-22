@@ -19,6 +19,7 @@ proguardOptions in Android ++= Seq(
   "-printseeds target/seeds.txt",
   "-printusage target/usage.txt",
   "-keep class org.ocpsoft.prettytime.i18n.**",
+  "-keep class com.github.nscala_time.time.**",
   "-dontwarn scala.collection.**" // required from Scala 2.11.4
 )
 
