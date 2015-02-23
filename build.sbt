@@ -31,10 +31,12 @@ apkbuildExcludes in Android ++= Seq(
 libraryDependencies ++= Seq(
   "org.scaloid"            %% "scaloid"            % "3.6.1-10" withSources() withJavadoc(),
   "com.lihaoyi"            %% "upickle"            % "0.2.6",
+  "org.scalatest"          %% "scalatest"          % "2.2.1" % "test",
   "com.github.nscala-time" %% "nscala-time"        % "1.8.0",
-  "com.loopj.android"      %  "android-async-http" % "1.4.5",
-  "org.ocpsoft.prettytime" %  "prettytime"         % "3.2.7.Final"
+  "com.loopj.android"      %  "android-async-http" % "1.4.5"
 )
+
+scalaSource in Test := baseDirectory.value / "test"
 
 scalacOptions in Compile += "-feature"
 

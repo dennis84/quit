@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.widget.ProgressBar
 import android.animation.ObjectAnimator
 import android.view.animation.DecelerateInterpolator
+import android.text.Html
 import scala.concurrent.ExecutionContext.Implicits.global
 import com.github.nscala_time.time.Imports._
 
@@ -19,31 +20,33 @@ class MainActivity extends SActivity {
     val id = settings.getString("id", Rand nextString 8)
 
     if(!settings.contains("id")) {
-      settings.edit().putString("id", id).commit()
+      settings.edit.putString("id", id).commit
     }
 
     val client = new Client(id)
     setContentView(R.layout.main)
 
+    val btn = find[TextView](R.id.btn)
     text = find[TextView](R.id.text)
     progress = find[ProgressBar](R.id.progress)
 
-    text.onClick(client.put.onSuccess {
+    btn.onClick(client.put onSuccess {
       case xs => update(xs.last)
     })
 
-    client.list.onSuccess {
-      case Nil => toast("...")
+    client.list onSuccess {
+      case Nil => toast("Empty list")
       case xs => update(xs.last)
     }
   }
 
   def update(date: DateTime) = runOnUiThread {
-    text.setText(Date.humanize(date))
+    val html = Humanize.humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
+    text.setText(Html.fromHtml(html))
     val progr = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / 7200000 * 1000 else 0
     val anim = ObjectAnimator.ofInt(progress, "progress", 1, progr.toInt)
     anim.setDuration(500)
-    anim.setInterpolator(new DecelerateInterpolator())
-    anim.start()
+    anim.setInterpolator(new DecelerateInterpolator)
+    anim.start
   }
 }

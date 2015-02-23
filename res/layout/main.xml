@@ -6,16 +6,33 @@
   android:orientation="vertical"
   android:background="#FEFEFE">
 
-  <TextView
-    android:id="@+id/text"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:gravity="center"
-    android:textSize="20dp"
-    android:fontFamily="sans-serif-thin"
-    android:textColor="#666666"
-    android:text="Loading ..." />
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/text"
+      android:layout_width="160dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:gravity="center"
+      android:textSize="24dp"
+      android:fontFamily="sans-serif-thin"
+      android:textColor="#666666"
+      android:text="Loading ..." />
+
+    <TextView
+      android:id="@+id/btn"
+      android:layout_width="160dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:gravity="center"
+      android:textSize="16dp"
+      android:textColor="#333333"
+      android:text="Press to reset" />
+  </LinearLayout>
 
   <ProgressBar
     android:id="@+id/progress"
