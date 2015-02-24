@@ -6,6 +6,7 @@ import scala.math._
 object Humanize {
 
   def humanize(date: DateTime): String = {
+    if(date > DateTime.now) return "Just now"
     val millis = (date to DateTime.now).millis
     val s = round(floor(millis / 1000))
     val m = round(floor(s / 60))

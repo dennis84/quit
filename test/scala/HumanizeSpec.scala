@@ -6,6 +6,7 @@ import com.github.nscala_time.time.Imports._
 class HumanizeSpec extends FlatSpec with Matchers {
 
   "The Humanizer" should "work" in {
+    Humanize.humanize(DateTime.now + 10.seconds) should be ("Just now")
     Humanize.humanize(DateTime.now - 10.seconds) should be ("Just now")
     Humanize.humanize(DateTime.now - 80.seconds) should be ("A minute ago")
     Humanize.humanize(DateTime.now - 120.seconds) should be ("2 minutes ago")

@@ -20,6 +20,12 @@ proguardOptions in Android ++= Seq(
   "-printusage target/usage.txt",
   "-keep class org.ocpsoft.prettytime.i18n.**",
   "-keep class com.github.nscala_time.time.**",
+  "-keep class com.squareup.otto.**",
+  "-keepattributes *Annotation*",
+  """-keepclassmembers class ** {
+    @com.squareup.otto.Subscribe public *;
+    @com.squareup.otto.Produce public *;
+  }""",
   "-dontwarn scala.collection.**" // required from Scala 2.11.4
 )
 
@@ -29,7 +35,9 @@ apkbuildExcludes in Android ++= Seq(
 )
 
 libraryDependencies ++= Seq(
+  "com.android.support"    %  "support-v4"         % "21.0.3",
   "org.scaloid"            %% "scaloid"            % "3.6.1-10" withSources() withJavadoc(),
+  "com.squareup"           %  "otto"               % "1.3.6",
   "com.lihaoyi"            %% "upickle"            % "0.2.6",
   "org.scalatest"          %% "scalatest"          % "2.2.1" % "test",
   "com.github.nscala-time" %% "nscala-time"        % "1.8.0",
