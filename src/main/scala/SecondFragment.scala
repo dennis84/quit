@@ -3,18 +3,17 @@ package quit.android
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup}
 import android.widget.TextView
-import android.support.v4.app.Fragment
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
 import android.text.Html
 
-class SecondFragment extends Fragment {
+class SecondFragment extends QFragment {
 
   var text: TextView = null
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    getActivity.asInstanceOf[MainActivity].bus.register(this)
+    bus.register(this)
   }
 
   override def onCreateView(

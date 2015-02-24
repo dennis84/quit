@@ -2,29 +2,28 @@ package quit.android
 
 import com.loopj.android.http._
 import org.apache.http.Header
-import com.github.nscala_time.time.Imports._
-import upickle._
+import org.joda.time.DateTime
 import scala.concurrent._
+import upickle._
 
-class Client(id: String) {
-  val API_URL = "https://arcane-beach-3744.herokuapp.com"
+class Client(id: String, url: String) {
   val client = new AsyncHttpClient
 
   def list: Future[List[DateTime]] = {
     val p = promise[List[DateTime]]
-    client.get(API_URL + "/" + id, handle(p))
+    client.get(url + "/" + id, handle(p))
     p.future
   }
 
   def put: Future[List[DateTime]] = {
     val p = promise[List[DateTime]]
-    client.post(API_URL + "/" + id, handle(p))
+    client.post(url + "/" + id, handle(p))
     p.future
   }
 
   def del: Future[List[DateTime]] = {
     val p = promise[List[DateTime]]
-    client.delete(API_URL + "/" + id, handle(p))
+    client.delete(url + "/" + id, handle(p))
     p.future
   }
 
@@ -35,8 +34,7 @@ class Client(id: String) {
       responseBody: Array[Byte]
     ) = {
       val list = read[List[String]](new String(responseBody))
-      val dates = list map DateTime.parse
-      p success dates
+      p success (list map DateTime.parse)
     }
 
     def onFailure(
