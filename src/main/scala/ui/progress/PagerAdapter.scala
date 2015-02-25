@@ -1,4 +1,4 @@
-package quit.android
+package quit.ui.progress
 
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.FragmentManager

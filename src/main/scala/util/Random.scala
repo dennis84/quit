@@ -1,4 +1,4 @@
-package quit.android
+package quit.util
 
 object Rand {
 

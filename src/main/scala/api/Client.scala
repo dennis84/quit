@@ -1,4 +1,4 @@
-package quit.android
+package quit.api
 
 import com.loopj.android.http._
 import org.apache.http.Header

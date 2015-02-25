@@ -10,20 +10,9 @@
     android:id="@+id/text"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="24dp"
     android:textColor="#666666"
     android:text="Loading ..." />
-
-  <TextView
-    android:id="@+id/btn"
-    android:layout_width="160dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:gravity="center"
-    android:textSize="16dp"
-    android:textColor="#333333"
-    android:text="Press to reset" />
 </LinearLayout>

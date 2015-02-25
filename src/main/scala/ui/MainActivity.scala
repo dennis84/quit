@@ -1,9 +1,11 @@
-package quit.android
+package quit.ui
 
 import android.os.Bundle
 import android.content.Context
 import android.util.AttributeSet
 import org.scaloid.common._
+import quit.api._
+import quit.util.Rand
 
 class MainActivity extends QActivity {
 
@@ -26,7 +28,7 @@ class MainActivity extends QActivity {
 
   override def onCreateView(name: String, context: Context, attrs: AttributeSet) = {
     val view = super.onCreateView(name, context, attrs)
-    client foreach (c => bus post Env(c))
+    client foreach (c => bus post new Env(c))
     view
   }
 }

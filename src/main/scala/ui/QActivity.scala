@@ -1,4 +1,4 @@
-package quit.android
+package quit.ui
 
 import android.support.v4.app.FragmentActivity
 import com.squareup.otto.Bus

@@ -1,4 +1,4 @@
-package quit.android
+package quit.util
 
 import org.scalatest._
 import com.github.nscala_time.time.Imports._

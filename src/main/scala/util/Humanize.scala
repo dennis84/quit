@@ -1,4 +1,4 @@
-package quit.android
+package quit.util
 
 import com.github.nscala_time.time.Imports._
 import scala.math._
