@@ -28,8 +28,8 @@ class SecondFragment extends QFragment {
   }
 
   @Subscribe
-  def onUpdated(event: Updated) {
-    val dates = event.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
+  def onChangeState(event: ChangeState) {
+    val dates = event.state.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
     val html = s"${dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
     text.setText(Html.fromHtml(html))
   }

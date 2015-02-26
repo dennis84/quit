@@ -11,12 +11,10 @@ import org.scaloid.common._
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
 import scala.concurrent.ExecutionContext.Implicits.global
-import quit.api._
 import quit.ui._
 
 class ProgressFragment extends QFragment {
 
-  var client: Client = null
   var progr: ProgressBar = null
 
   override def onCreate(savedInstanceState: Bundle) {
@@ -36,34 +34,22 @@ class ProgressFragment extends QFragment {
     val adapter = new PagerAdapter(activity.getSupportFragmentManager)
     pager.setAdapter(adapter)
 
-    btn onClick (client.put onSuccess {
-      case xs => runOnUiThread(bus.post(new Updated(xs)))
+    btn onClick (env.client.put onSuccess {
+      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(dates = xs))))
     })
 
-    client.list onSuccess {
+    env.client.list onSuccess {
       case Nil => ()
-      case xs => runOnUiThread(bus.post(new Updated(xs)))
+      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(dates = xs))))
     }
 
     view
   }
 
   @Subscribe
-  def onEnv(event: Env) {
-    client = event.client
-  }
-
-  @Subscribe
-  def onUpdate(event: Update) {
-    client.put onSuccess {
-      case xs => runOnUiThread(bus.post(new Updated(xs)))
-    }
-  }
-
-  @Subscribe
-  def onUpdated(event: Updated) {
-    val date = event.dates.last
-    val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / 7200000 * 1000 else 0
+  def onChangeState(event: ChangeState) {
+    val date = event.state.dates.last
+    val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / event.state.goal * 1000 else 0
     val anim = ObjectAnimator.ofInt(progr, "progress", 1, p.toInt)
     anim.setDuration(500)
     anim.setInterpolator(new DecelerateInterpolator)

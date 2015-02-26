@@ -30,8 +30,8 @@ class FirstFragment extends QFragment {
   }
 
   @Subscribe
-  def onUpdated(event: Updated) {
-    val html = humanize(event.dates.last) replaceAll ("""(\d+)""", "<b>$1</b>")
+  def onChangeState(event: ChangeState) {
+    val html = humanize(event.state.dates.last) replaceAll ("""(\d+)""", "<b>$1</b>")
     text.setText(Html fromHtml html)
   }
 }
