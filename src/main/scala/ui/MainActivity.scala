@@ -2,6 +2,7 @@ package quit.ui
 
 import android.os.Bundle
 import android.content.Context
+import android.widget.Toolbar
 import com.squareup.otto._
 import quit.util.Rand
 
@@ -29,6 +30,8 @@ class MainActivity extends QActivity {
     state = State(goal)
     env = new Env(id, getResources.getString(R.string.url))
     setContentView(R.layout.main)
+    val toolbar = findViewById(R.id.toolbar).asInstanceOf[Toolbar]
+    toolbar.inflateMenu(R.menu.main)
   }
 
   @Subscribe

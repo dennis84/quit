@@ -6,13 +6,16 @@
   android:versionCode="1"
   android:versionName="1.0">
 
-  <uses-sdk tools:overrideLibrary="android.support.v4" />
+  <uses-sdk
+    android:minSdkVersion="21"
+    android:targetSdkVersion="21"
+    android:maxSdkVersion="21" />
 
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
     android:label="Quit"
-    android:theme="@android:style/Theme.Material.Light.NoActionBar">
+    android:theme="@style/AppTheme">
     <activity android:name="MainActivity" android:label="Main">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

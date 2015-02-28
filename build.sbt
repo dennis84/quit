@@ -36,6 +36,7 @@ apkbuildExcludes in Android ++= Seq(
 
 libraryDependencies ++= Seq(
   "com.android.support"    %  "support-v4"         % "21.0.3",
+  "com.android.support"    %  "appcompat-v7"       % "21.0.3",
   "org.scaloid"            %% "scaloid"            % "3.6.1-10" withSources() withJavadoc(),
   "com.squareup"           %  "otto"               % "1.3.6",
   "com.lihaoyi"            %% "upickle"            % "0.2.6",
