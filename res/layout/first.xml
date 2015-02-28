@@ -15,4 +15,13 @@
     android:textSize="24dp"
     android:textColor="#666666"
     android:text="Loading ..." />
+
+  <TextView
+    android:id="@+id/progress_goal"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:fontFamily="sans-serif-thin"
+    android:textSize="16dp"
+    android:textColor="#666666" />
 </LinearLayout>
