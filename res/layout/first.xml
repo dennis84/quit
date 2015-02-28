@@ -12,8 +12,8 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
-    android:textSize="24dp"
-    android:textColor="#666666"
+    android:textSize="28dp"
+    android:textColor="#FFFFFF"
     android:text="Loading ..." />
 
   <TextView
@@ -23,5 +23,5 @@
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="16dp"
-    android:textColor="#666666" />
+    android:textColor="#FFFFFF" />
 </LinearLayout>

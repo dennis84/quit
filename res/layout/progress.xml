@@ -33,5 +33,7 @@
     android:id="@+id/btn"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:text="Press to reset" />
+    android:textColor="#FFFFFF"
+    android:background="#FF4182"
+    android:text="Reset" />
 </LinearLayout>
