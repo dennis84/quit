@@ -33,8 +33,15 @@ class FirstFragment extends QFragment {
 
   @Subscribe
   def onChangeState(event: ChangeState) {
-    val html = humanize(event.state.dates.last) replaceAll ("""(\d+)""", "<b>$1</b>")
+    val date = event.state.dates.last
+    val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
     text.setText(Html fromHtml html)
-    goal.setText(s"${event.state.goal} to goal")
+
+    val goalDate = date + event.state.goal.millis
+    if(DateTime.now > goalDate) {
+      goal.setText("Congrats, you reached your goal")
+    } else {
+      goal.setText(humanize(DateTime.now to goalDate))
+    }
   }
 }
