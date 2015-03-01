@@ -3,7 +3,7 @@ package quit.ui.progress
 import android.app.Fragment
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup}
-import android.widget.{Button, ProgressBar}
+import android.widget.{Button, ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import android.view.animation.DecelerateInterpolator
@@ -29,10 +29,28 @@ class ProgressFragment extends QFragment {
   ) = {
     val view = inflater.inflate(R.layout.progress, container, false)
     val btn = view.findViewById(R.id.btn).asInstanceOf[Button]
+    val radio = view.findViewById(R.id.progress_indicator).asInstanceOf[RadioGroup]
     progr = view.findViewById(R.id.progress_bar).asInstanceOf[ProgressBar]
     val pager = view.findViewById(R.id.pager).asInstanceOf[ViewPager]
     val adapter = new PagerAdapter(activity.getSupportFragmentManager)
     pager.setAdapter(adapter)
+
+    pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener {
+      override def onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+      override def onPageScrollStateChanged(state: Int) {}
+
+      override def onPageSelected(position: Int) {
+        if(position == 0) radio.check(R.id.progress_indicator_1)
+        if(position == 1) radio.check(R.id.progress_indicator_2)
+      }
+    })
+
+    radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener {
+      override def onCheckedChanged(group: RadioGroup, checkedId: Int) {
+        if(checkedId == R.id.progress_indicator_1) pager.setCurrentItem(0)
+        if(checkedId == R.id.progress_indicator_2) pager.setCurrentItem(1)
+      }
+    })
 
     btn onClick (env.client.put onSuccess {
       case xs => runOnUiThread(bus.post(new ChangeState(state.copy(dates = xs))))
