@@ -58,7 +58,10 @@ class ProgressFragment extends QFragment {
 
     env.client.list onSuccess {
       case Nil => ()
-      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(dates = xs))))
+      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(
+        connected = true,
+        dates = xs
+      ))))
     }
 
     view

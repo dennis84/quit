@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="#2A3158">
+  android:layout_height="match_parent">
 
-  <LinearLayout
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#2A3158">
 
-    <fragment
-      android:id="@+id/toolbar"
-      android:name="quit.ui.toolbar.ToolbarFragment"
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="match_parent"
+      android:orientation="vertical">
 
-    <fragment
-      android:id="@+id/progress"
-      android:name="quit.ui.progress.ProgressFragment"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerInParent="true" />
-  </LinearLayout>
-</ScrollView>
+      <fragment
+        android:id="@+id/toolbar"
+        android:name="quit.ui.toolbar.ToolbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+      <fragment
+        android:id="@+id/progress"
+        android:name="quit.ui.progress.ProgressFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    </LinearLayout>
+  </ScrollView>
+
+  <fragment
+    android:id="@+id/loading"
+    android:name="quit.ui.loading.LoadingFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+</FrameLayout>
