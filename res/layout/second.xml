@@ -7,11 +7,21 @@
   android:orientation="vertical">
 
   <TextView
-    android:id="@+id/foo"
+    android:id="@+id/progress_pieces"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="24dp"
     android:textColor="#FFFFFF" />
+
+  <TextView
+    android:id="@+id/progress_limit"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:fontFamily="sans-serif-thin"
+    android:textSize="16dp"
+    android:textColor="#FFFFFF"
+    android:textStyle="italic" />
 </LinearLayout>

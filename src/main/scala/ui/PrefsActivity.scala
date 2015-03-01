@@ -14,8 +14,10 @@ class PrefsActivity extends PreferenceActivity with OnSharedPreferenceChangeList
     val prefs = getPreferenceScreen.getSharedPreferences
     val hours = findPreference("goal_hours").asInstanceOf[EditTextPreference]
     val minutes = findPreference("goal_minutes").asInstanceOf[EditTextPreference]
+    val limit = findPreference("goal_limit").asInstanceOf[EditTextPreference]
     hours.setSummary(prefs.getString("goal_hours", "-"))
     minutes.setSummary(prefs.getString("goal_minutes", "-"))
+    limit.setSummary(prefs.getString("goal_limit", "-"))
   }
 
   override def onResume {
@@ -36,8 +38,10 @@ class PrefsActivity extends PreferenceActivity with OnSharedPreferenceChangeList
 
       val hours = sharedPreferences.getString("goal_hours", "2").toInt
       val minutes = sharedPreferences.getString("goal_minutes", "0").toInt
+      val limit = sharedPreferences.getString("goal_limit", "0").toInt
       val goal = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000)
       sharedPreferences.edit.putInt("goal", goal).commit
+      sharedPreferences.edit.putInt("limit", limit).commit
     }
   }
 }

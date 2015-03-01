@@ -20,4 +20,12 @@
       android:singleLine="true"
       android:numeric="integer" />
   </PreferenceCategory>
+
+  <EditTextPreference
+    android:key="goal_limit"
+    android:title="Limit"
+    android:summary="Summary"
+    android:dialogTitle="Dialog Title"
+    android:singleLine="true"
+    android:numeric="integer" />
 </PreferenceScreen>

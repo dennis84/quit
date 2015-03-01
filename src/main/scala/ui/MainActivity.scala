@@ -18,6 +18,7 @@ class MainActivity extends QActivity {
     val settings = PreferenceManager.getDefaultSharedPreferences(this)
     val id = settings.getString("id", Rand nextString 8)
     val goal = settings.getInt("goal", 7200000)
+    val limit = settings.getInt("limit", 10)
 
     if(!settings.contains("id")) {
       settings.edit.putString("id", id).commit
@@ -27,7 +28,11 @@ class MainActivity extends QActivity {
       settings.edit.putInt("goal", goal).commit
     }
 
-    state = State(goal)
+    if(!settings.contains("limit")) {
+      settings.edit.putInt("limit", limit).commit
+    }
+
+    state = State(goal, limit)
     env = new Env(id, getResources.getString(R.string.url))
     setContentView(R.layout.main)
   }
@@ -36,6 +41,7 @@ class MainActivity extends QActivity {
   def onChangeState(event: ChangeState) {
     val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
     settings.edit.putInt("goal", event.state.goal).commit
+    settings.edit.putInt("limit", event.state.limit).commit
     state = event.state
   }
 }

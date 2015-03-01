@@ -10,7 +10,8 @@ import quit.ui._
 
 class SecondFragment extends QFragment {
 
-  var text: TextView = null
+  var pieces: TextView = null
+  var limit: TextView = null
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
@@ -23,7 +24,8 @@ class SecondFragment extends QFragment {
     savedInstanceState: Bundle
   ) = {
     val view = inflater.inflate(R.layout.second, container, false)
-    text = view.findViewById(R.id.foo).asInstanceOf[TextView]
+    pieces = view.findViewById(R.id.progress_pieces).asInstanceOf[TextView]
+    limit = view.findViewById(R.id.progress_limit).asInstanceOf[TextView]
     view
   }
 
@@ -31,6 +33,7 @@ class SecondFragment extends QFragment {
   def onChangeState(event: ChangeState) {
     val dates = event.state.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
     val html = s"${dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
-    text.setText(Html.fromHtml(html))
+    pieces.setText(Html.fromHtml(html))
+    limit.setText(s"Only ${event.state.limit - dates.length} pieces left")
   }
 }
