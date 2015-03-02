@@ -3,7 +3,4 @@
   <item
     android:id="@+id/toolbar_settings"
     android:title="Settings" />
-  <item
-    android:id="@+id/toolbar_help"
-    android:title="Help" />
 </menu>

@@ -2,7 +2,7 @@ package quit.ui.progress
 
 import android.app.Fragment
 import android.os.Bundle
-import android.view.{LayoutInflater, ViewGroup}
+import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.{Button, ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
@@ -26,12 +26,13 @@ class ProgressFragment extends QFragment {
     inflater: LayoutInflater,
     container: ViewGroup,
     savedInstanceState: Bundle
-  ) = {
-    val view = inflater.inflate(R.layout.progress, container, false)
-    val btn = view.findViewById(R.id.btn).asInstanceOf[Button]
-    val radio = view.findViewById(R.id.progress_indicator).asInstanceOf[RadioGroup]
-    progr = view.findViewById(R.id.progress_bar).asInstanceOf[ProgressBar]
-    val pager = view.findViewById(R.id.pager).asInstanceOf[ViewPager]
+  ) = inflater.inflate(R.layout.progress, container, false)
+
+  override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    val btn = view.find[Button](R.id.btn)
+    val radio = view.find[RadioGroup](R.id.progress_indicator)
+    progr = view.find[ProgressBar](R.id.progress_bar)
+    val pager = view.find[ViewPager](R.id.pager)
     val adapter = new PagerAdapter(activity.getSupportFragmentManager)
     pager.setAdapter(adapter)
 
@@ -63,17 +64,16 @@ class ProgressFragment extends QFragment {
         dates = xs
       ))))
     }
-
-    view
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
-    val date = event.state.dates.last
-    val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / event.state.goal * 1000 else 0
-    val anim = ObjectAnimator.ofInt(progr, "progress", 1, p.toInt)
-    anim.setDuration(500)
-    anim.setInterpolator(new DecelerateInterpolator)
-    anim.start
+    event.state.dates.lastOption foreach { date =>
+      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / event.state.goal * 1000 else 0
+      val anim = ObjectAnimator.ofInt(progr, "progress", 1, p.toInt)
+      anim.setDuration(500)
+      anim.setInterpolator(new DecelerateInterpolator)
+      anim.start
+    }
   }
 }

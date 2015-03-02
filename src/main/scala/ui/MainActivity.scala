@@ -24,14 +24,6 @@ class MainActivity extends QActivity {
       settings.edit.putString("id", id).commit
     }
 
-    if(!settings.contains("goal")) {
-      settings.edit.putInt("goal", goal).commit
-    }
-
-    if(!settings.contains("limit")) {
-      settings.edit.putInt("limit", limit).commit
-    }
-
     state = State(goal, limit)
     env = new Env(id, getResources.getString(R.string.url))
     setContentView(R.layout.main)

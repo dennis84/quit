@@ -1,7 +1,7 @@
 package quit.ui.progress
 
 import android.os.Bundle
-import android.view.{LayoutInflater, ViewGroup}
+import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
 import com.github.nscala_time.time.Imports._
 import android.text.Html
@@ -24,24 +24,25 @@ class FirstFragment extends QFragment {
     inflater: LayoutInflater,
     container: ViewGroup,
     savedInstanceState: Bundle
-  ) = {
-    val view = inflater.inflate(R.layout.first, container, false)
-    text = view.findViewById(R.id.text).asInstanceOf[TextView]
-    goal = view.findViewById(R.id.progress_goal).asInstanceOf[TextView]
-    view
+  ) = inflater.inflate(R.layout.first, container, false)
+
+  override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    text = view.find[TextView](R.id.text)
+    goal = view.find[TextView](R.id.progress_goal)
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
-    val date = event.state.dates.last
-    val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
-    text.setText(Html fromHtml html)
+    event.state.dates.lastOption foreach { date =>
+      val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
+      text.setText(Html fromHtml html)
 
-    val goalDate = date + event.state.goal.millis
-    if(DateTime.now > goalDate) {
-      goal.setText("Congrats, you reached your goal")
-    } else {
-      goal.setText(humanize(DateTime.now to goalDate))
+      val goalDate = date + event.state.goal.millis
+      if(DateTime.now > goalDate) {
+        goal.setText("Congrats, you've reached your goal")
+      } else {
+        goal.setText(humanize(DateTime.now to goalDate))
+      }
     }
   }
 }
