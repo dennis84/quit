@@ -1,8 +1,10 @@
 package quit.ui
 
+import android.content.Context
 import quit.api._
 
-class Env(id: String, url: String) {
+class Env(context: Context) {
 
-  lazy val client = new Client(id, url)
+  lazy val db = new quit.db.Db(context)
+  lazy val repo = new quit.db.Repo(db)
 }

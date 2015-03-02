@@ -29,6 +29,7 @@ class ProgressFragment extends QFragment {
   ) = inflater.inflate(R.layout.progress, container, false)
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    super.onViewCreated(view, savedInstanceState)
     val btn = view.find[Button](R.id.btn)
     val radio = view.find[RadioGroup](R.id.progress_indicator)
     progr = view.find[ProgressBar](R.id.progress_bar)
@@ -53,21 +54,20 @@ class ProgressFragment extends QFragment {
       }
     })
 
-    btn onClick (env.client.put onSuccess {
-      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(dates = xs))))
-    })
-
-    env.client.list onSuccess {
-      case Nil => ()
-      case xs => runOnUiThread(bus.post(new ChangeState(state.copy(
-        connected = true,
-        dates = xs
-      ))))
+    btn onClick runOnUiThread {
+      env.repo.insert(DateTime.now)
+      bus.post(new ChangeState(state.copy(dates = env.repo.list)))
     }
+
+    runOnUiThread(bus.post(new ChangeState(state.copy(
+      connected = true,
+      dates = env.repo.list
+    ))))
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
+    if(!viewCreated) return
     event.state.dates.lastOption foreach { date =>
       val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / event.state.goal * 1000 else 0
       val anim = ObjectAnimator.ofInt(progr, "progress", 1, p.toInt)

@@ -27,12 +27,15 @@ class FirstFragment extends QFragment {
   ) = inflater.inflate(R.layout.first, container, false)
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    super.onViewCreated(view, savedInstanceState)
     text = view.find[TextView](R.id.text)
     goal = view.find[TextView](R.id.progress_goal)
+    onChangeState(new ChangeState(state))
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
+    if(!viewCreated) return
     event.state.dates.lastOption foreach { date =>
       val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
       text.setText(Html fromHtml html)

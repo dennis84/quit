@@ -23,6 +23,7 @@ class ToolbarFragment extends QFragment {
   ) = inflater.inflate(R.layout.toolbar, container, false)
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    super.onViewCreated(view, savedInstanceState)
     val toolbar = view.find[Toolbar](R.id.toolbar_toolbar)
 
     toolbar onClick {

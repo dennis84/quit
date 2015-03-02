@@ -18,9 +18,14 @@ class LoadingFragment extends QFragment {
     savedInstanceState: Bundle
   ) = inflater.inflate(R.layout.loading, container, false)
 
+  override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    super.onViewCreated(view, savedInstanceState)
+    onChangeState(new ChangeState(state))
+  }
+
   @Subscribe
   def onChangeState(event: ChangeState) {
-    if(event.state.connected) {
+    if(viewCreated && event.state.connected) {
       getView.setVisibility(View.GONE)
     }
   }

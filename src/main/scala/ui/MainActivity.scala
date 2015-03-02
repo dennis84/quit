@@ -25,7 +25,7 @@ class MainActivity extends QActivity {
     }
 
     state = State(goal, limit)
-    env = new Env(id, getResources.getString(R.string.url))
+    env = new Env(this)
     setContentView(R.layout.main)
   }
 

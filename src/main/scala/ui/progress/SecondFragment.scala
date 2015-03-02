@@ -26,12 +26,15 @@ class SecondFragment extends QFragment {
   ) = inflater.inflate(R.layout.second, container, false)
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
+    super.onViewCreated(view, savedInstanceState)
     pieces = view.find[TextView](R.id.progress_pieces)
     limit = view.find[TextView](R.id.progress_limit)
+    onChangeState(new ChangeState(state))
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
+    if(!viewCreated) return
     val dates = event.state.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
     val html = s"${dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
     pieces.setText(Html.fromHtml(html))
