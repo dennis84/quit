@@ -30,10 +30,10 @@ class MainActivity extends QActivity {
   }
 
   @Subscribe
-  def onChangeState(event: ChangeState) {
+  def update(newState: State) {
     val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-    settings.edit.putInt("goal", event.state.goal).commit
-    settings.edit.putInt("limit", event.state.limit).commit
-    state = event.state
+    settings.edit.putInt("goal", newState.goal).commit
+    settings.edit.putInt("limit", newState.limit).commit
+    state = newState
   }
 }

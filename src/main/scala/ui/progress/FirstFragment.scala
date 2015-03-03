@@ -30,17 +30,17 @@ class FirstFragment extends QFragment {
     super.onViewCreated(view, savedInstanceState)
     text = view.find[TextView](R.id.text)
     goal = view.find[TextView](R.id.progress_goal)
-    onChangeState(new ChangeState(state))
+    update(state)
   }
 
   @Subscribe
-  def onChangeState(event: ChangeState) {
+  def update(newState: State) {
     if(!viewCreated) return
-    event.state.dates.lastOption foreach { date =>
+    newState.dates.lastOption foreach { date =>
       val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
       text.setText(Html fromHtml html)
 
-      val goalDate = date + event.state.goal.millis
+      val goalDate = date + newState.goal.millis
       if(DateTime.now > goalDate) {
         goal.setText("Congrats, you've reached your goal")
       } else {

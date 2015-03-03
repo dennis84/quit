@@ -13,7 +13,7 @@ class Db(context: Context)
     db.execSQL("""
       CREATE TABLE IF NOT EXISTS dates
       ( _id INTEGER PRIMARY KEY
-      , created_at TEXT );
+      , created_at INTEGER );
     """)
   }
 

@@ -1,7 +1,6 @@
 package quit.ui
 
 import android.content.Context
-import quit.api._
 
 class Env(context: Context) {
 

@@ -29,15 +29,15 @@ class SecondFragment extends QFragment {
     super.onViewCreated(view, savedInstanceState)
     pieces = view.find[TextView](R.id.progress_pieces)
     limit = view.find[TextView](R.id.progress_limit)
-    onChangeState(new ChangeState(state))
+    update(state)
   }
 
   @Subscribe
-  def onChangeState(event: ChangeState) {
+  def update(newState: State) {
     if(!viewCreated) return
-    val dates = event.state.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
+    val dates = newState.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
     val html = s"${dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
     pieces.setText(Html.fromHtml(html))
-    limit.setText(s"Only ${event.state.limit - dates.length} pieces left")
+    limit.setText(s"Only ${newState.limit - dates.length} pieces left")
   }
 }

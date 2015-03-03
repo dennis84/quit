@@ -20,12 +20,12 @@ class LoadingFragment extends QFragment {
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
-    onChangeState(new ChangeState(state))
+    update(state)
   }
 
   @Subscribe
-  def onChangeState(event: ChangeState) {
-    if(viewCreated && event.state.connected) {
+  def update(newState: State) {
+    if(viewCreated && newState.connected) {
       getView.setVisibility(View.GONE)
     }
   }

@@ -7,5 +7,3 @@ case class State(
   val limit: Int = 10,
   val dates: List[DateTime] = Nil,
   val connected: Boolean = false)
-
-class ChangeState(val state: State)

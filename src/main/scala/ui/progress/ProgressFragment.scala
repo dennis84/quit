@@ -2,6 +2,7 @@ package quit.ui.progress
 
 import android.app.Fragment
 import android.os.Bundle
+import android.os.Handler
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.{Button, ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
@@ -11,11 +12,14 @@ import org.scaloid.common._
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
 import scala.concurrent.ExecutionContext.Implicits.global
+import com.melnykov.fab.FloatingActionButton
 import quit.ui._
+import quit.app._
 
 class ProgressFragment extends QFragment {
 
   var progr: ProgressBar = null
+  var progrStart = 1
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
@@ -30,7 +34,7 @@ class ProgressFragment extends QFragment {
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
-    val btn = view.find[Button](R.id.btn)
+    val btn = view.find[FloatingActionButton](R.id.btn)
     val radio = view.find[RadioGroup](R.id.progress_indicator)
     progr = view.find[ProgressBar](R.id.progress_bar)
     val pager = view.find[ViewPager](R.id.pager)
@@ -56,21 +60,26 @@ class ProgressFragment extends QFragment {
 
     btn onClick runOnUiThread {
       env.repo.insert(DateTime.now)
-      bus.post(new ChangeState(state.copy(dates = env.repo.list)))
+      bus.post(state.copy(dates = env.repo.list))
     }
 
-    runOnUiThread(bus.post(new ChangeState(state.copy(
+    runOnUiThread(bus.post(state.copy(
       connected = true,
       dates = env.repo.list
-    ))))
+    )))
+
+    schedule(60000, {
+      runOnUiThread(bus.post(state))
+    })
   }
 
   @Subscribe
-  def onChangeState(event: ChangeState) {
+  def update(newState: State) {
     if(!viewCreated) return
-    event.state.dates.lastOption foreach { date =>
-      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / event.state.goal * 1000 else 0
-      val anim = ObjectAnimator.ofInt(progr, "progress", 1, p.toInt)
+    newState.dates.lastOption foreach { date =>
+      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / newState.goal * 1000 else 0
+      val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p.toInt)
+      progrStart = p.toInt
       anim.setDuration(500)
       anim.setInterpolator(new DecelerateInterpolator)
       anim.start

@@ -7,7 +7,8 @@ class Repo(db: Db) {
 
   def insert(date: DateTime) {
     val values = new ContentValues;
-    values.put("created_at", date.toString)
+    val timestamp: java.lang.Long = date.getMillis
+    values.put("created_at", timestamp)
     db.getWritableDatabase.insert("dates", null, values)
   }
 
@@ -15,12 +16,13 @@ class Repo(db: Db) {
     val dates = scala.collection.mutable.ListBuffer.empty[DateTime]
     val cursor = db.getReadableDatabase.rawQuery("""
       SELECT * FROM dates
-      ORDER BY date(created_at) DESC
+      ORDER BY created_at
     """, null)
+
 
     if (cursor.moveToFirst) {
       do {
-        dates += DateTime.parse(cursor.getString(1))
+        dates += new DateTime(cursor.getLong(1))
       } while(cursor.moveToNext)
     }
 
