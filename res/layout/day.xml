@@ -20,6 +20,6 @@
     android:layout_height="wrap_content"
     android:gravity="right"
     android:fontFamily="sans-serif-thin"
-    android:textSize="28dp"
+    android:textSize="20dp"
     android:textColor="#FFFFFF" />
 </LinearLayout>

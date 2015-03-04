@@ -4,9 +4,10 @@ import android.widget.ArrayAdapter
 import android.content.Context
 import android.view.{LayoutInflater, View, ViewGroup}
 import android.widget.TextView
+import android.text.Html
 import java.util.ArrayList
 import org.scaloid.common._
-import org.joda.time.DateTime
+import com.github.nscala_time.time.Imports._
 
 class DayAdapter(
   context: Context,
@@ -19,9 +20,13 @@ class DayAdapter(
     val day = view.find[TextView](quit.ui.R.id.history_day)
     val dates = days.get(position)
 
-    pieces.setText(s"${dates.length} pieces")
+    pieces.setText(Html.fromHtml(s"<b>${dates.length}</b> pcs"))
     dates.headOption foreach { date =>
-      day.setText(date.toString("EEE, MMM d"))
+      if(date.withTimeAtStartOfDay == DateTime.now.withTimeAtStartOfDay - 1.days) {
+        day.setText("Yesterday")
+      } else {
+        day.setText(date.toString("EEE, MMM d"))
+      }
     }
 
     view
