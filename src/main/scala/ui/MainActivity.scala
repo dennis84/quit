@@ -13,8 +13,6 @@ class MainActivity extends QActivity {
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    bus.register(this)
-
     val settings = PreferenceManager.getDefaultSharedPreferences(this)
     val id = settings.getString("id", Rand nextString 8)
     val goal = settings.getInt("goal", 7200000)

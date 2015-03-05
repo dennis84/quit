@@ -11,17 +11,16 @@ class HistoryFragment extends QListFragment {
 
   var adapter: DayAdapter = _
 
-  override def onCreate(savedInstanceState: Bundle) {
-    super.onCreate(savedInstanceState)
-    bus.register(this)
-  }
-
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     implicit val ctx = getActivity
 
     adapter = DayAdapter(activity)
     setListAdapter(adapter)
+  }
+
+  override def onResume {
+    super.onResume
     update(state)
   }
 

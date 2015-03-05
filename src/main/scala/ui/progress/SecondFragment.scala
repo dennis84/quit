@@ -14,11 +14,6 @@ class SecondFragment extends QFragment {
   var pieces: TextView = null
   var limit: TextView = null
 
-  override def onCreate(savedInstanceState: Bundle) {
-    super.onCreate(savedInstanceState)
-    bus.register(this)
-  }
-
   override def onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup,
@@ -29,6 +24,10 @@ class SecondFragment extends QFragment {
     super.onViewCreated(view, savedInstanceState)
     pieces = view.find[TextView](R.id.progress_pieces)
     limit = view.find[TextView](R.id.progress_limit)
+  }
+
+  override def onResume {
+    super.onResume
     update(state)
   }
 

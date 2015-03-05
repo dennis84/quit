@@ -11,11 +11,6 @@ import quit.app._
 
 class ToolbarFragment extends QFragment {
 
-  override def onCreate(savedInstanceState: Bundle) {
-    super.onCreate(savedInstanceState)
-    bus.register(this)
-  }
-
   override def onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup,

@@ -21,11 +21,6 @@ class ProgressFragment extends QFragment {
   var progr: ProgressBar = null
   var progrStart = 1
 
-  override def onCreate(savedInstanceState: Bundle) {
-    super.onCreate(savedInstanceState)
-    bus.register(this)
-  }
-
   override def onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup,
@@ -62,7 +57,10 @@ class ProgressFragment extends QFragment {
       env.repo.insert(DateTime.now)
       bus.post(state.copy(dates = env.repo.list))
     }
+  }
 
+  override def onResume {
+    super.onResume
     runOnUiThread(bus.post(state.copy(
       connected = true,
       dates = env.repo.list
