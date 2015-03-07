@@ -8,9 +8,6 @@ import android.text.Html
 import java.util.ArrayList
 import org.scaloid.common._
 import com.github.nscala_time.time.Imports._
-import quit.ui._
-import quit.ui.progress._
-import quit.db._
 
 class DayAdapter(
   context: Context,

@@ -20,6 +20,7 @@ class ProgressFragment extends QFragment {
 
   var progr: ProgressBar = null
   var progrStart = 1
+  var handler: Handler = new Handler
 
   override def onCreateView(
     inflater: LayoutInflater,
@@ -57,15 +58,22 @@ class ProgressFragment extends QFragment {
       env.repo.insert(DateTime.now)
       bus.post(state.copy(dates = env.repo.list))
     }
-
-    schedule(60000, {
-      runOnUiThread(bus.post(state))
-    })
   }
 
   override def onResume {
     super.onResume
     update(state)
+    handler.postDelayed(new Runnable {
+      override def run() {
+        runOnUiThread(bus.post(state))
+        handler.postDelayed(this, 60000)
+      }
+    }, 60000)
+  }
+
+  override def onPause {
+    super.onPause
+    handler.removeCallbacksAndMessages(null)
   }
 
   @Subscribe
