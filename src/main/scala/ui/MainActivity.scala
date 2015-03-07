@@ -8,9 +8,6 @@ import android.preference.PreferenceManager
 
 class MainActivity extends QActivity {
 
-  var env: Env = null
-  var state: State = null
-
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     val settings = PreferenceManager.getDefaultSharedPreferences(this)

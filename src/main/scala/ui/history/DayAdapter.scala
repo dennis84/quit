@@ -18,7 +18,10 @@ class DayAdapter(
 ) extends ArrayAdapter[List[DateTime]](context, 0, days) {
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-    var view = LayoutInflater.from(context).inflate(quit.ui.R.layout.day, parent, false)
+    var view = convertView
+    if(null == view) {
+      view = LayoutInflater.from(context).inflate(quit.ui.R.layout.day, parent, false)
+    }
 
     val pieces = view.find[TextView](quit.ui.R.id.history_pieces)
     val day = view.find[TextView](quit.ui.R.id.history_day)

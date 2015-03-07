@@ -45,6 +45,7 @@ class HistoryFragment extends QListFragment {
     if(!viewCreated) return
     val from = newState.dates.headOption.getOrElse(DateTime.now)
     val days = Days.daysBetween(from, DateTime.now + 1.days).getDays
+    adapter.clear
     for(i <- 1 until days) {
       adapter.add(newState.dates.filter {
         _.withTimeAtStartOfDay == (DateTime.now - i.days).withTimeAtStartOfDay
