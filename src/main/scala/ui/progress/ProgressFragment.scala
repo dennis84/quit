@@ -61,14 +61,7 @@ class ProgressFragment extends QFragment {
 
   override def onResume {
     super.onResume
-    runOnUiThread(bus.post(state.copy(
-      connected = true,
-      dates = env.repo.list
-    )))
-
-    schedule(60000, {
-      runOnUiThread(bus.post(state))
-    })
+    update(state)
   }
 
   @Subscribe

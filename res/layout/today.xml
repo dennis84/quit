@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:fab="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingBottom="50dp"
+  android:orientation="vertical">
+
+  <fragment
+    android:name="quit.ui.toolbar.ToolbarFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <fragment
+    android:name="quit.ui.progress.ProgressFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+</LinearLayout>

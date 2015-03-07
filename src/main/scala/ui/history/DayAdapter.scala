@@ -8,14 +8,18 @@ import android.text.Html
 import java.util.ArrayList
 import org.scaloid.common._
 import com.github.nscala_time.time.Imports._
+import quit.ui._
+import quit.ui.progress._
+import quit.db._
 
 class DayAdapter(
   context: Context,
   days: ArrayList[List[DateTime]]
 ) extends ArrayAdapter[List[DateTime]](context, 0, days) {
 
-  override def getView(position: Int, convertView: View, parent: ViewGroup) = {
-    val view = LayoutInflater.from(context).inflate(quit.ui.R.layout.day, parent, false)
+  override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
+    var view = LayoutInflater.from(context).inflate(quit.ui.R.layout.day, parent, false)
+
     val pieces = view.find[TextView](quit.ui.R.id.history_pieces)
     val day = view.find[TextView](quit.ui.R.id.history_day)
     val dates = days.get(position)
@@ -31,9 +35,4 @@ class DayAdapter(
 
     view
   }
-}
-
-object DayAdapter {
-  def apply(context: Context): DayAdapter =
-    new DayAdapter(context, new ArrayList[List[DateTime]])
 }
