@@ -28,7 +28,7 @@ class HistoryFragment extends QListFragment {
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     getListView addHeaderView header
-    adapter = new DayAdapter(activity, new ArrayList[List[DateTime]])
+    adapter = new DayAdapter(activity, new ArrayList[Day])
     setListAdapter(adapter)
   }
 
@@ -47,9 +47,10 @@ class HistoryFragment extends QListFragment {
     val days = Days.daysBetween(from, DateTime.now + 1.days).getDays
     adapter.clear
     for(i <- 1 until days) {
-      adapter.add(newState.dates.filter {
-        _.withTimeAtStartOfDay == (DateTime.now - i.days).withTimeAtStartOfDay
-      })
+      val date = (DateTime.now - i.days).withTimeAtStartOfDay
+      adapter.add(Day(date, newState.dates.filter {
+        _.withTimeAtStartOfDay == date
+      }))
     }
   }
 }
