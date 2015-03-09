@@ -8,7 +8,7 @@ import android.text.Html
 import java.util.ArrayList
 import org.scaloid.common._
 import com.github.nscala_time.time.Imports._
-import java.util.concurrent.TimeUnit
+import org.joda.time.Period
 
 class DayAdapter(
   context: Context,
@@ -36,11 +36,8 @@ class DayAdapter(
     day.dates.sliding(2).map {
       x => x(1).getMillis - x(0).getMillis
     } reduceOption (_ max _) foreach { x =>
-      val h = TimeUnit.MILLISECONDS.toHours(x)
-      val m = TimeUnit.MILLISECONDS.toMinutes(x) -
-              TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(x))
-
-      break.setText(Html.fromHtml(s"<i>Longest break: ${h}h ${m}m</i>"))
+      val period = new Period(x)
+      break.setText(Html.fromHtml(s"<i>Longest break: ${period.getHours}h ${period.getMinutes}m</i>"))
     }
 
     view
