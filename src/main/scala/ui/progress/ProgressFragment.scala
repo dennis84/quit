@@ -1,24 +1,20 @@
 package quit.ui.progress
 
 import android.app.Fragment
-import android.os.Bundle
-import android.os.Handler
+import android.os.{Bundle, Handler}
 import android.view.{LayoutInflater, ViewGroup, View}
+import android.view.animation.DecelerateInterpolator
 import android.widget.{Button, ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
-import android.view.animation.DecelerateInterpolator
-import org.scaloid.common._
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
-import scala.concurrent.ExecutionContext.Implicits.global
 import com.melnykov.fab.FloatingActionButton
 import quit.ui._
-import quit.app._
 
 class ProgressFragment extends QFragment {
 
-  var progr: ProgressBar = null
+  var progr: ProgressBar = _
   var progrStart = 1
   var handler: Handler = new Handler
 
@@ -34,7 +30,7 @@ class ProgressFragment extends QFragment {
     val radio = view.find[RadioGroup](R.id.progress_indicator)
     progr = view.find[ProgressBar](R.id.progress_bar)
     val pager = view.find[ViewPager](R.id.pager)
-    val adapter = new PagerAdapter(activity.getSupportFragmentManager)
+    val adapter = new ProgressPagerAdapter(activity.getSupportFragmentManager)
     pager.setAdapter(adapter)
 
     pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener {
@@ -54,7 +50,7 @@ class ProgressFragment extends QFragment {
       }
     })
 
-    btn onClick runOnUiThread {
+    btn onClick {
       env.repo.insert(DateTime.now)
       bus.post(state.copy(dates = env.repo.list))
     }
@@ -65,7 +61,7 @@ class ProgressFragment extends QFragment {
     update(state)
     handler.postDelayed(new Runnable {
       override def run() {
-        runOnUiThread(bus.post(state))
+        bus.post(state)
         handler.postDelayed(this, 60000)
       }
     }, 60000)

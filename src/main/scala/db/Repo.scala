@@ -19,7 +19,6 @@ class Repo(db: Db) {
       ORDER BY created_at
     """, null)
 
-
     if (cursor.moveToFirst) {
       do {
         dates += new DateTime(cursor.getLong(1))

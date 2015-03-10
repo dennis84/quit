@@ -2,12 +2,9 @@ package quit.ui.toolbar
 
 import android.os.Bundle
 import android.content.Intent
-import android.view.{LayoutInflater, ViewGroup, View}
+import android.view.{LayoutInflater, ViewGroup, View, MenuItem}
 import android.widget.Toolbar
-import android.view.MenuItem
-import org.scaloid.common._
 import quit.ui._
-import quit.app._
 
 class ToolbarFragment extends QFragment {
 

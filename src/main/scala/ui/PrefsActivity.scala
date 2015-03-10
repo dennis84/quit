@@ -6,7 +6,9 @@ import android.preference.EditTextPreference
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 
-class PrefsActivity extends PreferenceActivity with OnSharedPreferenceChangeListener {
+class PrefsActivity
+  extends PreferenceActivity
+  with OnSharedPreferenceChangeListener {
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)

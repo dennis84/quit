@@ -1,4 +1,4 @@
-package quit.app
+package quit.ui.tweaks
 
 import android.widget.Toolbar
 import android.widget.Toolbar.OnMenuItemClickListener

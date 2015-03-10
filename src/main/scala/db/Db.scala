@@ -1,10 +1,8 @@
 package quit.db
 
-import android.content.ContentValues
-import android.content.Context
+import android.content.{ContentValues, Context}
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
+import android.database.sqlite.{SQLiteDatabase, SQLiteOpenHelper}
 
 class Db(context: Context)
   extends SQLiteOpenHelper(context, "quit", null, 1) {

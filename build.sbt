@@ -8,9 +8,7 @@ name := "quit"
 
 scalaVersion := "2.11.5"
 
-proguardCache in Android ++= Seq(
-  ProguardCache("org.scaloid") % "org.scaloid"
-)
+proguardScala in Android := true
 
 proguardOptions in Android ++= Seq(
   "-dontobfuscate",
@@ -18,7 +16,6 @@ proguardOptions in Android ++= Seq(
   "-keepattributes Signature",
   "-printseeds target/seeds.txt",
   "-printusage target/usage.txt",
-  "-keep class org.ocpsoft.prettytime.i18n.**",
   "-keep class com.github.nscala_time.time.**",
   "-keep class com.squareup.otto.**",
   "-keepattributes *Annotation*",
@@ -37,7 +34,6 @@ apkbuildExcludes in Android ++= Seq(
 libraryDependencies ++= Seq(
   "com.android.support"    %  "support-v4"           % "21.0.3",
   "com.android.support"    %  "appcompat-v7"         % "21.0.3",
-  "org.scaloid"            %% "scaloid"              % "3.6.1-10" withSources() withJavadoc(),
   "com.squareup"           %  "otto"                 % "1.3.6",
   "com.lihaoyi"            %% "upickle"              % "0.2.6",
   "org.scalatest"          %% "scalatest"            % "2.2.1" % "test",
@@ -51,5 +47,3 @@ scalaSource in Test := baseDirectory.value / "test"
 scalacOptions in Compile += "-feature"
 
 run <<= run in Android
-
-install <<= install in Android

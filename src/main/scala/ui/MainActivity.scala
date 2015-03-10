@@ -2,9 +2,9 @@ package quit.ui
 
 import android.os.Bundle
 import android.content.Context
+import android.preference.PreferenceManager
 import com.squareup.otto._
 import quit.util.Rand
-import android.preference.PreferenceManager
 
 class MainActivity extends QActivity {
 

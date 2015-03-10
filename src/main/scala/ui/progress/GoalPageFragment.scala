@@ -3,17 +3,16 @@ package quit.ui.progress
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
-import com.github.nscala_time.time.Imports._
 import android.text.Html
 import com.squareup.otto._
-import org.scaloid.common._
+import com.github.nscala_time.time.Imports._
 import quit.util.Humanize._
 import quit.ui._
 
-class FirstFragment extends QFragment {
+class GoalPageFragment extends QFragment {
 
-  var text: TextView = null
-  var goal: TextView = null
+  var text: TextView = _
+  var goal: TextView = _
 
   override def onCreateView(
     inflater: LayoutInflater,

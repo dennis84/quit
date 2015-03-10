@@ -1,14 +1,13 @@
 package quit.ui.history
 
-import android.widget.ArrayAdapter
+import android.widget.{ArrayAdapter, TextView}
 import android.content.Context
 import android.view.{LayoutInflater, View, ViewGroup}
-import android.widget.TextView
 import android.text.Html
 import java.util.ArrayList
-import org.scaloid.common._
 import com.github.nscala_time.time.Imports._
 import org.joda.time.Period
+import quit.ui._
 
 class DayAdapter(
   context: Context,
@@ -18,12 +17,12 @@ class DayAdapter(
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
     var view = convertView
     if(null == view) {
-      view = LayoutInflater.from(context).inflate(quit.ui.R.layout.day, parent, false)
+      view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
     }
 
-    val pieces = view.find[TextView](quit.ui.R.id.history_pieces)
-    val name = view.find[TextView](quit.ui.R.id.history_day)
-    val break = view.find[TextView](quit.ui.R.id.history_break)
+    val pieces = view.find[TextView](R.id.history_pieces)
+    val name = view.find[TextView](R.id.history_day)
+    val break = view.find[TextView](R.id.history_break)
     val day = days.get(position)
 
     pieces.setText(Html.fromHtml(s"<b>${day.dates.length}</b> pcs"))
