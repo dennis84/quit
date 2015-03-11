@@ -11,8 +11,6 @@
     android:targetSdkVersion="21"
     android:maxSdkVersion="21" />
 
-  <uses-permission android:name="android.permission.INTERNET" />
-
   <application
     android:label="Quit"
     android:theme="@style/AppTheme">
@@ -22,7 +20,13 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name="PrefsActivity" android:label="Prefs">
-    </activity>
+    <activity android:name="PrefsActivity" android:label="Prefs"></activity>
+    <receiver android:name="AlarmReceiver" />
+    <receiver android:name="NotificationReceiver">
+      <intent-filter>
+        <action android:name="quit.ui.OK" />
+        <action android:name="quit.ui.NO" />
+      </intent-filter>
+    </receiver>
   </application>
 </manifest>

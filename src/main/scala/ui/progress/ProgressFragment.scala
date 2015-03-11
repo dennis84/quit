@@ -76,7 +76,8 @@ class ProgressFragment extends QFragment {
   def update(newState: State) {
     if(!viewCreated) return
     newState.dates.lastOption foreach { date =>
-      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / newState.goal * 1000 else 0
+      val goal = newState.currentGoal.getOrElse(newState.goal)
+      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / goal * 1000 else 0
       val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p.toInt)
       progrStart = p.toInt
       anim.setDuration(500)
