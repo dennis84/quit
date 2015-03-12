@@ -1,4 +1,4 @@
-package quit.ui
+package quit.ui.notification
 
 import android.app.NotificationManager
 import android.content.{Context, Intent, BroadcastReceiver}
@@ -10,11 +10,12 @@ class NotificationReceiver extends BroadcastReceiver {
       .asInstanceOf[NotificationManager]
 
     intent.getAction match {
-      case "quit.ui.OK" =>
+      case "quit.ui.notification.OK" =>
         val settings = context.getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-        settings.edit.putInt("current_goal", 7200000 + 30 * 60 * 1000).commit
+        val goal = settings.getInt("goal", 7200000)
+        settings.edit.putInt("current_goal", goal + 30 * 60 * 1000).commit
         notificationManager.cancel(0)
-      case "quit.ui.NO" =>
+      case "quit.ui.notification.NO" =>
         notificationManager.cancel(0)
     }
   }

@@ -21,11 +21,11 @@
       </intent-filter>
     </activity>
     <activity android:name="PrefsActivity" android:label="Prefs"></activity>
-    <receiver android:name="AlarmReceiver" />
-    <receiver android:name="NotificationReceiver">
+    <receiver android:name=".notification.AlarmReceiver" />
+    <receiver android:name=".notification.NotificationReceiver">
       <intent-filter>
-        <action android:name="quit.ui.OK" />
-        <action android:name="quit.ui.NO" />
+        <action android:name="quit.ui.notification.OK" />
+        <action android:name="quit.ui.notification.NO" />
       </intent-filter>
     </receiver>
   </application>

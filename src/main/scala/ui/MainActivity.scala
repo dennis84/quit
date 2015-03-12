@@ -1,12 +1,12 @@
 package quit.ui
 
 import android.app.{AlarmManager, PendingIntent}
-import android.os.{Bundle, SystemClock}
+import android.os.Bundle
 import android.content.{Context, Intent}
-import android.preference.PreferenceManager
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
 import quit.util.Rand
+import quit.ui.notification._
 
 class MainActivity extends QActivity {
 
