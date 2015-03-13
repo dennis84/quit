@@ -2,12 +2,12 @@ package quit.ui.notification
 
 import android.app.NotificationManager
 import android.content.{Context, Intent, BroadcastReceiver}
+import quit.ui._
 
 class NotificationReceiver extends BroadcastReceiver {
 
   override def onReceive(context: Context, intent: Intent) {
-    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE)
-      .asInstanceOf[NotificationManager]
+    val notificationManager = context.systemService[NotificationManager]
 
     intent.getAction match {
       case "quit.ui.notification.OK" =>

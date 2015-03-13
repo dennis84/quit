@@ -29,8 +29,7 @@ class AlarmReceiver extends BroadcastReceiver {
         .addAction(R.drawable.icon, "No", noPending)
         .build()
 
-    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE)
-      .asInstanceOf[NotificationManager]
+    val notificationManager = context.systemService[NotificationManager]
     notificationManager.notify(0, notification)
   }
 }
