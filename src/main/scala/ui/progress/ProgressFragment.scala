@@ -50,13 +50,7 @@ class ProgressFragment extends QFragment {
       }
     })
 
-    btn onClick {
-      val date = DateTime.now
-      env.repo.insert(date)
-      bus.post(new ChangeState(state.copy(
-        dates = state.dates ::: List(date)
-      )))
-    }
+    btn onClick env.ctrl.add(state)
   }
 
   override def onResume {

@@ -33,10 +33,7 @@ class HistoryFragment extends QListFragment {
 
   override def onResume {
     super.onResume
-    bus.post(new ChangeState(state.copy(
-      connected = true,
-      dates = env.repo.list
-    )))
+    env.ctrl.list(state, activity)
   }
 
   @Subscribe

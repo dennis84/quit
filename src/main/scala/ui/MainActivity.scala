@@ -3,9 +3,7 @@ package quit.ui
 import android.os.Bundle
 import android.content.{Context, Intent}
 import com.squareup.otto._
-import com.github.nscala_time.time.Imports._
 import quit.util.Rand
-import quit.ui.notification._
 
 class MainActivity extends QActivity {
 
@@ -25,19 +23,12 @@ class MainActivity extends QActivity {
     }
 
     state = State(goal, limit, currentGoal)
-    env = new Env(this)
+    env = new Env(this, bus)
     setContentView(R.layout.main)
   }
 
   @Subscribe
   def onChangeState(event: ChangeState) {
-    val goalDate = event.state.dates.lastOption.getOrElse(DateTime.now) +
-                   event.state.currentGoal.getOrElse(event.state.goal).millis
-    AlarmScheduler.schedule(this, goalDate)
-
-    val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-    settings.edit.putInt("goal", event.state.goal).commit
-    settings.edit.putInt("limit", event.state.limit).commit
     state = event.state
     bus.post(new UpdateUI)
   }
