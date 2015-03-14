@@ -4,3 +4,4 @@ package object ui
   extends quit.ui.tweaks.ViewTweaks
   with quit.ui.tweaks.ToolbarTweaks
   with quit.ui.tweaks.ContextTweaks
+  with quit.ui.tweaks.LoggingTweaks
