@@ -35,8 +35,6 @@ class MainActivity extends QActivity {
     val goalDate = event.state.dates.lastOption.getOrElse(DateTime.now) +
                    event.state.currentGoal.getOrElse(event.state.goal).millis
 
-    android.util.Log.d("QUIT", "onChangeState")
-
     val alarmManager = getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
     val intent = new Intent(this, classOf[AlarmReceiver])
     val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
@@ -46,5 +44,6 @@ class MainActivity extends QActivity {
     settings.edit.putInt("goal", event.state.goal).commit
     settings.edit.putInt("limit", event.state.limit).commit
     state = event.state
+    bus.post(new UpdateUI)
   }
 }
