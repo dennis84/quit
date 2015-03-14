@@ -1,6 +1,5 @@
 package quit.ui
 
-import android.app.{AlarmManager, PendingIntent}
 import android.os.Bundle
 import android.content.{Context, Intent}
 import com.squareup.otto._
@@ -34,11 +33,7 @@ class MainActivity extends QActivity {
   def onChangeState(event: ChangeState) {
     val goalDate = event.state.dates.lastOption.getOrElse(DateTime.now) +
                    event.state.currentGoal.getOrElse(event.state.goal).millis
-
-    val alarmManager = getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
-    val intent = new Intent(this, classOf[AlarmReceiver])
-    val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
-    alarmManager.set(AlarmManager.RTC_WAKEUP, goalDate.getMillis, alarmIntent)
+    AlarmScheduler.schedule(this, goalDate)
 
     val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
     settings.edit.putInt("goal", event.state.goal).commit

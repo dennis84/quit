@@ -1,6 +1,6 @@
 package quit.ui.tweaks
 
-import android.app.NotificationManager
+import android.app.{NotificationManager, AlarmManager}
 import android.content.Context
 
 trait ContextTweaks {
@@ -14,6 +14,7 @@ trait ContextTweaks {
   }
 
   implicit val nm = systemServiceOf[NotificationManager](Context.NOTIFICATION_SERVICE)
+  implicit val am = systemServiceOf[AlarmManager](Context.ALARM_SERVICE)
 
   implicit class SystemServices(context: Context) {
     def systemService[T : SystemService](implicit service: SystemService[T]) = service get context
