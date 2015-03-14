@@ -28,17 +28,17 @@ class GoalPageFragment extends QFragment {
 
   override def onResume {
     super.onResume
-    update(state)
+    update(new UpdateUI)
   }
 
   @Subscribe
-  def update(newState: State) {
+  def update(event: UpdateUI) {
     if(!viewCreated) return
-    newState.dates.lastOption foreach { date =>
+    state.dates.lastOption foreach { date =>
       val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
       text.setText(Html fromHtml html)
 
-      val goalDate = date + newState.currentGoal.getOrElse(newState.goal).millis
+      val goalDate = date + state.currentGoal.getOrElse(state.goal).millis
       if(DateTime.now > goalDate) {
         goal.setText("Congrats, you've reached your goal")
       } else {

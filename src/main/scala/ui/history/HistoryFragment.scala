@@ -33,18 +33,18 @@ class HistoryFragment extends QListFragment {
 
   override def onResume {
     super.onResume
-    bus.post(state.copy(
+    bus.post(new ChangeState(state.copy(
       connected = true,
       dates = env.repo.list
-    ))
+    )))
   }
 
   @Subscribe
-  def update(newState: State) {
+  def update(event: UpdateUI) {
     if(!viewCreated) return
-    val from = newState.dates.headOption.getOrElse(DateTime.now)
+    val from = state.dates.headOption.getOrElse(DateTime.now)
     val days = Days.daysBetween(from, DateTime.now + 1.days).getDays
-    val grouped = newState.dates.groupBy(_.withTimeAtStartOfDay)
+    val grouped = state.dates.groupBy(_.withTimeAtStartOfDay)
     adapter.clear
     for(i <- 1 until days) {
       val date = (DateTime.now - i.days).withTimeAtStartOfDay

@@ -51,17 +51,20 @@ class ProgressFragment extends QFragment {
     })
 
     btn onClick {
-      env.repo.insert(DateTime.now)
-      bus.post(state.copy(dates = env.repo.list))
+      val date = DateTime.now
+      env.repo.insert(date)
+      bus.post(new ChangeState(state.copy(
+        dates = state.dates ::: List(date)
+      )))
     }
   }
 
   override def onResume {
     super.onResume
-    update(state)
+    update(new UpdateUI)
     handler.postDelayed(new Runnable {
       override def run() {
-        bus.post(state)
+        bus.post(new UpdateUI)
         handler.postDelayed(this, 60000)
       }
     }, 60000)
@@ -73,10 +76,10 @@ class ProgressFragment extends QFragment {
   }
 
   @Subscribe
-  def update(newState: State) {
+  def update(event: UpdateUI) {
     if(!viewCreated) return
-    newState.dates.lastOption foreach { date =>
-      val goal = newState.currentGoal.getOrElse(newState.goal)
+    state.dates.lastOption foreach { date =>
+      val goal = state.currentGoal.getOrElse(state.goal)
       val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / goal * 1000 else 0
       val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p.toInt)
       progrStart = p.toInt

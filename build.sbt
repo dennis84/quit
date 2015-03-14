@@ -23,6 +23,7 @@ proguardOptions in Android ++= Seq(
     @com.squareup.otto.Subscribe public *;
     @com.squareup.otto.Produce public *;
   }""",
+  "-dontwarn quit.ui.tweaks.**",
   "-dontwarn scala.collection.**" // required from Scala 2.11.4
 )
 

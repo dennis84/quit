@@ -15,12 +15,12 @@ class LoadingFragment extends QFragment {
 
   override def onResume {
     super.onResume
-    update(state)
+    update(new UpdateUI)
   }
 
   @Subscribe
-  def update(newState: State) {
-    if(viewCreated && newState.connected) {
+  def update(event: UpdateUI) {
+    if(viewCreated && state.connected) {
       getView.setVisibility(View.GONE)
     }
   }

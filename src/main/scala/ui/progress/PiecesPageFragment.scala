@@ -27,15 +27,15 @@ class PiecesPageFragment extends QFragment {
 
   override def onResume {
     super.onResume
-    update(state)
+    update(new UpdateUI)
   }
 
   @Subscribe
-  def update(newState: State) {
+  def update(event: UpdateUI) {
     if(!viewCreated) return
-    val dates = newState.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
+    val dates = state.dates.filter(_ > DateTime.now.withTimeAtStartOfDay)
     val html = s"${dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
     pieces.setText(Html.fromHtml(html))
-    limit.setText(s"Only ${newState.limit - dates.length} pieces left")
+    limit.setText(s"Only ${state.limit - dates.length} pieces left")
   }
 }

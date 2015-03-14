@@ -31,20 +31,20 @@ class MainActivity extends QActivity {
   }
 
   @Subscribe
-  def update(newState: State) {
-    if(state != newState) {
-      val goalDate = newState.dates.lastOption.getOrElse(DateTime.now) +
-                     newState.currentGoal.getOrElse(newState.goal).millis
+  def onChangeState(event: ChangeState) {
+    val goalDate = event.state.dates.lastOption.getOrElse(DateTime.now) +
+                   event.state.currentGoal.getOrElse(event.state.goal).millis
 
-      val alarmManager = getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
-      val intent = new Intent(this, classOf[AlarmReceiver])
-      val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
-      alarmManager.set(AlarmManager.RTC_WAKEUP, goalDate.getMillis, alarmIntent)
+    android.util.Log.d("QUIT", "onChangeState")
 
-      val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-      settings.edit.putInt("goal", newState.goal).commit
-      settings.edit.putInt("limit", newState.limit).commit
-      state = newState
-    }
+    val alarmManager = getSystemService(Context.ALARM_SERVICE).asInstanceOf[AlarmManager]
+    val intent = new Intent(this, classOf[AlarmReceiver])
+    val alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+    alarmManager.set(AlarmManager.RTC_WAKEUP, goalDate.getMillis, alarmIntent)
+
+    val settings = getSharedPreferences("quit.android", Context.MODE_PRIVATE)
+    settings.edit.putInt("goal", event.state.goal).commit
+    settings.edit.putInt("limit", event.state.limit).commit
+    state = event.state
   }
 }
