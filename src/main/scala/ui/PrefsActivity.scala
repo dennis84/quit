@@ -5,10 +5,17 @@ import android.preference.PreferenceActivity
 import android.preference.EditTextPreference
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import com.squareup.otto.Bus
+import com.github.nscala_time.time.Imports._
+import quit.ui.notification._
+import quit.ui._
 
 class PrefsActivity
   extends PreferenceActivity
   with OnSharedPreferenceChangeListener {
+
+  val bus = new Bus
+  var env: Env = _
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
@@ -20,6 +27,8 @@ class PrefsActivity
     hours.setSummary(prefs.getString("goal_hours", "-"))
     minutes.setSummary(prefs.getString("goal_minutes", "-"))
     limit.setSummary(prefs.getString("goal_limit", "-"))
+
+    env = new Env(this, bus)
   }
 
   override def onResume {
@@ -44,6 +53,12 @@ class PrefsActivity
       val goal = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000)
       sharedPreferences.edit.putInt("goal", goal).commit
       sharedPreferences.edit.putInt("limit", limit).commit
+
+      env.repo.last foreach { date =>
+        val goalDate = date + goal.millis
+        sharedPreferences.edit.putLong("goal_date", goalDate.getMillis).commit
+        AlarmScheduler.schedule(this, goalDate)
+      }
     }
   }
 }

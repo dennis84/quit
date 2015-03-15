@@ -11,6 +11,8 @@
     android:targetSdkVersion="21"
     android:maxSdkVersion="21" />
 
+  <uses-permission android:name="android.permission.VIBRATE" />
+
   <application
     android:label="Quit"
     android:theme="@style/AppTheme">
@@ -20,7 +22,13 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name="PrefsActivity" android:label="Prefs"></activity>
+
+    <activity
+      android:name="PrefsActivity"
+      android:label="Prefs"
+      android:theme="@style/PrefsTheme">
+    </activity>
+
     <receiver android:name=".notification.AlarmReceiver" />
     <receiver android:name=".notification.NotificationReceiver">
       <intent-filter>

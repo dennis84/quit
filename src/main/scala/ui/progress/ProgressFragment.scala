@@ -50,7 +50,7 @@ class ProgressFragment extends QFragment {
       }
     })
 
-    btn onClick env.ctrl.add(state)
+    btn onClick env.ctrl.add(state, activity)
   }
 
   override def onResume {
@@ -70,16 +70,18 @@ class ProgressFragment extends QFragment {
   }
 
   @Subscribe
-  def update(event: UpdateUI) {
-    if(!viewCreated) return
-    state.dates.lastOption foreach { date =>
-      val goal = state.currentGoal.getOrElse(state.goal)
-      val p = if(date < DateTime.now) (date to DateTime.now).millis.toDouble / goal * 1000 else 0
-      val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p.toInt)
-      progrStart = p.toInt
-      anim.setDuration(500)
-      anim.setInterpolator(new DecelerateInterpolator)
-      anim.start
-    }
+  def update(event: UpdateUI) = for {
+    date <- state.dates.lastOption
+    goalDate <- state.goalDate
+    if(viewCreated)
+    x = (DateTime.now.getMillis - date.getMillis)
+    y = (goalDate.getMillis - date.getMillis)
+    p = (x.toDouble / y.toDouble * 1000).toInt
+  } yield {
+    val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p)
+    progrStart = p
+    anim.setDuration(500)
+    anim.setInterpolator(new DecelerateInterpolator)
+    anim.start
   }
 }

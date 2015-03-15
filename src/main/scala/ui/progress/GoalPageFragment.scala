@@ -34,11 +34,12 @@ class GoalPageFragment extends QFragment {
   @Subscribe
   def update(event: UpdateUI) {
     if(!viewCreated) return
-    state.dates.lastOption foreach { date =>
+    for {
+      date <- state.dates.lastOption
+      goalDate <- state.goalDate
+    } yield {
       val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
       text.setText(Html fromHtml html)
-
-      val goalDate = date + state.currentGoal.getOrElse(state.goal).millis
       if(DateTime.now > goalDate) {
         goal.setText("Congrats, you've reached your goal")
       } else {

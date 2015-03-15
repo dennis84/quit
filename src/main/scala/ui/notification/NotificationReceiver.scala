@@ -2,6 +2,8 @@ package quit.ui.notification
 
 import android.app.NotificationManager
 import android.content.{Context, Intent, BroadcastReceiver}
+import android.preference.PreferenceManager
+import com.github.nscala_time.time.Imports._
 import quit.ui._
 
 class NotificationReceiver extends BroadcastReceiver {
@@ -11,9 +13,9 @@ class NotificationReceiver extends BroadcastReceiver {
 
     intent.getAction match {
       case "quit.ui.notification.OK" =>
-        val settings = context.getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-        val goal = settings.getInt("goal", 7200000)
-        settings.edit.putInt("current_goal", goal + 30 * 60 * 1000).commit
+        val settings = PreferenceManager.getDefaultSharedPreferences(context)
+        val goal = DateTime.now + 30.minutes
+        settings.edit.putLong("goal_date", goal.getMillis).commit
         notificationManager.cancel(0)
       case "quit.ui.notification.NO" =>
         notificationManager.cancel(0)

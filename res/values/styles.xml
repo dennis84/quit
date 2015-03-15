@@ -5,4 +5,8 @@
      <item name="android:colorPrimaryDark">#1D233F</item>
      <item name="android:popupBackground">#2A3158</item>
   </style>
+
+  <style name="PrefsTheme" parent="AppTheme">
+    <item name="android:background">#2A3158</item>
+  </style>
 </resources>

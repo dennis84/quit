@@ -33,7 +33,7 @@ class HistoryFragment extends QListFragment {
 
   override def onResume {
     super.onResume
-    env.ctrl.list(state, activity)
+    env.ctrl.list(state)
   }
 
   @Subscribe

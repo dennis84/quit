@@ -2,14 +2,12 @@ package quit.ui.notification
 
 import android.app.{PendingIntent, Notification, NotificationManager}
 import android.content.{Context, Intent, BroadcastReceiver}
+import android.graphics.Color
 import quit.ui._
 
 class AlarmReceiver extends BroadcastReceiver {
 
   override def onReceive(context: Context, intent: Intent) {
-    val settings = context.getSharedPreferences("quit.android", Context.MODE_PRIVATE)
-    settings.edit.putInt("current_goal", 0).commit
-
     val contentIntent = new Intent(context, classOf[MainActivity])
     val contentPending = PendingIntent.getActivity(context, 0, contentIntent, 0)
 
@@ -20,14 +18,15 @@ class AlarmReceiver extends BroadcastReceiver {
     val noPending = PendingIntent.getBroadcast(context, 2, noIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
     val notification = new Notification.Builder(context)
-        .setContentTitle("Congrats, you've reached your goal!")
-        .setContentText("Subject")
-        .setSmallIcon(R.drawable.icon)
-        .setContentIntent(contentPending)
-        .setAutoCancel(true)
-        .addAction(R.drawable.icon, "Ok", okPending)
-        .addAction(R.drawable.icon, "No", noPending)
-        .build()
+      .setContentTitle("Congrats, you've reached your goal!")
+      .setContentText("Want to extend your goal by half an hour?")
+      .setSmallIcon(R.drawable.icon)
+      .setContentIntent(contentPending)
+      .setVibrate(Array(0, 300l, 300l))
+      .setLights(Color.WHITE, 3000, 3000)
+      .addAction(R.drawable.icon, "Ok", okPending)
+      .addAction(R.drawable.icon, "No", noPending)
+      .build()
 
     val notificationManager = context.systemService[NotificationManager]
     notificationManager.notify(0, notification)
