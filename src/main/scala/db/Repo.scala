@@ -16,7 +16,7 @@ class Repo(db: Db) {
     val dates = scala.collection.mutable.ListBuffer.empty[DateTime]
     val cursor = db.getReadableDatabase.rawQuery("""
       SELECT * FROM dates
-      ORDER BY created_at
+      ORDER BY created_at DESC
     """, null)
 
     if (cursor.moveToFirst) {

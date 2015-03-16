@@ -32,7 +32,7 @@ class DayAdapter(
       name.setText(day.date.toString("EEE, MMM d"))
     }
 
-    day.dates.sliding(2).map {
+    day.dates.reverse.sliding(2).map {
       x => x(1).getMillis - x(0).getMillis
     } reduceOption (_ max _) foreach { x =>
       val period = new Period(x)

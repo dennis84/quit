@@ -71,7 +71,7 @@ class ProgressFragment extends QFragment {
 
   @Subscribe
   def update(event: UpdateUI) = for {
-    date <- state.dates.lastOption
+    date <- state.dates.headOption
     goalDate <- state.goalDate
     if(viewCreated)
     x = (DateTime.now.getMillis - date.getMillis)

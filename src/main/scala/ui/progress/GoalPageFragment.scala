@@ -35,7 +35,7 @@ class GoalPageFragment extends QFragment {
   def update(event: UpdateUI) {
     if(!viewCreated) return
     for {
-      date <- state.dates.lastOption
+      date <- state.dates.headOption
       goalDate <- state.goalDate
     } yield {
       val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")

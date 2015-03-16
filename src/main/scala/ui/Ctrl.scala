@@ -24,7 +24,7 @@ class Ctrl(bus: Bus, repo: Repo) {
     AlarmScheduler.schedule(context, goalDate)
 
     bus.post(new ChangeState(state.copy(
-      dates = state.dates ::: List(date),
+      dates = date :: state.dates,
       goalDate = Some(goalDate)
     )))
   }
