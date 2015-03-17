@@ -26,4 +26,9 @@
     android:dialogTitle="Dialog Title"
     android:singleLine="true"
     android:numeric="integer" />
+  
+  <SwitchPreference
+    android:defaultValue="true"
+    android:key="notifications_enabled"
+    android:title="Enable Notifications" />
 </PreferenceScreen>

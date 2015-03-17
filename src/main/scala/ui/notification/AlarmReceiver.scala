@@ -1,6 +1,7 @@
 package quit.ui.notification
 
 import android.app.{PendingIntent, Notification, NotificationManager}
+import android.preference.PreferenceManager
 import android.content.{Context, Intent, BroadcastReceiver}
 import android.graphics.Color
 import quit.ui._
@@ -8,6 +9,12 @@ import quit.ui._
 class AlarmReceiver extends BroadcastReceiver {
 
   override def onReceive(context: Context, intent: Intent) {
+    val settings = PreferenceManager.getDefaultSharedPreferences(context)
+    val notificationsEnabled = settings.getBoolean("notifications_enabled", true)
+    if(!notificationsEnabled) {
+      return
+    }
+
     val contentIntent = new Intent(context, classOf[MainActivity])
     val contentPending = PendingIntent.getActivity(context, 0, contentIntent, 0)
 

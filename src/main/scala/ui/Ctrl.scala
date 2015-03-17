@@ -21,7 +21,10 @@ class Ctrl(bus: Bus, repo: Repo) {
     val settings = PreferenceManager.getDefaultSharedPreferences(context)
     val goalDate = date + state.goal.millis
     settings.edit.putLong("goal_date", goalDate.getMillis).commit
-    AlarmScheduler.schedule(context, goalDate)
+
+    if(state.notificationsEnabled) {
+      AlarmScheduler.schedule(context, goalDate)
+    }
 
     bus.post(new ChangeState(state.copy(
       dates = date :: state.dates,

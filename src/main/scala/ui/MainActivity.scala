@@ -15,6 +15,7 @@ class MainActivity extends QActivity {
     val id = settings.getString("id", Rand nextString 8)
     val goal = settings.getInt("goal", 7200000)
     val limit = settings.getInt("limit", 10)
+    val notificationsEnabled = settings.getBoolean("notifications_enabled", true)
     val goalDate = settings.getLong("goal_date", 0) match {
       case 0 => None
       case x => Some(new DateTime(x))
@@ -24,7 +25,7 @@ class MainActivity extends QActivity {
       settings.edit.putString("id", id).commit
     }
 
-    state = State(goal, limit, goalDate)
+    state = State(goal, limit, notificationsEnabled, goalDate)
     env = new Env(this, bus)
     setContentView(R.layout.main)
   }
