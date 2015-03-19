@@ -1,7 +1,7 @@
 package quit.ui.tweaks
 
-import android.widget.Toolbar
-import android.widget.Toolbar.OnMenuItemClickListener
+import android.support.v7.widget.Toolbar
+import android.support.v7.widget.Toolbar.OnMenuItemClickListener
 import android.view.MenuItem
 
 trait ToolbarTweaks {

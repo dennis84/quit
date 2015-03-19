@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <style name="AppTheme" parent="Theme.AppCompat">
-    <item name="android:colorPrimary">#2A3158</item>
-    <item name="android:colorPrimaryDark">#1D233F</item>
-    <item name="android:dropDownListViewStyle">@style/AppTheme.ListView.DropDown</item>
-  </style>
-
-  <style name="AppTheme.ListView.DropDown" parent="Widget.AppCompat.ListView.DropDown">
-    <item name="android:background">#161B30</item>
+    <item name="android:colorPrimary">@color/base02</item>
+    <item name="android:colorPrimaryDark">@color/base03</item>
   </style>
 
   <style name="PrefsTheme" parent="AppTheme">
-    <item name="android:background">#2A3158</item>
+    <item name="android:windowBackground">@color/base02</item>
   </style>
 </resources>

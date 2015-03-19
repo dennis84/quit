@@ -32,19 +32,21 @@ class GoalPageFragment extends QFragment {
   }
 
   @Subscribe
-  def update(event: UpdateUI) {
-    if(!viewCreated) return
-    for {
-      date <- state.dates.headOption
-      goalDate <- state.goalDate
-    } yield {
-      val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
-      text.setText(Html fromHtml html)
-      if(DateTime.now > goalDate) {
-        goal.setText("Congrats, you've reached your goal")
-      } else {
-        goal.setText(humanize(DateTime.now to goalDate))
+  def update(event: UpdateUI) =
+    (viewCreated, state.dates.headOption, state.goalDate) match {
+      case (false, _, _) =>
+      case (true, Some(date), Some(goalDate)) => {
+        val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
+        text.setText(Html fromHtml html)
+        if(DateTime.now > goalDate) {
+          goal.setText("Congrats, you've reached your goal")
+        } else {
+          goal.setText(humanize(DateTime.now to goalDate))
+        }
+      }
+      case (true, _, _) => {
+        text.setText("Welcome to Quit")
+        goal.setText("Press the button to get started.")
       }
     }
-  }
 }
