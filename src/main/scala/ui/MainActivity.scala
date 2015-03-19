@@ -11,6 +11,11 @@ class MainActivity extends QActivity {
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
+    setContentView(R.layout.main)
+  }
+
+  override def onResume {
+    super.onResume
     val settings = PreferenceManager.getDefaultSharedPreferences(this)
     val id = settings.getString("id", Rand nextString 8)
     val goal = settings.getInt("goal", 7200000)
@@ -27,7 +32,6 @@ class MainActivity extends QActivity {
 
     state = State(goal, limit, notificationsEnabled, goalDate)
     env = new Env(this, bus)
-    setContentView(R.layout.main)
   }
 
   @Subscribe
