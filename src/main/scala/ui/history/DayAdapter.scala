@@ -32,11 +32,13 @@ class DayAdapter(
       name.setText(day.date.toString("EEE, MMM d"))
     }
 
-    day.dates.reverse.sliding(2).map {
-      x => x(1).getMillis - x(0).getMillis
-    } reduceOption (_ max _) foreach { x =>
-      val period = new Period(x)
-      break.setText(Html.fromHtml(s"<i>Longest break: ${period.getHours}h ${period.getMinutes}m</i>"))
+    if(day.dates.length > 1) {
+      day.dates.reverse.sliding(2).map {
+        x => x(1).getMillis - x(0).getMillis
+      } reduceOption (_ max _) foreach { x =>
+        val period = new Period(x)
+        break.setText(Html.fromHtml(s"<i>Longest break: ${period.getHours}h ${period.getMinutes}m</i>"))
+      }
     }
 
     view
