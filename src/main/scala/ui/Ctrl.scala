@@ -15,6 +15,7 @@ class Ctrl(bus: Bus, repo: Repo) {
   }
 
   def add(state: State, context: Context) {
+    AlarmScheduler.cancel(context)
     val date = DateTime.now
     repo.insert(date)
 

@@ -2,12 +2,13 @@ package quit.ui.notification
 
 import android.app.{AlarmManager, PendingIntent}
 import android.content.{Context, Intent}
-import org.joda.time.DateTime
+import com.github.nscala_time.time.Imports._
 import quit.ui._
 
 object AlarmScheduler {
 
   def schedule(context: Context, at: DateTime) {
+    if(at < DateTime.now) return
     val alarmManager = context.systemService[AlarmManager]
     val intent = new Intent(context, classOf[AlarmReceiver])
     val alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
