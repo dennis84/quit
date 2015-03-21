@@ -13,7 +13,7 @@
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="28dp"
-    android:textColor="#FFFFFF" />
+    android:textColor="@color/base3" />
 
   <TextView
     android:id="@+id/progress_goal"
@@ -22,6 +22,6 @@
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="16dp"
-    android:textColor="#FFFFFF"
+    android:textColor="@color/base1"
     android:textStyle="italic" />
 </LinearLayout>

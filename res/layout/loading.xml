@@ -5,13 +5,13 @@
   android:layout_height="match_parent"
   android:gravity="center"
   android:orientation="vertical"
-  android:background="#2A3158">
+  android:background="@color/base02">
 
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:fontFamily="sans-serif-thin"
     android:textSize="28dp"
-    android:textColor="#FFFFFF"
+    android:textColor="@color/base3"
     android:text="Loading ..." />
 </LinearLayout>

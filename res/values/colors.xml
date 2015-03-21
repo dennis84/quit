@@ -2,4 +2,13 @@
 <resources>
   <color name="base03">#1D233F</color>
   <color name="base02">#2A3158</color>
+  <color name="base01">#3C4884</color>
+  <color name="base00">#758AEB</color>
+  <color name="base1">#B8BEE3</color>
+  <color name="base2">#D3D8F5</color>
+  <color name="base3">#FFFFFF</color>
+  
+  <color name="magenta">#FF4182</color>
+  <color name="magenta1">#FF96B9</color>
+  <color name="magenta2">#FFC1D5</color>
 </resources>
