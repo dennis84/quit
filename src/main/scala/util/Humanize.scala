@@ -1,4 +1,4 @@
-package quit.util
+package quit.app.util
 
 import com.github.nscala_time.time.Imports._
 import scala.math._

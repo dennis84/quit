@@ -2,7 +2,7 @@
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="quit.ui"
+  package="quit.app"
   android:versionCode="1"
   android:versionName="1.0">
 
@@ -32,8 +32,8 @@
     <receiver android:name=".notification.AlarmReceiver" />
     <receiver android:name=".notification.NotificationReceiver">
       <intent-filter>
-        <action android:name="quit.ui.notification.OK" />
-        <action android:name="quit.ui.notification.NO" />
+        <action android:name="quit.app.notification.OK" />
+        <action android:name="quit.app.notification.NO" />
       </intent-filter>
     </receiver>
   </application>

@@ -1,4 +1,4 @@
-package quit.db
+package quit.app.db
 
 import android.content.{ContentValues, Context}
 import android.database.Cursor

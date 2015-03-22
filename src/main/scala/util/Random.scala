@@ -1,4 +1,4 @@
-package quit.util
+package quit.app.util
 
 object Rand {
 

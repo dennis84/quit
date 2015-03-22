@@ -7,12 +7,12 @@
   android:orientation="vertical">
 
   <fragment
-    android:name="quit.ui.toolbar.ToolbarFragment"
+    android:name="quit.app.toolbar.ToolbarFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 
   <fragment
-    android:name="quit.ui.progress.ProgressFragment"
+    android:name="quit.app.progress.ProgressFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 </LinearLayout>

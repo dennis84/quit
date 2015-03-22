@@ -7,13 +7,13 @@
 
   <fragment
     android:id="@+id/history"
-    android:name="quit.ui.history.HistoryFragment"
+    android:name="quit.app.history.HistoryFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 
   <fragment
     android:id="@+id/loading"
-    android:name="quit.ui.loading.LoadingFragment"
+    android:name="quit.app.loading.LoadingFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 </FrameLayout>
