@@ -1,5 +1,6 @@
 package quit.ui
 
+import android.app.NotificationManager
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
@@ -15,7 +16,9 @@ class Ctrl(bus: Bus, repo: Repo) {
   }
 
   def add(state: State, context: Context) {
-    AlarmScheduler.cancel(context)
+    val notificationManager = context.systemService[NotificationManager]
+    notificationManager.cancel(0)
+
     val date = DateTime.now
     repo.insert(date)
 

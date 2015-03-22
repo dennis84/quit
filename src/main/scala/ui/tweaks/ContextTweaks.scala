@@ -3,11 +3,11 @@ package quit.ui.tweaks
 import android.app.{NotificationManager, AlarmManager}
 import android.content.Context
 
-trait ContextTweaks {
+trait SystemService[T] {
+  def get(context: Context): T
+}
 
-  trait SystemService[+T] {
-    def get(context: Context): T
-  }
+trait ContextTweaks {
 
   private def systemServiceOf[T](const: String) = new SystemService[T] {
     def get(context: Context) = context.getSystemService(const).asInstanceOf[T]
