@@ -6,7 +6,7 @@ import com.squareup.otto.Bus
 trait QActivity extends FragmentActivity {
   val bus = new Bus
   var env: Env = _
-  var state: State = _
+  def state = env.state
 
   override def onStart {
     super.onStart
