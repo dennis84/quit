@@ -9,6 +9,7 @@ import com.squareup.otto.Bus
 import com.github.nscala_time.time.Imports._
 import quit.app.notification._
 import quit.app._
+import java.util.concurrent.TimeUnit
 
 class PrefsActivity
   extends PreferenceActivity
@@ -20,15 +21,19 @@ class PrefsActivity
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     addPreferencesFromResource(R.xml.prefs)
+    env = new Env(this, bus)
+
     val prefs = getPreferenceScreen.getSharedPreferences
     val hours = findPreference("goal_hours").asInstanceOf[EditTextPreference]
     val minutes = findPreference("goal_minutes").asInstanceOf[EditTextPreference]
     val limit = findPreference("goal_limit").asInstanceOf[EditTextPreference]
-    hours.setSummary(prefs.getString("goal_hours", "-"))
-    minutes.setSummary(prefs.getString("goal_minutes", "-"))
-    limit.setSummary(prefs.getString("goal_limit", "-"))
 
-    env = new Env(this, bus)
+    val h = TimeUnit.MILLISECONDS.toHours(env.state.goal)
+    val m = TimeUnit.MILLISECONDS.toMinutes(env.state.goal) - TimeUnit.HOURS.toMinutes(h)
+
+    hours.setSummary(prefs.getString("goal_hours", h.toString))
+    minutes.setSummary(prefs.getString("goal_minutes", m.toString))
+    limit.setSummary(prefs.getString("goal_limit", env.state.limit.toString))
   }
 
   override def onResume {
