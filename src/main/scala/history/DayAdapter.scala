@@ -26,7 +26,7 @@ class DayAdapter(
     val day = days.get(position)
 
     pieces.setText(Html.fromHtml(s"<b>${day.dates.length}</b> pcs"))
-    if(day.date == DateTime.now.withTimeAtStartOfDay - 1.days) {
+    if(day.isYesterday) {
       name.setText("Yesterday")
     } else {
       name.setText(day.date.toString("EEE, MMM d"))
