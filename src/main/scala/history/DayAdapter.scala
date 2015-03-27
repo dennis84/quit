@@ -4,7 +4,7 @@ import android.widget.{ArrayAdapter, TextView}
 import android.content.Context
 import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
-import java.util.ArrayList
+import java.util.{ArrayList, Locale}
 import com.github.nscala_time.time.Imports._
 import org.joda.time.Period
 import quit.app._
@@ -29,7 +29,7 @@ class DayAdapter(
     if(day.isYesterday) {
       name.setText("Yesterday")
     } else {
-      name.setText(day.date.toString("EEE, MMM d"))
+      name.setText(day.date.toString("EEE, MMM d", Locale.US))
     }
 
     if(day.dates.length > 1) {
