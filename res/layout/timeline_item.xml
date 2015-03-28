@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <RelativeLayout
+    android:id="@+id/timeline_line"
+    android:layout_width="1dp"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:background="@color/base00" />
+
+  <RelativeLayout
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/timeline_circle" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/timeline_line"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="-5dp"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/timeline_time"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif"
+      android:textSize="20dp"
+      android:textColor="@color/base2" />
+
+    <TextView
+      android:id="@+id/timeline_break"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif-thin"
+      android:textSize="12dp"
+      android:textColor="@color/base2" />
+  </LinearLayout>
+</RelativeLayout>
