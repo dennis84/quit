@@ -4,6 +4,8 @@
   xmlns:fab="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:paddingBottom="50dp"
+  android:gravity="center"
   android:orientation="vertical">
 
   <fragment
@@ -14,22 +16,25 @@
   <fragment
     android:name="quit.app.progress.ProgressFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-
-   <TextView
-    android:id="@+id/toggle_timeline"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:layout_marginBottom="40dp"
-    android:fontFamily="sans-serif-thin"
-    android:textSize="20dp"
+    android:layout_marginTop="50dp" />
+
+  <Button
+    android:id="@+id/toggle_timeline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:fontFamily="sans-serif-light"
+    android:textSize="18dp"
     android:textColor="@color/base2"
+    android:drawableLeft="@drawable/ic_unfold_more_white_18dp"
+    style="?android:attr/borderlessButtonStyle"
     android:text="Show timeline" />
  
   <quit.app.timeline.TimelineView
     android:id="@+id/timeline"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
     android:visibility="gone" /> 
 </LinearLayout>
