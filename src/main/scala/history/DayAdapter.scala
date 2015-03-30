@@ -8,6 +8,7 @@ import java.util.{ArrayList, Locale}
 import com.github.nscala_time.time.Imports._
 import org.joda.time.Period
 import quit.app._
+import quit.app.timeline._
 
 class DayAdapter(
   context: Context,
@@ -15,11 +16,7 @@ class DayAdapter(
 ) extends ArrayAdapter[Day](context, 0, days) {
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-    var view = convertView
-    if(null == view) {
-      view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
-    }
-
+    val view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
     val pieces = view.find[TextView](R.id.history_pieces)
     val name = view.find[TextView](R.id.history_day)
     val break = view.find[TextView](R.id.history_break)

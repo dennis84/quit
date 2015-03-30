@@ -48,6 +48,24 @@ class HistoryFragment extends QListFragment {
     }
   }
 
+  override def onListItemClick(l: ListView, v: View, position: Int, id: Long) {
+    super.onListItemClick(l, v, position, id)
+    val timeline = v.find[TimelineView](R.id.timeline)
+    if(null == timeline.getAdapter) {
+      val day = getListAdapter.getItem(position - 1).asInstanceOf[Day]
+      var datesAdapter = new DateAdapter(activity, new ArrayList[DateTime])
+      timeline.setAdapter(datesAdapter)
+      timeline.getAdapter.clear
+      timeline.getAdapter.addDates(day.dates)
+    }
+
+    if(View.VISIBLE == timeline.getVisibility) {
+      timeline.setVisibility(View.GONE)
+    } else {
+      timeline.setVisibility(View.VISIBLE)
+    }
+  }
+
   override def onResume {
     super.onResume
     env.ctrl.list(state)
