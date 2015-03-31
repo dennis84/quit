@@ -72,11 +72,11 @@ class HistoryFragment extends QListFragment {
   }
 
   @Subscribe
-  def update(event: UpdateUI) {
+  def onChangeState(event: ChangeState) {
     if(!viewCreated) return
-    val from = state.dates.lastOption.getOrElse(DateTime.now)
+    val from = event.state.dates.lastOption.getOrElse(DateTime.now)
     val days = Days.daysBetween(from, DateTime.now + 1.days).getDays
-    val grouped = state.dates.groupBy(_.withTimeAtStartOfDay)
+    val grouped = event.state.dates.groupBy(_.withTimeAtStartOfDay)
     adapter.clear
     for(i <- 0 until days) {
       val date = (DateTime.now - i.days).withTimeAtStartOfDay
