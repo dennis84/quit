@@ -31,10 +31,24 @@
     style="?android:attr/borderlessButtonStyle"
     android:text="Show timeline" />
  
-  <quit.app.timeline.TimelineView
-    android:id="@+id/timeline"
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:visibility="gone" /> 
+    android:layout_centerHorizontal="true">
+ 
+    <LinearLayout
+      android:id="@+id/timeline_center"
+      android:layout_width="1dp"
+      android:layout_height="match_parent"
+      android:layout_centerHorizontal="true" />
+
+    <quit.app.timeline.TimelineView
+      android:id="@+id/timeline"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="50dp"
+      android:layout_marginLeft="-10dp"
+      android:layout_toRightOf="@+id/timeline_center"
+      android:visibility="gone" /> 
+  </RelativeLayout>
 </LinearLayout>
