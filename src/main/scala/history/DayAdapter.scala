@@ -16,17 +16,37 @@ class DayAdapter(
 ) extends ArrayAdapter[Day](context, 0, days) {
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
-    val view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
-    val pieces = view.find[TextView](R.id.history_pieces)
-    val name = view.find[TextView](R.id.history_day)
-    val break = view.find[TextView](R.id.history_break)
+    var view = convertView
+    val holder = if(null == view) {
+      view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
+      val h = new ViewHolder(
+        view.find[TextView](R.id.history_pieces),
+        view.find[TextView](R.id.history_day),
+        view.find[TextView](R.id.history_break),
+        view.find[TimelineView](R.id.timeline))
+      view.setTag(h)
+      h
+    } else convertView.getTag.asInstanceOf[ViewHolder]
+
     val day = days.get(position)
 
-    pieces.setText(Html.fromHtml(s"<b>${day.dates.length}</b> pcs"))
-    if(day.isYesterday) {
-      name.setText("Yesterday")
+    if(day.selected) {
+      if(null == holder.timeline.getAdapter) {
+        var datesAdapter = new DateAdapter(context, new ArrayList[DateTime])
+        holder.timeline.setAdapter(datesAdapter)
+        holder.timeline.getAdapter.addDates(day.dates)
+      }
+
+      holder.timeline.setVisibility(View.VISIBLE)
     } else {
-      name.setText(day.date.toString("EEE, MMM d", Locale.US))
+      holder.timeline.setVisibility(View.GONE)
+    }
+
+    holder.pieces.setText(Html.fromHtml(s"<b>${day.dates.length}</b> pcs"))
+    if(day.isYesterday) {
+      holder.name.setText("Yesterday")
+    } else {
+      holder.name.setText(day.date.toString("EEE, MMM d", Locale.US))
     }
 
     if(day.dates.length > 1) {
@@ -34,7 +54,7 @@ class DayAdapter(
         x => x(1).getMillis - x(0).getMillis
       } reduceOption (_ max _) foreach { x =>
         val period = new Period(x)
-        break.setText(Html.fromHtml(s"<i>Longest break: ${period.getHours}h ${period.getMinutes}m</i>"))
+        holder.break.setText(Html.fromHtml(s"<i>Longest break: ${period.getHours}h ${period.getMinutes}m</i>"))
       }
     }
 
