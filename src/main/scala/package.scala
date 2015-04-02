@@ -5,3 +5,4 @@ package object app
   with quit.app.tweaks.ToolbarTweaks
   with quit.app.tweaks.ContextTweaks
   with quit.app.tweaks.LoggingTweaks
+  with quit.app.tweaks.ListTweaks

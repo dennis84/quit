@@ -32,9 +32,8 @@ class DayAdapter(
 
     if(day.selected) {
       if(null == holder.timeline.getAdapter) {
-        var datesAdapter = new DateAdapter(context, new ArrayList[DateTime])
-        holder.timeline.setAdapter(datesAdapter)
-        holder.timeline.getAdapter.addDates(day.dates)
+        holder.timeline.setAdapter(DateAdapter(context, day.dates))
+        holder.timeline.getAdapter.notifyDataSetChanged
       }
 
       holder.timeline.setVisibility(View.VISIBLE)

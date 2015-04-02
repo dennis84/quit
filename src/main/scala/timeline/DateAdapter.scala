@@ -12,38 +12,34 @@ import quit.app._
 
 class DateAdapter(
   context: Context,
-  dates: ArrayList[DateTime]
-) extends ArrayAdapter[DateTime](context, 0, dates) {
-
-  def addDates(xs: List[DateTime]) {
-    xs foreach add
-  }
+  items: ArrayList[TimelineItem]
+) extends ArrayAdapter[TimelineItem](context, 0, items) {
 
   override def getView(position: Int, convertView: View, parent: ViewGroup): View = {
     val view = LayoutInflater.from(context).inflate(R.layout.timeline_item, parent, false)
     val time = view.find[TextView](R.id.timeline_time)
     val break = view.find[TextView](R.id.timeline_break)
-    val date = dates.get(position)
-    var next: Option[DateTime] = None
+    val pcs = view.find[TextView](R.id.timeline_pcs)
+    val item = items.get(position)
+    var next: Option[TimelineItem] = None
 
     try {
-      next = Some(dates.get(position + 1))
+      next = Some(items.get(position + 1))
     } catch {
       case e: Exception =>
     }
 
-    time.setText(date.toString("H:mm"))
+    time.setText(item.date.toString("H:mm"))
+
+    if(item.pcs > 1) {
+      pcs.setText(item.pcs.toString)
+    }
 
     next foreach { x =>
-      val diff = date.getMillis - x.getMillis
+      val diff = item.date.getMillis - x.date.getMillis
       val period = new Period(diff)
-
-      if(dates.size > 1) {
-        val min = dates.toList.sliding(2).map(
-          x => x(0).getMillis - x(1).getMillis).min.toDouble
-        val fac = 120 / (min / 1000 / 60)
-        val f = if(fac > 4) 4 else fac
-        view.getLayoutParams.height = ((diff / 1000 / 60) * f).toInt
+      if(items.size > 1) {
+        view.getLayoutParams.height = (diff / 1000 / 60 * 2).toInt
       }
 
       break.setText(Html.fromHtml(s"<i>Break: ${period.getHours}h ${period.getMinutes}m</i>"))
@@ -51,4 +47,12 @@ class DateAdapter(
 
     view
   }
+}
+
+object DateAdapter {
+
+  def apply(context: Context, dates: List[DateTime]) =
+    new DateAdapter(context, new ArrayList(dates.groupWhile { (a,b) =>
+      (b.getMillis - a.getMillis) > (5 * 60 * 1000)
+    } map (ys => TimelineItem(ys.head, ys.length))))
 }

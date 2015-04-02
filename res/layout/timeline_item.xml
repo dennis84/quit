@@ -14,7 +14,18 @@
   <RelativeLayout
     android:layout_width="20dp"
     android:layout_height="20dp"
-    android:background="@drawable/timeline_circle" />
+    android:gravity="center"
+    android:background="@drawable/timeline_circle">
+
+    <TextView
+      android:id="@+id/timeline_pcs"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif"
+      android:textStyle="bold"
+      android:textSize="10dp"
+      android:textColor="@color/base3" />
+  </RelativeLayout>
 
   <LinearLayout
     android:layout_width="wrap_content"

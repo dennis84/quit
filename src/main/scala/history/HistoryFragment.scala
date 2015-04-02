@@ -26,8 +26,6 @@ class HistoryFragment extends QListFragment {
     header = inflater.inflate(R.layout.today, container, false)
     timeline = header.find[TimelineView](R.id.timeline)
     toggleTimeline = header.find[TextView](R.id.toggle_timeline)
-    var datesAdapter = new DateAdapter(activity, new ArrayList[DateTime])
-    timeline.setAdapter(datesAdapter)
     super.onCreateView(inflater, container, savedInstanceState)
   }
 
@@ -78,8 +76,8 @@ class HistoryFragment extends QListFragment {
       val dates = grouped.get(date).getOrElse(Nil)
       val day = Day(date, dates)
       if(day.isToday) {
-        timeline.getAdapter.clear
-        timeline.getAdapter.addDates(day.dates)
+        timeline.setAdapter(DateAdapter(activity, day.dates))
+        timeline.getAdapter.notifyDataSetChanged
       } else {
         adapter.add(Day(date, dates))
       }
