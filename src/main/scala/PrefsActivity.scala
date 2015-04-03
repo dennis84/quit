@@ -8,7 +8,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import com.squareup.otto.Bus
 import com.github.nscala_time.time.Imports._
 import quit.app.notification._
-import quit.app._
 import java.util.concurrent.TimeUnit
 
 class PrefsActivity

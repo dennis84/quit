@@ -6,7 +6,6 @@ import android.widget.{LinearLayout, TextView}
 import android.util.AttributeSet
 import android.database.DataSetObserver
 import org.joda.time.DateTime
-import quit.app._
 
 class TimelineView(context: Context, attrs: AttributeSet)
   extends LinearLayout(context, attrs) {

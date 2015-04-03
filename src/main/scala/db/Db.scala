@@ -1,7 +1,6 @@
 package quit.app.db
 
-import android.content.{ContentValues, Context}
-import android.database.Cursor
+import android.content.Context
 import android.database.sqlite.{SQLiteDatabase, SQLiteOpenHelper}
 
 class Db(context: Context)
