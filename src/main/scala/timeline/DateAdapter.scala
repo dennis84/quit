@@ -52,7 +52,7 @@ class DateAdapter(
 object DateAdapter {
 
   def apply(context: Context, dates: List[DateTime]) =
-    new DateAdapter(context, new ArrayList(dates.groupWhile { (a,b) =>
-      (b.getMillis - a.getMillis) > (5 * 60 * 1000)
+    new DateAdapter(context, new ArrayList(dates.groupWhile { (l,r) =>
+      (l.getMillis - r.getMillis) <= (5 * 60 * 1000)
     } map (ys => TimelineItem(ys.head, ys.length))))
 }
