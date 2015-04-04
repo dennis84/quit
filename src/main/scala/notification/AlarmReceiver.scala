@@ -29,7 +29,7 @@ class AlarmReceiver extends BroadcastReceiver {
       .setContentText("Want to extend your goal by half an hour?")
       .setSmallIcon(R.drawable.icon)
       .setContentIntent(contentPending)
-      .setVibrate(Array(0, 300l, 300l))
+      .setVibrate(Array(0, 300l, 300l, 300l))
       .setLights(Color.WHITE, 3000, 3000)
       .addAction(R.drawable.icon, "Ok", okPending)
       .addAction(R.drawable.icon, "No", noPending)
