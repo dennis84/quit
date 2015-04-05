@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@android:id/background">
-    <shape
-      android:innerRadiusRatio="3"
-      android:shape="oval">
+    <shape android:shape="oval">
       <solid android:color="@color/base02" />
     </shape>
   </item>
 
-  <item android:id="@android:id/secondaryProgress" >
+  <item android:id="@android:id/secondaryProgress">
     <shape
       android:useLevel="false"
-      android:innerRadiusRatio="2"
       android:shape="ring"
+      android:innerRadius="130dp"
       android:thickness="20dp">
       <solid android:color="@color/base01" />
     </shape>
@@ -25,9 +23,8 @@
       android:toDegrees="-90">
 
       <shape
-        android:useLevel="true"
-        android:innerRadiusRatio="2"
         android:shape="ring"
+        android:innerRadius="130dp"
         android:thickness="20dp">
         <solid android:color="@color/base00" />
       </shape>
