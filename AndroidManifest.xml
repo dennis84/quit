@@ -14,7 +14,8 @@
   <uses-permission android:name="android.permission.VIBRATE" />
 
   <application
-    android:label="Quit"
+    android:label="@string/app_name"
+    android:icon="@drawable/icon"
     android:theme="@style/AppTheme">
     <activity android:name="MainActivity" android:label="Quit">
       <intent-filter>
