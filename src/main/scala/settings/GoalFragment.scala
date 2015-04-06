@@ -1,26 +1,24 @@
-package quit.app
+package quit.app.settings
 
 import android.os.Bundle
-import android.preference.PreferenceActivity
-import android.preference.EditTextPreference
+import android.preference.{PreferenceFragment, EditTextPreference}
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import com.squareup.otto.Bus
 import com.github.nscala_time.time.Imports._
-import quit.app.notification._
 import java.util.concurrent.TimeUnit
+import quit.app.notification._
+import quit.app._
 
-class PrefsActivity
-  extends PreferenceActivity
+class GoalFragment
+  extends PreferenceFragment
   with OnSharedPreferenceChangeListener {
 
-  val bus = new Bus
-  var env: Env = _
+  def activity = getActivity.asInstanceOf[QActivity]
+  def env = activity.env
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    addPreferencesFromResource(R.xml.prefs)
-    env = new Env(this, bus)
+    addPreferencesFromResource(R.xml.settings_goal)
 
     val prefs = getPreferenceScreen.getSharedPreferences
     val hours = findPreference("goal_hours").asInstanceOf[EditTextPreference]
@@ -61,7 +59,7 @@ class PrefsActivity
       env.repo.last foreach { date =>
         val goalDate = date + goal.millis
         sharedPreferences.edit.putLong("goal_date", goalDate.getMillis).commit
-        AlarmScheduler.schedule(this, goalDate)
+        AlarmScheduler.schedule(activity, goalDate)
       }
     }
   }

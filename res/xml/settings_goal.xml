@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
 
   <PreferenceCategory android:title="Goal">
     <EditTextPreference
@@ -17,18 +18,13 @@
       android:dialogTitle="Dialog Title"
       android:singleLine="true"
       android:numeric="integer" />
-  </PreferenceCategory>
 
-  <EditTextPreference
-    android:key="goal_limit"
-    android:title="Limit"
-    android:summary="Summary"
-    android:dialogTitle="Dialog Title"
-    android:singleLine="true"
-    android:numeric="integer" />
-  
-  <SwitchPreference
-    android:defaultValue="true"
-    android:key="notifications_enabled"
-    android:title="Enable Notifications" />
+    <EditTextPreference
+      android:key="goal_limit"
+      android:title="Limit"
+      android:summary="Summary"
+      android:dialogTitle="Dialog Title"
+      android:singleLine="true"
+      android:numeric="integer" />
+  </PreferenceCategory>
 </PreferenceScreen>
