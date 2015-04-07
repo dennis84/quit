@@ -27,12 +27,12 @@ class AlarmReceiver extends BroadcastReceiver {
     val notification = new Notification.Builder(context)
       .setContentTitle("Congrats, you've reached your goal!")
       .setContentText("Want to extend your goal by half an hour?")
-      .setSmallIcon(R.drawable.icon)
+      .setSmallIcon(R.drawable.ic_launcher)
       .setContentIntent(contentPending)
       .setVibrate(Array(0, 300l, 300l, 300l))
       .setLights(Color.WHITE, 3000, 3000)
-      .addAction(R.drawable.icon, "Ok", okPending)
-      .addAction(R.drawable.icon, "No", noPending)
+      .addAction(R.drawable.ic_launcher, "Ok", okPending)
+      .addAction(R.drawable.ic_launcher, "No", noPending)
       .build()
 
     val notificationManager = context.systemService[NotificationManager]
