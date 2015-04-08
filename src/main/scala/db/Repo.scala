@@ -6,7 +6,7 @@ import org.joda.time.DateTime
 class Repo(db: Db) {
 
   def insert(date: DateTime) {
-    val values = new ContentValues;
+    val values = new ContentValues
     val timestamp: java.lang.Long = date.getMillis
     values.put("created_at", timestamp)
     db.getWritableDatabase.insert("dates", null, values)
@@ -19,7 +19,7 @@ class Repo(db: Db) {
       ORDER BY created_at DESC
     """, null)
 
-    if (cursor.moveToFirst) {
+    if(cursor.moveToFirst) {
       do {
         dates += new DateTime(cursor.getLong(1))
       } while(cursor.moveToNext)

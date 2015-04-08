@@ -19,7 +19,7 @@ class DayAdapter(
     var view = convertView
     val holder = if(null == view) {
       view = LayoutInflater.from(context).inflate(R.layout.day, parent, false)
-      val h = new ViewHolder(
+      val h = ViewHolder(
         view.find[TextView](R.id.history_pieces),
         view.find[TextView](R.id.history_day),
         view.find[TextView](R.id.history_break),

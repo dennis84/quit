@@ -20,8 +20,6 @@ class NotificationReceiver extends BroadcastReceiver {
         settings.edit.putLong("goal_date", goal.getMillis).commit
         AlarmScheduler.schedule(context, goal)
         notificationManager.cancel(0)
-      case "quit.app.notification.NO" =>
-        notificationManager.cancel(0)
     }
 
     context.startActivity(mainIntent)

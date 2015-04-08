@@ -34,7 +34,6 @@
     <receiver android:name=".notification.NotificationReceiver">
       <intent-filter>
         <action android:name="quit.app.notification.OK" />
-        <action android:name="quit.app.notification.NO" />
       </intent-filter>
     </receiver>
   </application>
