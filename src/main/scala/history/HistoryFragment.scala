@@ -49,13 +49,7 @@ class HistoryFragment extends QListFragment {
   override def onListItemClick(l: ListView, v: View, position: Int, id: Long) {
     super.onListItemClick(l, v, position, id)
     val day = getListAdapter.getItem(position - 1).asInstanceOf[Day]
-    val timeline = v.find[TimelineView](R.id.timeline)
-    if(View.VISIBLE == timeline.getVisibility) {
-      day.selected = false
-    } else {
-      day.selected = true
-    }
-
+    day.selected = !day.selected
     adapter.notifyDataSetChanged
   }
 

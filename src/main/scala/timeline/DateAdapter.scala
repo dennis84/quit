@@ -7,8 +7,7 @@ import android.text.Html
 import java.util.{ArrayList, Locale}
 import scala.collection.JavaConversions._
 import scala.util.Try
-import com.github.nscala_time.time.Imports._
-import org.joda.time.Period
+import org.joda.time.{DateTime, Period}
 import quit.app._
 
 class DateAdapter(
@@ -32,10 +31,7 @@ class DateAdapter(
     Try(items.get(position + 1)) foreach { next =>
       val diff = item.date.getMillis - next.date.getMillis
       val period = new Period(diff)
-      if(items.size > 1) {
-        view.getLayoutParams.height = (diff / 1000 / 60 * 2).toInt
-      }
-
+      view.getLayoutParams.height = (diff / 1000 / 60 * 2).toInt
       break.setText(Html.fromHtml(s"<i>Break: ${period.getHours}h ${period.getMinutes}m</i>"))
     }
 
@@ -44,7 +40,6 @@ class DateAdapter(
 }
 
 object DateAdapter {
-
   def apply(context: Context, dates: List[DateTime]) =
     new DateAdapter(context, new ArrayList(dates.groupWhile { (l,r) =>
       (l.getMillis - r.getMillis) <= (5 * 60 * 1000)
