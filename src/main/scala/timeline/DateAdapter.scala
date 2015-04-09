@@ -6,6 +6,7 @@ import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
 import scala.collection.JavaConversions._
+import scala.util.Try
 import com.github.nscala_time.time.Imports._
 import org.joda.time.Period
 import quit.app._
@@ -21,13 +22,6 @@ class DateAdapter(
     val break = view.find[TextView](R.id.timeline_break)
     val pcs = view.find[TextView](R.id.timeline_pcs)
     val item = items.get(position)
-    var next: Option[TimelineItem] = None
-
-    try {
-      next = Some(items.get(position + 1))
-    } catch {
-      case e: Exception =>
-    }
 
     time.setText(item.date.toString("H:mm"))
 
@@ -35,8 +29,8 @@ class DateAdapter(
       pcs.setText(item.pcs.toString)
     }
 
-    next foreach { x =>
-      val diff = item.date.getMillis - x.date.getMillis
+    Try(items.get(position + 1)) foreach { next =>
+      val diff = item.date.getMillis - next.date.getMillis
       val period = new Period(diff)
       if(items.size > 1) {
         view.getLayoutParams.height = (diff / 1000 / 60 * 2).toInt
