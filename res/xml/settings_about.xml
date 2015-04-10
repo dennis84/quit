@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="About">
+    <EditTextPreference
+      android:key="version"
+      android:title="Version"
+      android:enabled="false" 
+      android:selectable="false"
+      android:persistent="false"
+      android:shouldDisableView="false" />
+  </PreferenceCategory>
+</PreferenceScreen>
