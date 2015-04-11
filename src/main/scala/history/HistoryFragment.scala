@@ -67,19 +67,12 @@ class HistoryFragment extends QListFragment {
   @Subscribe
   def onChangeState(event: ChangeState) {
     if(!viewCreated) return
-    val from = event.state.dates.lastOption.getOrElse(DateTime.now)
-    val days = Days.daysBetween(from, DateTime.now + 1.days).getDays
-    val grouped = event.state.dates.groupBy(_.withTimeAtStartOfDay)
-    adapter.clear
-    for(i <- 0 until days) {
-      val date = (DateTime.now - i.days).withTimeAtStartOfDay
-      val dates = grouped.get(date).getOrElse(Nil)
-      val day = Day(date, dates)
+    event.state.days foreach { day =>
       if(day.isToday) {
         timeline.setAdapter(DateAdapter(activity, day.dates))
         timeline.getAdapter.notifyDataSetChanged
       } else {
-        adapter.add(Day(date, dates))
+        if(adapter.getPosition(day) < 0) adapter.add(day)
       }
     }
   }
