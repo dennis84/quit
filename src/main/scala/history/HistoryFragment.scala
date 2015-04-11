@@ -5,8 +5,6 @@ import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.{ListView, TextView}
 import android.support.v4.view.ViewPager
 import com.squareup.otto._
-import com.github.nscala_time.time.Imports._
-import org.joda.time.Days
 import java.util.ArrayList
 import quit.app._
 import quit.app.timeline._
@@ -56,7 +54,6 @@ class HistoryFragment extends QListFragment {
   override def onResume {
     super.onResume
     env.ctrl.list(state)
-
     getListView.setOnScrollListener(new EndlessScrollListener {
       def onLoadMore(page: Int, totalItemsCount: Int) {
         env.ctrl.list(state, page)
