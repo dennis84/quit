@@ -18,11 +18,11 @@
 
   <item android:id="@android:id/progress">
     <rotate
-      xmlns:android="http://schemas.android.com/apk/res/android" 
       android:fromDegrees="-90"
       android:toDegrees="-90">
 
       <shape
+        android:useLevel="true"
         android:shape="ring"
         android:innerRadius="130dp"
         android:thickness="20dp">
