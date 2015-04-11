@@ -10,8 +10,8 @@ import quit.app.notification._
 
 class Ctrl(bus: Bus, repo: Repo) {
 
-  def list(state: State) {
-    val newState = state.copy(connected = true, dates = repo.list)
+  def list(state: State, page: Int = 1) {
+    val newState = state.copy(connected = true, dates = state.dates ::: repo.list(page))
     bus.post(new ChangeState(newState))
   }
 

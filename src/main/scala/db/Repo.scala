@@ -1,7 +1,7 @@
 package quit.app.db
 
 import android.content.ContentValues
-import org.joda.time.DateTime
+import com.github.nscala_time.time.Imports._
 
 class Repo(db: Db) {
 
@@ -12,10 +12,15 @@ class Repo(db: Db) {
     db.getWritableDatabase.insert("dates", null, values)
   }
 
-  def list: List[DateTime] = {
+  def list(page: Int): List[DateTime] = {
+    val from = (DateTime.now - (30 * page).days).withTimeAtStartOfDay
+    val to = from + 31.days
+
     val dates = scala.collection.mutable.ListBuffer.empty[DateTime]
-    val cursor = db.getReadableDatabase.rawQuery("""
+    val cursor = db.getReadableDatabase.rawQuery(s"""
       SELECT * FROM dates
+      WHERE created_at > ${from.getMillis}
+      AND   created_at < ${to.getMillis}
       ORDER BY created_at DESC
     """, null)
 

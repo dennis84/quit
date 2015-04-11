@@ -56,6 +56,12 @@ class HistoryFragment extends QListFragment {
   override def onResume {
     super.onResume
     env.ctrl.list(state)
+
+    getListView.setOnScrollListener(new EndlessScrollListener {
+      def onLoadMore(page: Int, totalItemsCount: Int) {
+        env.ctrl.list(state, page)
+      }
+    })
   }
 
   @Subscribe
