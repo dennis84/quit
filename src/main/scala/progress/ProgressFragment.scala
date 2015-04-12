@@ -4,12 +4,11 @@ import android.app.Fragment
 import android.os.{Bundle, Handler}
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.view.animation.DecelerateInterpolator
-import android.widget.{Button, ProgressBar, RadioGroup}
+import android.widget.{ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import com.squareup.otto._
 import com.github.nscala_time.time.Imports._
-import com.melnykov.fab.FloatingActionButton
 import quit.app._
 
 class ProgressFragment extends QFragment {
@@ -26,11 +25,11 @@ class ProgressFragment extends QFragment {
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
-    val btn = view.find[FloatingActionButton](R.id.btn)
     val radio = view.find[RadioGroup](R.id.progress_indicator)
     progr = view.find[ProgressBar](R.id.progress_bar)
     val pager = view.find[ViewPager](R.id.pager)
     val adapter = new ProgressPagerAdapter(activity.getSupportFragmentManager)
+
     pager.setAdapter(adapter)
 
     pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener {
@@ -49,8 +48,6 @@ class ProgressFragment extends QFragment {
         if(checkedId == R.id.progress_indicator_2) pager.setCurrentItem(1)
       }
     })
-
-    btn onClick env.ctrl.add(state, activity)
   }
 
   override def onResume {
