@@ -30,12 +30,12 @@
     android:drawableLeft="@drawable/ic_unfold_more_white_18dp"
     style="?android:attr/borderlessButtonStyle"
     android:text="Show timeline" />
- 
+
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true">
- 
+
     <LinearLayout
       android:id="@+id/timeline_center"
       android:layout_width="1dp"
@@ -49,6 +49,6 @@
       android:layout_marginTop="50dp"
       android:layout_marginLeft="-10dp"
       android:layout_toRightOf="@+id/timeline_center"
-      android:visibility="gone" /> 
+      android:visibility="gone" />
   </RelativeLayout>
 </LinearLayout>

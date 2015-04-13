@@ -11,7 +11,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center">
- 
+
     <ProgressBar
       android:id="@+id/progress_bar"
       style="?android:attr/progressBarStyleHorizontal"
@@ -22,7 +22,7 @@
       android:max="1000"
       android:progress="0"
       android:progressDrawable="@drawable/progress" />
-   
+
     <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
