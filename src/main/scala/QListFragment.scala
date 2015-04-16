@@ -4,12 +4,13 @@ import android.app.ListFragment
 import android.os.Bundle
 import android.view.View
 
-trait QListFragment extends ListFragment {
+trait QListFragment[A] extends ListFragment {
   def activity = getActivity.asInstanceOf[QActivity]
   def bus = activity.bus
   def env = activity.env
   def state = activity.state
   var viewCreated = false
+  def adapter = getListAdapter.asInstanceOf[A]
 
   override def onStart {
     super.onStart

@@ -8,7 +8,7 @@ abstract class EndlessScrollListener extends OnScrollListener {
     var visibleThreshold = 5
     var currentPage = 0
     var previousTotalItemCount = 0
-    var startingPageIndex = 0;
+    var startingPageIndex = 0
     var loading = true
 
     override def onScroll(

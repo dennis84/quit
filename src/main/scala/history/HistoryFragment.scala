@@ -9,9 +9,8 @@ import java.util.ArrayList
 import quit.app._
 import quit.app.timeline._
 
-class HistoryFragment extends QListFragment {
+class HistoryFragment extends QListFragment[DayAdapter] {
 
-  var adapter: DayAdapter = _
   var header: View  = _
   var timeline: TimelineView = _
   var toggleTimeline: TextView = _
@@ -30,8 +29,7 @@ class HistoryFragment extends QListFragment {
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     getListView addHeaderView header
-    adapter = new DayAdapter(activity, new ArrayList[Day])
-    setListAdapter(adapter)
+    setListAdapter(new DayAdapter(activity, new ArrayList[Day]))
 
     toggleTimeline onClick {
       if(View.VISIBLE == timeline.getVisibility) {
