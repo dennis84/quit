@@ -10,9 +10,10 @@ case class State(
   val notificationsEnabled: Boolean = true,
   val goalDate: Option[DateTime] = None,
   val dates: List[DateTime] = Nil,
+  val days: List[Day] = Nil,
   val connected: Boolean = false) {
-  
-  def days: List[Day] = (for {
+
+  def withDays = this.copy(days = (for {
     from <- dates.lastOption
     to <- dates.headOption
     xs = Days.daysBetween(from, DateTime.now + 1.days).getDays
@@ -21,5 +22,6 @@ case class State(
     val y = (to - x.days).withTimeAtStartOfDay
     val ys = grouped.get(y).getOrElse(Nil)
     Day(y, ys)
-  }) getOrElse Nil
+  }) getOrElse Nil)
 }
+
