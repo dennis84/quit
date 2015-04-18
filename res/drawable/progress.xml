@@ -17,17 +17,12 @@
   </item>
 
   <item android:id="@android:id/progress">
-    <rotate
-      android:fromDegrees="-90"
-      android:toDegrees="-90">
-
-      <shape
-        android:useLevel="true"
-        android:shape="ring"
-        android:innerRadius="130dp"
-        android:thickness="20dp">
-        <solid android:color="@color/base00" />
-      </shape>
-    </rotate>
+    <shape
+      android:useLevel="true"
+      android:shape="ring"
+      android:innerRadius="130dp"
+      android:thickness="20dp">
+      <solid android:color="@color/base00" />
+    </shape>
   </item>
 </layer-list>
