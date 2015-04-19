@@ -13,15 +13,15 @@ case class State(
   val days: List[Day] = Nil,
   val connected: Boolean = false) {
 
-  def withDays = this.copy(days = (for {
-    from <- dates.lastOption
-    to <- dates.headOption
-    xs = Days.daysBetween(from, DateTime.now + 1.days).getDays
-    grouped = dates.groupBy(_.withTimeAtStartOfDay)
-  } yield (0 until xs).toList map { x =>
-    val y = (to - x.days).withTimeAtStartOfDay
-    val ys = grouped.get(y).getOrElse(Nil)
-    Day(y, ys)
-  }) getOrElse Nil)
+  def withDays = {
+    val now = DateTime.now
+    val from = dates.lastOption getOrElse now
+    val nbDays = Days.daysBetween(from.withTimeAtStartOfDay, now.withTimeAtStartOfDay).getDays
+    val grouped = dates.groupBy(_.withTimeAtStartOfDay)
+    this.copy(days = (0 to nbDays).toList map { n =>
+      val y = (now - n.days).withTimeAtStartOfDay
+      val ys = grouped.get(y).getOrElse(Nil)
+      Day(y, ys)
+    })
+  }
 }
-
