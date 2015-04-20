@@ -36,12 +36,14 @@ class GoalPageFragment extends QFragment {
     (viewCreated, state.dates.headOption, state.goalDate) match {
       case (false, _, _) =>
       case (true, Some(date), Some(goalDate)) => {
-        val html = humanize(date) replaceAll ("""(\d+)""", "<b>$1</b>")
+        val html = (humanize(date).capitalize + " ago") replaceAll ("""(\d+)""", "<b>$1</b>")
         text.setText(Html fromHtml html)
-        if(DateTime.now > goalDate) {
-          goal.setText("Congrats, you've reached your goal")
+        if(DateTime.now < goalDate) {
+          goal.setText(humanize(DateTime.now to goalDate).capitalize + " to your goal")
+        } else if(DateTime.now > goalDate + 5.minutes) {
+          goal.setText("You've exceeded your goal by " + humanize(goalDate to DateTime.now))
         } else {
-          goal.setText(humanize(DateTime.now to goalDate))
+          goal.setText("Congrats, you've reached your goal!")
         }
       }
       case (true, _, _) => {
