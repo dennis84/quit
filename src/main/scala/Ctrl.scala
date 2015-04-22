@@ -12,7 +12,7 @@ class Ctrl(bus: Bus, repo: Repo) {
 
   def list(state: State, page: Int = 1) {
     val newState = state.copy(connected = true, dates = state.dates ::: repo.list(page))
-    bus.post(new ChangeState(newState))
+    bus.post(new ChangeState(newState.withDays))
   }
 
   def add(state: State, context: Context) {
@@ -33,6 +33,6 @@ class Ctrl(bus: Bus, repo: Repo) {
     bus.post(new ChangeState(state.copy(
       dates = date :: state.dates,
       goalDate = Some(goalDate)
-    )))
+    ).withDays))
   }
 }

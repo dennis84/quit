@@ -17,7 +17,7 @@ class MainActivity extends QActivity {
 
   @Subscribe
   def onChangeState(event: ChangeState) {
-    env.state = event.state.withDays
+    env.state = event.state
     bus.post(new UpdateUI)
   }
 }
