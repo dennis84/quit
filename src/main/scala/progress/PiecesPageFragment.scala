@@ -33,9 +33,10 @@ class PiecesPageFragment extends QFragment {
   @Subscribe
   def update(event: UpdateUI) {
     if(!viewCreated) return
-    val today = state.days.head
-    val html = s"${today.dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
-    pieces.setText(Html.fromHtml(html))
-    limit.setText(s"Only ${state.limit - today.dates.length} pieces left")
+    state.days.headOption foreach { today =>
+      val html = s"${today.dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
+      pieces.setText(Html.fromHtml(html))
+      limit.setText(s"Only ${state.limit - today.dates.length} pieces left")
+    }
   }
 }
