@@ -11,13 +11,13 @@ trait QFragment extends Fragment {
   def state = activity.state
   var viewCreated = false
 
-  override def onStart {
-    super.onStart
+  override def onCreate(savedInstanceState: Bundle) {
+    super.onCreate(savedInstanceState)
     bus.register(this)
   }
 
-  override def onStop {
-    super.onStop
+  override def onDestroy {
+    super.onDestroy
     bus.unregister(this)
   }
 

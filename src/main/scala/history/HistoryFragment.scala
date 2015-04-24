@@ -30,6 +30,7 @@ class HistoryFragment extends QListFragment[DayAdapter] {
     super.onViewCreated(view, savedInstanceState)
     getListView addHeaderView header
     setListAdapter(new DayAdapter(activity, new ArrayList[Day]))
+    env.ctrl.list(state)
 
     toggleTimeline onClick {
       if(View.VISIBLE == timeline.getVisibility) {
@@ -40,6 +41,12 @@ class HistoryFragment extends QListFragment[DayAdapter] {
         toggleTimeline.setText("Hide timeline")
       }
     }
+
+    getListView.setOnScrollListener(new EndlessScrollListener {
+      def onLoadMore(page: Int, totalItemsCount: Int) {
+        env.ctrl.list(state, page)
+      }
+    })
   }
 
   override def onListItemClick(l: ListView, v: View, position: Int, id: Long) {
@@ -49,19 +56,8 @@ class HistoryFragment extends QListFragment[DayAdapter] {
     adapter.notifyDataSetChanged
   }
 
-  override def onResume {
-    super.onResume
-    env.ctrl.list(state)
-    getListView.setOnScrollListener(new EndlessScrollListener {
-      def onLoadMore(page: Int, totalItemsCount: Int) {
-        env.ctrl.list(state, page)
-      }
-    })
-  }
-
   @Subscribe
   def onChangeState(event: ChangeState) {
-    if(!viewCreated) return
     event.state.days foreach { day =>
       if(day.isToday) {
         timeline.setAdapter(DateAdapter(activity, day.dates))

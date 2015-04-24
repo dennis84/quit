@@ -1,5 +1,6 @@
 package quit.app
 
+import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import com.squareup.otto._
 
@@ -8,13 +9,13 @@ trait QActivity extends FragmentActivity {
   val env = new Env(this, bus)
   def state = env.state
 
-  override def onStart {
-    super.onStart
+  override def onCreate(savedInstanceState: Bundle) {
+    super.onCreate(savedInstanceState)
     bus.register(this)
   }
 
-  override def onStop {
-    super.onStop
+  override def onDestroy {
+    super.onDestroy
     bus.unregister(this)
   }
 
