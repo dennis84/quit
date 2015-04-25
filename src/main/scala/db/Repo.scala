@@ -13,14 +13,13 @@ class Repo(db: Db) {
   }
 
   def list(page: Int): List[DateTime] = {
-    val from = (DateTime.now - (30 * page).days).withTimeAtStartOfDay
-    val to = from + 31.days
+    val from = DateTime.now.withTimeAtStartOfDay - (30 * page).days
+    val to = from + (if(1 == page) 31.days else 30.days)
 
     val dates = scala.collection.mutable.ListBuffer.empty[DateTime]
     val cursor = db.getReadableDatabase.rawQuery(s"""
       SELECT * FROM dates
-      WHERE created_at > ${from.getMillis}
-      AND   created_at < ${to.getMillis}
+      WHERE created_at BETWEEN ${from.getMillis} AND ${to.getMillis}
       ORDER BY created_at DESC
     """, null)
 
