@@ -14,7 +14,7 @@ import quit.app._
 class ProgressFragment extends QFragment {
 
   var progr: ProgressBar = _
-  var progrStart = 1
+  var progrStart = 0
   var handler: Handler = new Handler
 
   override def onCreateView(
@@ -52,6 +52,8 @@ class ProgressFragment extends QFragment {
 
   override def onResume {
     super.onResume
+    progrStart = 0
+    progr.setProgress(progrStart)
     update(new UpdateUI)
     handler.postDelayed(new Runnable {
       override def run() {
@@ -77,8 +79,9 @@ class ProgressFragment extends QFragment {
   } yield {
     val anim = ObjectAnimator.ofInt(progr, "progress", progrStart, p)
     progrStart = p
-    anim.setDuration(500)
     anim.setInterpolator(new DecelerateInterpolator)
+    anim.setDuration(1000)
+    anim.setStartDelay(800)
     anim.start
   }
 }
