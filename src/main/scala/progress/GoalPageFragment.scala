@@ -32,23 +32,24 @@ class GoalPageFragment extends QFragment {
   }
 
   @Subscribe
-  def update(event: UpdateUI) =
-    (viewCreated, state.dates.headOption, state.goalDate) match {
-      case (false, _, _) =>
-      case (true, Some(date), Some(goalDate)) => {
-        val html = (humanize(date).capitalize + " ago") replaceAll ("""(\d+)""", "<b>$1</b>")
-        text.setText(Html fromHtml html)
-        if(DateTime.now < goalDate) {
-          goal.setText(humanize(DateTime.now to goalDate).capitalize + " to your goal")
-        } else if(DateTime.now > goalDate + 5.minutes) {
-          goal.setText("You've exceeded your goal by " + humanize(goalDate to DateTime.now))
-        } else {
-          goal.setText("Congrats, you've reached your goal!")
-        }
+  def update(event: UpdateUI) {
+    if(!viewCreated) return
+    (for {
+      date <- state.dates.headOption
+      goalDate <- state.goalDate
+    } yield {
+      val html = (humanize(date).capitalize + " ago") replaceAll ("""(\d+)""", "<b>$1</b>")
+      text.setText(Html fromHtml html)
+      if(DateTime.now < goalDate) {
+        goal.setText(humanize(DateTime.now to goalDate).capitalize + " to your goal")
+      } else if(DateTime.now > goalDate + 5.minutes) {
+        goal.setText("You've exceeded your goal by " + humanize(goalDate to DateTime.now))
+      } else {
+        goal.setText("Congrats, you've reached your goal!")
       }
-      case (true, _, _) => {
-        text.setText("Welcome to Quit")
-        goal.setText("Press the button to get started.")
-      }
+    }) getOrElse {
+      text.setText("Welcome to Quit")
+      goal.setText("Press the button to get started.")
     }
+  }
 }
