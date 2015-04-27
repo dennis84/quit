@@ -32,13 +32,16 @@ apkbuildExcludes in Android ++= Seq(
   "META-INF/NOTICE.txt"
 )
 
+resolvers += "jitpack" at "https://jitpack.io"
+
 libraryDependencies ++= Seq(
   "com.android.support"    %  "support-v4"           % "21.0.3",
   "com.android.support"    %  "appcompat-v7"         % "21.0.3",
   "com.squareup"           %  "otto"                 % "1.3.6",
   "org.scalatest"          %% "scalatest"            % "2.2.4" % "test",
   "com.github.nscala-time" %% "nscala-time"          % "1.8.0",
-  "com.melnykov"           %  "floatingactionbutton" % "1.2.0"
+  "com.melnykov"           %  "floatingactionbutton" % "1.2.0",
+  "com.github.PhilJay"     %  "MPAndroidChart"       % "v2.0.9"
 )
 
 scalaSource in Test := baseDirectory.value / "test"
