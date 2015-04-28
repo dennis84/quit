@@ -9,6 +9,5 @@
     android:id="@+id/toolbar_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/actionBarSize"
-    android:background="@color/base02" />
+    android:minHeight="?android:attr/actionBarSize" />
 </LinearLayout>
