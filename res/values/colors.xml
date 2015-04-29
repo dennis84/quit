@@ -2,13 +2,19 @@
 <resources>
   <color name="base03">#1D233F</color>
   <color name="base02">#2A3158</color>
-  <color name="base01">#3C4884</color>
-  <color name="base00">#758AEB</color>
-  <color name="base1">#B8BEE3</color>
-  <color name="base2">#D3D8F5</color>
-  <color name="base3">#FFFFFF</color>
+
+  <color name="base01">#737373</color>
+  <color name="base00">#A0A0A0</color>
+  <color name="base1">#CDCCCC</color>
+
+  <color name="base2">#E6E6E6</color>
+  <color name="base3">#F7F8F8</color>
   
-  <color name="magenta">#FF4182</color>
-  <color name="magenta1">#FF96B9</color>
-  <color name="magenta2">#FFC1D5</color>
+  <color name="magenta">#C21E5C</color>
+  <color name="magenta1">#D13470</color>
+  <color name="magenta2">#E66394</color>
+  <color name="cyan">#1ECD97</color>
+  <color name="orange">#DE7D2C</color>
+  <color name="red">#FF746F</color>
+  <color name="blue">#338DFB</color>
 </resources>

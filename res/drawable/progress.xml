@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@android:id/background">
     <shape android:shape="oval">
-      <solid android:color="@color/base02" />
+      <solid android:color="@color/base3" />
     </shape>
   </item>
 
@@ -10,9 +10,9 @@
     <shape
       android:useLevel="false"
       android:shape="ring"
-      android:innerRadius="130dp"
-      android:thickness="20dp">
-      <solid android:color="@color/base01" />
+      android:innerRadius="150dp"
+      android:thickness="4dp">
+      <solid android:color="@color/base2" />
     </shape>
   </item>
 
@@ -20,9 +20,9 @@
     <shape
       android:useLevel="true"
       android:shape="ring"
-      android:innerRadius="130dp"
-      android:thickness="20dp">
-      <solid android:color="@color/base00" />
+      android:innerRadius="150dp"
+      android:thickness="4dp">
+      <solid android:color="@color/magenta" />
     </shape>
   </item>
 </layer-list>

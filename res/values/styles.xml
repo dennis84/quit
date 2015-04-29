@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="AppTheme" parent="Theme.AppCompat">
-    <item name="android:colorPrimary">@color/base02</item>
-    <item name="android:colorPrimaryDark">@color/base03</item>
+  <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <item name="android:colorPrimary">@color/base3</item>
+    <item name="android:colorPrimaryDark">@color/base00</item>
   </style>
 
   <style name="PrefsTheme" parent="AppTheme">
-    <item name="android:windowBackground">@color/base02</item>
+    <item name="android:windowBackground">@color/base3</item>
   </style>
 </resources>

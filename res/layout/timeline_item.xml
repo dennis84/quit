@@ -9,7 +9,7 @@
     android:layout_width="1dp"
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
-    android:background="@color/base00" />
+    android:background="@color/magenta" />
 
   <RelativeLayout
     android:layout_width="20dp"
@@ -41,7 +41,7 @@
       android:layout_height="wrap_content"
       android:fontFamily="sans-serif"
       android:textSize="20dp"
-      android:textColor="@color/base2" />
+      android:textColor="@color/base01" />
 
     <TextView
       android:id="@+id/timeline_break"
@@ -49,6 +49,6 @@
       android:layout_height="wrap_content"
       android:fontFamily="sans-serif-thin"
       android:textSize="12dp"
-      android:textColor="@color/base2" />
+      android:textColor="@color/base00" />
   </LinearLayout>
 </RelativeLayout>

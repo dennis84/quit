@@ -12,8 +12,8 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
-    android:textSize="24dp"
-    android:textColor="@color/base3" />
+    android:textSize="32dp"
+    android:textColor="@color/base01" />
 
   <TextView
     android:id="@+id/progress_limit"
@@ -22,6 +22,6 @@
     android:gravity="center"
     android:fontFamily="sans-serif-thin"
     android:textSize="16dp"
-    android:textColor="@color/base1"
+    android:textColor="@color/base00"
     android:textStyle="italic" />
 </LinearLayout>

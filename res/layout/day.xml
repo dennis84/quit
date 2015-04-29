@@ -17,7 +17,7 @@
       android:layout_height="wrap_content"
       android:fontFamily="sans-serif"
       android:textSize="20dp"
-      android:textColor="@color/base2" />
+      android:textColor="@color/base01" />
 
     <TextView
       android:id="@+id/history_pieces"
@@ -26,7 +26,7 @@
       android:gravity="right"
       android:fontFamily="sans-serif-thin"
       android:textSize="20dp"
-      android:textColor="@color/base2" />
+      android:textColor="@color/base01" />
   </LinearLayout>
 
   <TextView
@@ -35,7 +35,7 @@
     android:layout_height="wrap_content"
     android:fontFamily="sans-serif-thin"
     android:textSize="16dp"
-    android:textColor="@color/base1" />
+    android:textColor="@color/base00" />
 
   <quit.app.timeline.TimelineView
     android:id="@+id/timeline"
