@@ -10,6 +10,7 @@ import quit.app._
 import android.graphics.Color
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
+import com.github.mikephil.charting.components.LimitLine
 import com.github.mikephil.charting.data._
 
 import scala.collection.JavaConversions._
@@ -81,5 +82,12 @@ class GraphFragment extends QFragment {
     set.setCircleColorHole(getResources.getColor(R.color.magenta))
     set.setDrawValues(false)
     chart.setData(new LineData(data.xs, List(set)))
+
+    val ll = new LimitLine(state.limit, "Limit")
+    ll.setLineColor(getResources.getColor(R.color.blue))
+    ll.setLineWidth(4)
+    ll.setTextColor(getResources.getColor(R.color.base01));
+    ll.setTextSize(12)
+    chart.getAxisLeft.addLimitLine(ll)
   }
 }
