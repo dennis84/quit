@@ -2,24 +2,22 @@ package quit.app.stats
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
-import android.widget.{ArrayAdapter, AdapterView, Spinner}
+import android.widget.{ArrayAdapter, AdapterView}
 import android.widget.AdapterView.OnItemSelectedListener
 import com.squareup.otto._
 import quit.app._
 
 import android.graphics.Color
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis.XAxisPosition
-import com.github.mikephil.charting.components.LimitLine
-import com.github.mikephil.charting.data._
+import lecho.lib.hellocharts.view.LineChartView
+import lecho.lib.hellocharts.gesture.{ContainerScrollType, ZoomType}
+import lecho.lib.hellocharts.model.{Line, LineChartData, PointValue, Viewport, Axis, AxisValue}
 
 import scala.collection.JavaConversions._
+import java.util.Locale
 
 class GraphFragment extends QFragment {
 
-  var spinner: Spinner = _
-  var chart: LineChart = _
-  var graphType = "week"
+  var chart: LineChartView = _
 
   override def onCreateView(
     inflater: LayoutInflater,
@@ -29,37 +27,7 @@ class GraphFragment extends QFragment {
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
-    spinner = view.find[Spinner](R.id.graph_spinner)
-    spinner onSelected {
-      case (parent, view, 0, id) => {
-        graphType = "week"
-        update(new UpdateUI)
-      }
-
-      case (parent, view, 1, id) => {
-        graphType = "month"
-        update(new UpdateUI)
-      }
-    }
-
-    val items = List("Week", "Month")
-    spinner.setAdapter(new ArrayAdapter(activity, android.R.layout.simple_spinner_dropdown_item, items))
-    chart = view.find[LineChart](R.id.graph_chart)
-    chart.setDrawGridBackground(false)
-    chart.setDescription("")
-    chart.getLegend.setEnabled(false)
-    chart.getXAxis.setDrawAxisLine(true)
-    chart.getXAxis.setDrawGridLines(false)
-    chart.getXAxis.setTextSize(10)
-    chart.getXAxis.setTextColor(getResources.getColor(R.color.base01))
-    chart.getXAxis.setPosition(XAxisPosition.BOTTOM)
-    chart.getXAxis.setAvoidFirstLastClipping(true)
-    chart.getXAxis.setSpaceBetweenLabels(0)
-    chart.getAxisRight.setEnabled(false)
-    chart.getAxisLeft.setTextSize(10)
-    chart.getAxisLeft.setTextColor(getResources.getColor(R.color.base01))
-    chart.getAxisLeft.setValueFormatter(new IntValueFormatter)
-    chart.getAxisLeft.setDrawAxisLine(false)
+    chart = view.find[LineChartView](R.id.graph_chart)
     env.ctrl.list(state)
   }
 
@@ -71,23 +39,29 @@ class GraphFragment extends QFragment {
   @Subscribe
   def update(event: UpdateUI) {
     implicit val ctx = activity
-    val data = if("week" == graphType) DataGenerator.week(state.days)
-               else DataGenerator.month(state.days)
+    val values = DataGenerator.week(state.days)
 
-    val set = new LineDataSet(data.ys, "DataSet 1")
-    set.setLineWidth(4)
-    set.setCircleSize(5)
-    set.setColor(getResources.getColor(R.color.magenta))
-    set.setCircleColor(getResources.getColor(R.color.magenta))
-    set.setCircleColorHole(getResources.getColor(R.color.magenta))
-    set.setDrawValues(false)
-    chart.setData(new LineData(data.xs, List(set)))
+    val line = new Line(values).setColor(getResources.getColor(R.color.blue)).setCubic(true)
+    val lines = List(line)
 
-    val ll = new LimitLine(state.limit, "Limit")
-    ll.setLineColor(getResources.getColor(R.color.blue))
-    ll.setLineWidth(4)
-    ll.setTextColor(getResources.getColor(R.color.base01));
-    ll.setTextSize(12)
-    chart.getAxisLeft.addLimitLine(ll)
+    val data = new LineChartData
+    data.setLines(lines)
+
+    val labelsX = state.days.reverse.zipWithIndex map { case (day, i) =>
+      new AxisValue(i, day.date.toString("EEE", Locale.US).toCharArray)
+    }
+
+    val axisX = new Axis(labelsX.toList)
+    val axisY = new Axis().setHasLines(true)
+    data.setAxisXBottom(axisX)
+    data.setAxisYLeft(axisY)
+
+    chart.setLineChartData(data)
+
+    val v = new Viewport(chart.getMaximumViewport)
+    v.left = 20;
+    v.right = 30;
+    chart.setViewportCalculationEnabled(false)
+    chart.setCurrentViewport(v)
   }
 }

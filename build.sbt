@@ -41,7 +41,7 @@ libraryDependencies ++= Seq(
   "org.scalatest"          %% "scalatest"            % "2.2.4" % "test",
   "com.github.nscala-time" %% "nscala-time"          % "1.8.0",
   "com.melnykov"           %  "floatingactionbutton" % "1.2.0",
-  "com.github.PhilJay"     %  "MPAndroidChart"       % "v2.0.9"
+  "com.github.lecho"       %  "hellocharts-library"  % "1.5.3"
 )
 
 scalaSource in Test := baseDirectory.value / "test"
