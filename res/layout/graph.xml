@@ -9,5 +9,6 @@
   <lecho.lib.hellocharts.view.LineChartView
     android:id="@+id/graph_chart"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:layout_margin="5dp" />
 </LinearLayout>

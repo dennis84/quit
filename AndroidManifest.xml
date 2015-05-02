@@ -23,12 +23,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".stats.StatsActivity" android:label="Quit">
-      <!-- <intent-filter> -->
-      <!--   <action android:name="android.intent.action.MAIN" /> -->
-      <!--   <category android:name="android.intent.category.LAUNCHER" /> -->
-      <!-- </intent-filter> -->
-    </activity>
+    <activity android:name=".stats.StatsActivity" android:label="Quit" />
 
     <activity
       android:name=".settings.SettingsActivity"

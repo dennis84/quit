@@ -32,6 +32,22 @@ class Repo(db: Db) {
     dates.toList
   }
 
+  def listAll: List[DateTime] = {
+    val dates = scala.collection.mutable.ListBuffer.empty[DateTime]
+    val cursor = db.getReadableDatabase.rawQuery(s"""
+      SELECT * FROM dates
+      ORDER BY created_at DESC
+    """, null)
+
+    if(cursor.moveToFirst) {
+      do {
+        dates += new DateTime(cursor.getLong(1))
+      } while(cursor.moveToNext)
+    }
+
+    dates.toList
+  }
+
   def last: Option[DateTime] = {
     val cursor = db.getReadableDatabase.rawQuery("""
       SELECT * FROM dates

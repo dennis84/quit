@@ -2,18 +2,12 @@ package quit.app.stats
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
-import android.widget.{ArrayAdapter, AdapterView}
-import android.widget.AdapterView.OnItemSelectedListener
+import lecho.lib.hellocharts.view.LineChartView
+import lecho.lib.hellocharts.model.{Line, LineChartData, PointValue, Viewport, Axis, AxisValue}
+import java.util.Locale
+import scala.collection.JavaConversions._
 import com.squareup.otto._
 import quit.app._
-
-import android.graphics.Color
-import lecho.lib.hellocharts.view.LineChartView
-import lecho.lib.hellocharts.gesture.{ContainerScrollType, ZoomType}
-import lecho.lib.hellocharts.model.{Line, LineChartData, PointValue, Viewport, Axis, AxisValue}
-
-import scala.collection.JavaConversions._
-import java.util.Locale
 
 class GraphFragment extends QFragment {
 
@@ -28,39 +22,46 @@ class GraphFragment extends QFragment {
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     chart = view.find[LineChartView](R.id.graph_chart)
-    env.ctrl.list(state)
   }
 
   override def onResume {
     super.onResume
-    update(new UpdateUI)
+    env.ctrl.listAll(state)
   }
 
   @Subscribe
-  def update(event: UpdateUI) {
-    implicit val ctx = activity
-    val values = DataGenerator.week(state.days)
+  def onChangeState(event: ChangeState) {
+    val values = DataGenerator.week(event.state.days)
+    val line = new Line(values)
+      .setColor(getResources.getColor(R.color.magenta))
+      .setCubic(false)
+      .setStrokeWidth(4)
+      .setPointRadius(4)
+    val limit = new Line(List(
+      new PointValue(0, event.state.limit),
+      new PointValue(values.length, event.state.limit)
+    )).setColor(getResources.getColor(R.color.cyan))
+      .setCubic(false)
+      .setHasPoints(false)
+      .setStrokeWidth(4)
 
-    val line = new Line(values).setColor(getResources.getColor(R.color.blue)).setCubic(true)
-    val lines = List(line)
-
-    val data = new LineChartData
-    data.setLines(lines)
-
-    val labelsX = state.days.reverse.zipWithIndex map { case (day, i) =>
+    val labelsY = (0 to 20) map (x => new AxisValue(x, x.toString.toCharArray))
+    val labelsX = event.state.days.reverse.zipWithIndex map { case (day, i) =>
       new AxisValue(i, day.date.toString("EEE", Locale.US).toCharArray)
     }
 
+    val axisY = new Axis(labelsY).setHasLines(true)
     val axisX = new Axis(labelsX.toList)
-    val axisY = new Axis().setHasLines(true)
-    data.setAxisXBottom(axisX)
-    data.setAxisYLeft(axisY)
 
+    val data = new LineChartData
+    data.setLines(List(limit, line))
+    data.setAxisYLeft(axisY)
+    data.setAxisXBottom(axisX)
     chart.setLineChartData(data)
 
     val v = new Viewport(chart.getMaximumViewport)
-    v.left = 20;
-    v.right = 30;
+    v.left = values.length - 10;
+    v.right = values.length;
     chart.setViewportCalculationEnabled(false)
     chart.setCurrentViewport(v)
   }

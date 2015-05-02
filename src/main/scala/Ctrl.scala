@@ -15,6 +15,11 @@ class Ctrl(bus: Bus, repo: Repo) {
     bus.post(new ChangeState(newState.withDays))
   }
 
+  def listAll(state: State) {
+    val newState = state.copy(connected = true, dates = repo.listAll)
+    bus.post(new ChangeState(newState.withDays))
+  }
+
   def add(state: State, context: Context) {
     val notificationManager = context.systemService[NotificationManager]
     notificationManager.cancel(0)
