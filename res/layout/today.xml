@@ -27,7 +27,7 @@
     android:fontFamily="sans-serif-light"
     android:textSize="18dp"
     android:textColor="@color/base01"
-    android:drawableLeft="@drawable/ic_unfold_more_white_18dp"
+    android:drawableLeft="@drawable/ic_unfold_more_grey600_18dp"
     style="?android:attr/borderlessButtonStyle"
     android:text="Show timeline" />
 
