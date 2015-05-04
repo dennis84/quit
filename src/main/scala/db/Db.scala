@@ -19,4 +19,10 @@ class Db(context: Context)
     oldVersion: Int,
     newVersion: Int
   ) {}
+
+  override def onDowngrade(
+    db: SQLiteDatabase,
+    oldVersion: Int,
+    newVersion: Int
+  ) {}
 }

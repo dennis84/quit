@@ -7,7 +7,8 @@ import quit.app.history.Day
 object DataGenerator {
 
   def week(days: List[Day]) =
-    days.reverse.zipWithIndex map { case (d, i) =>
-      new PointValue(i, d.dates.length)
+    days.reverse map { d =>
+      val index = d.date.getMillis / 1000 / 60 / 60 / 24
+      new PointValue(index, d.dates.length)
     }
 }
