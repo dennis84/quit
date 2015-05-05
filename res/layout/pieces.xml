@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center">
+
+  <RelativeLayout
+    android:id="@+id/pieces_circle"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:gravity="center"
+    android:background="@drawable/timeline_circle">
+
+    <TextView
+      android:id="@+id/pieces_nb"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="sans-serif"
+      android:textStyle="bold"
+      android:textSize="12dp"
+      android:textColor="@color/base3" />
+  </RelativeLayout>
+
+  <TextView
+    android:id="@+id/pieces_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/pieces_circle"
+    android:layout_marginLeft="5dp"
+    android:fontFamily="sans-serif-thin"
+    android:text="pieces today"
+    android:textSize="20dp"
+    android:textColor="@color/base01" />
+</RelativeLayout>
