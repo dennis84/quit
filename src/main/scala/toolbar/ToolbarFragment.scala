@@ -3,6 +3,7 @@ package quit.app.toolbar
 import android.os.Bundle
 import android.content.Intent
 import android.view.{LayoutInflater, ViewGroup, View}
+import android.net.Uri
 import android.support.v7.widget.Toolbar
 import quit.app.settings.SettingsActivity
 import quit.app.stats.StatsActivity
@@ -26,6 +27,14 @@ class ToolbarFragment extends QFragment {
 
       case item if(item.getItemId == R.id.toolbar_stats) =>
         startActivity(new Intent(activity.getApplicationContext, classOf[StatsActivity]))
+
+      case item if(item.getItemId == R.id.toolbar_feedback) => {
+        implicit val ctx = activity
+        startActivity(Intent.createChooser(new Intent(
+          Intent.ACTION_SENDTO,
+          Uri.parse("mailto:d.dietrich84@gmail.com")
+        ), "Send email"))
+      }
     }
 
     toolbar.inflateMenu(R.menu.main)
