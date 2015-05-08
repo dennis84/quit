@@ -3,7 +3,7 @@ package quit.app.db
 import android.content.ContentValues
 import com.github.nscala_time.time.Imports._
 
-class Repo(db: Db) {
+class DateRepo(db: Db) {
 
   def insert(date: DateTime) {
     val values = new ContentValues

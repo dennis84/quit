@@ -9,8 +9,9 @@ import quit.app.util.Rand
 class Env(context: Context, bus: Bus) {
   
   lazy val db = new quit.app.db.Db(context)
-  lazy val repo = new quit.app.db.Repo(db)
-  lazy val ctrl = new Ctrl(bus, repo)
+  lazy val dateRepo = new quit.app.db.DateRepo(db)
+  lazy val configRepo = new quit.app.db.ConfigRepo(db)
+  lazy val ctrl = new Ctrl(bus, dateRepo, configRepo)
   var state = State()
 
   def updateState {

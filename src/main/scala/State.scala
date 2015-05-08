@@ -3,6 +3,7 @@ package quit.app
 import org.joda.time.Days
 import com.github.nscala_time.time.Imports._
 import quit.app.history.Day
+import quit.app.db.Config
 
 case class State(
   val goal: Int = 7200000,
@@ -11,7 +12,8 @@ case class State(
   val goalDate: Option[DateTime] = None,
   val dates: List[DateTime] = Nil,
   val days: List[Day] = Nil,
-  val connected: Boolean = false) {
+  val connected: Boolean = false,
+  val configs: List[Config] = Nil) {
 
   def withDays = {
     val now = DateTime.now

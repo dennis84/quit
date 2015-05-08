@@ -7,6 +7,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import com.github.nscala_time.time.Imports._
 import java.util.concurrent.TimeUnit
 import quit.app.notification._
+import quit.app.db.Config
 import quit.app._
 
 class GoalFragment
@@ -55,8 +56,9 @@ class GoalFragment
       val goal = (hours * 60 * 60 * 1000) + (minutes * 60 * 1000)
       sharedPreferences.edit.putInt("goal", goal).commit
       sharedPreferences.edit.putInt("limit", limit).commit
+      env.configRepo.insert(Config(limit, DateTime.now))
 
-      env.repo.last foreach { date =>
+      env.dateRepo.last foreach { date =>
         val goalDate = date + goal.millis
         sharedPreferences.edit.putLong("goal_date", goalDate.getMillis).commit
         AlarmScheduler.schedule(activity, goalDate)

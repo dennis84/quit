@@ -5,18 +5,13 @@ import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
 import com.github.nscala_time.time.Imports._
-import quit.app.db.Repo
+import quit.app.db._
 import quit.app.notification._
 
-class Ctrl(bus: Bus, repo: Repo) {
+class Ctrl(bus: Bus, dateRepo: DateRepo, configRepo: ConfigRepo) {
 
   def list(state: State, page: Int = 1) {
-    val newState = state.copy(connected = true, dates = state.dates ::: repo.list(page))
-    bus.post(new ChangeState(newState.withDays))
-  }
-
-  def listAll(state: State) {
-    val newState = state.copy(connected = true, dates = repo.listAll)
+    val newState = state.copy(connected = true, dates = state.dates ::: dateRepo.list(page))
     bus.post(new ChangeState(newState.withDays))
   }
 
@@ -25,7 +20,7 @@ class Ctrl(bus: Bus, repo: Repo) {
     notificationManager.cancel(0)
 
     val date = DateTime.now
-    repo.insert(date)
+    dateRepo.insert(date)
 
     val settings = PreferenceManager.getDefaultSharedPreferences(context)
     val goalDate = date + state.goal.millis
@@ -39,5 +34,17 @@ class Ctrl(bus: Bus, repo: Repo) {
       dates = date :: state.dates,
       goalDate = Some(goalDate)
     ).withDays))
+  }
+
+  def stats(state: State) {
+    bus.post(new ChangeState(state.copy(
+      connected = true,
+      dates = dateRepo.listAll,
+      configs = configRepo.list
+    ).withDays))
+  }
+
+  def updateConfig(config: Config) {
+    configRepo.insert(config)
   }
 }
