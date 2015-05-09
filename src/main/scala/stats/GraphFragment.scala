@@ -53,18 +53,19 @@ class GraphFragment extends QFragment {
       val configs = event.state.configs.groupBy {
         x => x.createdAt.withTimeAtStartOfDay
       }.map(_._2.head).toList.sortBy {
-        x => x.createdAt.getMillis
+        x => x.createdAt.withTimeAtStartOfDay.getMillis
       }
 
       val points = ((None +: configs.map(Some(_))) sliding 2).map {
         case List(None, Some(x)) => {
-          val index = x.createdAt.getMillis / 1000 / 60 / 60 / 24
+          val index = x.createdAt.withTimeAtStartOfDay.getMillis / 1000 / 60 / 60 / 24
           List(new PointValue(index, x.limit))
         }
         case List(Some(y), Some(x)) => {
-          val index = x.createdAt.getMillis / 1000 / 60 / 60 / 24
+          val index = x.createdAt.withTimeAtStartOfDay.getMillis / 1000 / 60 / 60 / 24
           List(new PointValue(index, y.limit), new PointValue(index, x.limit))
         }
+        case _ => Nil
       }.flatten
 
       val fl = configs.headOption.map(_.limit).getOrElse(event.state.limit)
