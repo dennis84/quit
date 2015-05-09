@@ -5,7 +5,6 @@ import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
 import android.text.Html
 import com.squareup.otto._
-import com.github.nscala_time.time.Imports._
 import quit.app.util.Humanize._
 import quit.app._
 

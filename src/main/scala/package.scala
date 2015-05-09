@@ -8,3 +8,4 @@ package object app
   with quit.app.tweaks.LoggingTweaks
   with quit.app.tweaks.ListTweaks
   with quit.app.tweaks.UnitTweaks
+  with quit.app.tweaks.TimeTweaks

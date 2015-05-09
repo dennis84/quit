@@ -1,6 +1,6 @@
 package quit.app.history
 
-import com.github.nscala_time.time.Imports._
+import quit.app._
 
 case class Day(
   val date: DateTime,

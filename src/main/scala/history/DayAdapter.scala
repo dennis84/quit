@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
-import com.github.nscala_time.time.Imports._
 import org.joda.time.Period
 import quit.app._
 import quit.app.timeline._

@@ -6,7 +6,6 @@ import lecho.lib.hellocharts.view.LineChartView
 import lecho.lib.hellocharts.model.{Line, LineChartData, PointValue, Viewport, Axis, AxisValue}
 import lecho.lib.hellocharts.gesture.ZoomType
 import java.util.Locale
-import com.github.nscala_time.time.Imports._
 import scala.collection.JavaConversions._
 import com.squareup.otto._
 import quit.app._
@@ -47,8 +46,8 @@ class GraphFragment extends QFragment {
     val limit = new Line((for {
       h <- days.headOption
       l <- days.lastOption
-      from = h.date.getMillis / 1000 / 60 / 60 / 24
-      to   = l.date.getMillis / 1000 / 60 / 60 / 24
+      from = h.date.dayIndex
+      to   = l.date.dayIndex
     } yield {
       val configs = event.state.configs.groupBy {
         x => x.createdAt.withTimeAtStartOfDay
@@ -57,14 +56,10 @@ class GraphFragment extends QFragment {
       }
 
       val points = ((None +: configs.map(Some(_))) sliding 2).map {
-        case List(None, Some(x)) => {
-          val index = x.createdAt.withTimeAtStartOfDay.getMillis / 1000 / 60 / 60 / 24
-          List(new PointValue(index, x.limit))
-        }
-        case List(Some(y), Some(x)) => {
-          val index = x.createdAt.withTimeAtStartOfDay.getMillis / 1000 / 60 / 60 / 24
-          List(new PointValue(index, y.limit), new PointValue(index, x.limit))
-        }
+        case List(None, Some(x)) => List(new PointValue(x.createdAt.dayIndex, x.limit))
+        case List(Some(y), Some(x)) => List(
+          new PointValue(x.createdAt.dayIndex, y.limit),
+          new PointValue(x.createdAt.dayIndex, x.limit))
         case _ => Nil
       }.flatten
 
@@ -79,7 +74,7 @@ class GraphFragment extends QFragment {
       .setStrokeWidth(4)
       .setHasLabels(false)
 
-    val index = DateTime.now.getMillis / 1000 / 60 / 60 / 24
+    val index = DateTime.now.dayIndex + 1
     val maxY = days.maxBy(_.dates.length)
     val fixLine = new Line(List(
       new PointValue(index, maxY.dates.length + 1),
@@ -89,8 +84,7 @@ class GraphFragment extends QFragment {
 
     val labelsY = (0 to 20) map (x => new AxisValue(x, x.toString.toCharArray))
     val labelsX = days map { day =>
-      val index = day.date.getMillis / 1000 / 60 / 60 / 24
-      new AxisValue(index, day.date.toString("EEE", Locale.US).toCharArray)
+      new AxisValue(day.date.dayIndex, day.date.toString("EEE", Locale.US).toCharArray)
     }
 
     val axisY = new Axis(labelsY)
@@ -106,7 +100,7 @@ class GraphFragment extends QFragment {
     chart.setLineChartData(data)
 
     days.lastOption foreach { day =>
-      val l = day.date.getMillis / 1000 / 60 / 60 / 24
+      val l = day.date.dayIndex
       val v = new Viewport(chart.getMaximumViewport)
       v.left = l - 9
       v.right = l + 1

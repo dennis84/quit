@@ -1,7 +1,7 @@
 package quit.app.util
 
-import com.github.nscala_time.time.Imports._
 import scala.math._
+import quit.app._
 
 object Humanize {
 

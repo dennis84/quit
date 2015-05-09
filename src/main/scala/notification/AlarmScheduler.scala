@@ -2,7 +2,6 @@ package quit.app.notification
 
 import android.app.{AlarmManager, PendingIntent}
 import android.content.{Context, Intent}
-import com.github.nscala_time.time.Imports._
 import quit.app._
 
 object AlarmScheduler {

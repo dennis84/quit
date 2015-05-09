@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.preference.{PreferenceFragment, EditTextPreference}
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import com.github.nscala_time.time.Imports._
 import java.util.concurrent.TimeUnit
 import quit.app.notification._
 import quit.app.db.Config

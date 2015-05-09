@@ -3,7 +3,6 @@ package quit.app
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
-import com.github.nscala_time.time.Imports._
 import quit.app.util.Rand
 
 class Env(context: Context, bus: Bus) {

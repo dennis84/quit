@@ -1,7 +1,6 @@
 package quit.app
 
 import org.joda.time.Days
-import com.github.nscala_time.time.Imports._
 import quit.app.history.Day
 import quit.app.db.Config
 

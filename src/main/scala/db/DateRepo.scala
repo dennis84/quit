@@ -1,7 +1,7 @@
 package quit.app.db
 
 import android.content.ContentValues
-import com.github.nscala_time.time.Imports._
+import quit.app._
 
 class DateRepo(db: Db) {
 

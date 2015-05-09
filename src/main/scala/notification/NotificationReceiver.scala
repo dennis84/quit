@@ -3,7 +3,6 @@ package quit.app.notification
 import android.app.NotificationManager
 import android.content.{Context, Intent, BroadcastReceiver}
 import android.preference.PreferenceManager
-import com.github.nscala_time.time.Imports._
 import quit.app._
 
 class NotificationReceiver extends BroadcastReceiver {

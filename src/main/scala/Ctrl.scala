@@ -4,7 +4,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
-import com.github.nscala_time.time.Imports._
 import quit.app.db._
 import quit.app.notification._
 

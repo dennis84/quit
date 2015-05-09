@@ -8,7 +8,6 @@ import android.widget.{ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import com.squareup.otto._
-import com.github.nscala_time.time.Imports._
 import quit.app._
 
 class ProgressFragment extends QFragment {
