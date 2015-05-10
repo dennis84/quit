@@ -2,6 +2,7 @@ package quit.app.stats
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
+import android.graphics.DashPathEffect
 import lecho.lib.hellocharts.view.LineChartView
 import lecho.lib.hellocharts.model.{Line, LineChartData, PointValue, Viewport, Axis, AxisValue}
 import lecho.lib.hellocharts.gesture.ZoomType
@@ -56,23 +57,25 @@ class GraphFragment extends QFragment {
       }
 
       val points = ((None +: configs.map(Some(_))) sliding 2).map {
-        case List(None, Some(x)) => List(new PointValue(x.createdAt.dayIndex, x.limit))
+        case List(None, Some(x)) => List(
+          new PointValue(x.createdAt.dayIndex, x.limit).setLabel(""))
         case List(Some(y), Some(x)) => List(
-          new PointValue(x.createdAt.dayIndex, y.limit),
-          new PointValue(x.createdAt.dayIndex, x.limit))
+          new PointValue(x.createdAt.dayIndex, y.limit).setLabel(""),
+          new PointValue(x.createdAt.dayIndex, x.limit).setLabel(""))
         case _ => Nil
       }.flatten
 
       val fl = configs.headOption.map(_.limit).getOrElse(event.state.limit)
-      List(new PointValue(from, fl)) ++ points ++ List(
-        new PointValue(to, event.state.limit))
+      List(new PointValue(from, fl).setLabel("")) ++ points ++ List(
+        new PointValue(to, event.state.limit).setLabel(s"Limit: ${event.state.limit}"))
     }).getOrElse(List(
       new PointValue(0, event.state.limit)
     ))).setColor(getResources.getColor(R.color.cyan))
       .setCubic(false)
       .setPointRadius(2)
       .setStrokeWidth(4)
-      .setHasLabels(false)
+      .setHasLabels(true)
+    limit.setPathEffect(new DashPathEffect(Array(1, 20, 1, 20), 0))
 
     val index = DateTime.now.dayIndex + 1
     val maxY = days.maxBy(_.dates.length)
