@@ -85,9 +85,9 @@ class GraphFragment extends QFragment {
     )).setHasLines(false)
       .setHasPoints(false)
 
-    val labelsY = (0 to 20) map (x => new AxisValue(x, x.toString.toCharArray))
+    val labelsY = (0 to 20) map (x => new AxisValue(x).setLabel(x.toString))
     val labelsX = days map { day =>
-      new AxisValue(day.date.dayIndex, day.date.toString("EEE", Locale.US).toCharArray)
+      new AxisValue(day.date.dayIndex).setLabel(day.date.toString("EEE", Locale.US))
     }
 
     val axisY = new Axis(labelsY)
