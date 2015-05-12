@@ -3,7 +3,6 @@ package quit.app.button
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import com.melnykov.fab.FloatingActionButton
-import com.squareup.otto._
 import quit.app._
 
 class ButtonFragment extends QFragment {

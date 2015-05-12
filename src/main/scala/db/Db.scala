@@ -2,7 +2,6 @@ package quit.app.db
 
 import android.content.Context
 import android.database.sqlite.{SQLiteDatabase, SQLiteOpenHelper}
-import quit.app._
 
 class Db(context: Context)
   extends SQLiteOpenHelper(context, "quit", null, 2) {
