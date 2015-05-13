@@ -6,7 +6,7 @@ import android.view.{LayoutInflater, ViewGroup, View}
 import android.net.Uri
 import android.support.v7.widget.Toolbar
 import quit.app.settings.SettingsActivity
-import quit.app.stats.GraphActivity
+import quit.app.stats.{StatsActivity, GraphActivity}
 import quit.app._
 
 class ToolbarFragment extends QFragment {
@@ -22,11 +22,14 @@ class ToolbarFragment extends QFragment {
     val toolbar = view.find[Toolbar](R.id.toolbar_toolbar)
 
     toolbar onClick {
-      case item if(item.getItemId == R.id.toolbar_settings) =>
-        startActivity(new Intent(activity.getApplicationContext, classOf[SettingsActivity]))
+      case item if(item.getItemId == R.id.toolbar_stats) =>
+        startActivity(new Intent(activity.getApplicationContext, classOf[StatsActivity]))
 
       case item if(item.getItemId == R.id.toolbar_graph) =>
         startActivity(new Intent(activity.getApplicationContext, classOf[GraphActivity]))
+
+      case item if(item.getItemId == R.id.toolbar_settings) =>
+        startActivity(new Intent(activity.getApplicationContext, classOf[SettingsActivity]))
 
       case item if(item.getItemId == R.id.toolbar_feedback) => {
         implicit val ctx = activity

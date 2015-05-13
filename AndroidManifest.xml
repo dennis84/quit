@@ -24,6 +24,7 @@
     </activity>
 
     <activity android:name=".stats.StatsActivity" android:label="Quit" />
+    <activity android:name=".stats.GraphActivity" android:label="Quit" />
 
     <activity
       android:name=".settings.SettingsActivity"
