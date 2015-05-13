@@ -11,7 +11,7 @@ import scala.collection.JavaConversions._
 import com.squareup.otto._
 import quit.app._
 
-class GraphFragment extends QFragment {
+class ChartFragment extends QFragment {
 
   var chart: LineChartView = _
 
@@ -19,11 +19,11 @@ class GraphFragment extends QFragment {
     inflater: LayoutInflater,
     container: ViewGroup,
     savedInstanceState: Bundle
-  ) = inflater.inflate(R.layout.graph, container, false)
+  ) = inflater.inflate(R.layout.chart, container, false)
 
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
-    chart = view.find[LineChartView](R.id.graph_chart)
+    chart = view.find[LineChartView](R.id.chart_chart)
     chart.setZoomType(ZoomType.HORIZONTAL)
     chart.setValueSelectionEnabled(true)
   }
