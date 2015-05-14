@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
+import scala.math.BigDecimal
 import org.joda.time.Period
 import quit.app._
 
@@ -26,9 +27,13 @@ class WeekAdapter(
     } else convertView.getTag.asInstanceOf[ViewHolder]
 
     val week = weeks.get(position)
-    holder.number.setText(week.number.toString)
-    holder.pieces.setText(week.dates.length.toString)
-    holder.average.setText(week.average.toString)
+    val dateText = s"Week ${week.number}, ${week.date.toString("MMM Y", Locale.US)}"
+    val avg = BigDecimal(week.average).setScale(1, BigDecimal.RoundingMode.HALF_UP).toDouble
+    val avgText = s"Average per day: <b>${avg}</b>"
+    val pcsText = s"Total of: <b>${week.dates.length}</b>"
+    holder.number.setText(dateText)
+    holder.average.setText(Html.fromHtml(avgText))
+    holder.pieces.setText(Html.fromHtml(pcsText))
 
     view
   }
