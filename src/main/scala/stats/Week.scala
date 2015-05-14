@@ -8,10 +8,11 @@ case class Week(
 
   def number = date.weekOfWeekyear.getAsString.toInt
 
-  def average: Double = {
-    val days = dates.groupBy(_.withTimeAtStartOfDay)
-    days.map { case (_, xs) =>
-      xs.length
-    }.sum / days.size.toDouble
+  def average: Double = dates match {
+    case Nil => 0
+    case xs => {
+      val days = dates.groupBy(_.withTimeAtStartOfDay)
+      days.map(_._2.length).sum / days.size.toDouble
+    }
   }
 }
