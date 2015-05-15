@@ -10,7 +10,7 @@
       android:dialogTitle="Dialog Title"
       android:singleLine="true"
       android:numeric="integer" />
-    
+
     <EditTextPreference
       android:key="goal_minutes"
       android:title="Minutes"

@@ -6,7 +6,6 @@ import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
 import scala.math.BigDecimal
-import org.joda.time.Period
 import quit.app._
 
 class WeekAdapter(

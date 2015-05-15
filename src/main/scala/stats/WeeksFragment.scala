@@ -1,14 +1,11 @@
 package quit.app.stats
 
 import android.os.Bundle
-import android.view.{LayoutInflater, ViewGroup, View}
-import android.widget.{ListView, TextView}
-import android.support.v4.view.ViewPager
-import com.squareup.otto._
+import android.view.View
 import java.util.ArrayList
+import com.squareup.otto._
 import org.joda.time.Weeks
 import quit.app._
-import quit.app.timeline._
 
 class WeeksFragment extends QListFragment[WeekAdapter] {
 

@@ -6,7 +6,7 @@ import com.squareup.otto.Bus
 import quit.app.util.Rand
 
 class Env(context: Context, bus: Bus) {
-  
+
   lazy val db = new quit.app.db.Db(context)
   lazy val dateRepo = new quit.app.db.DateRepo(db)
   lazy val configRepo = new quit.app.db.ConfigRepo(db)

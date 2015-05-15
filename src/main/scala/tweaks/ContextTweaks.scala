@@ -16,7 +16,7 @@ trait ContextTweaks {
 
   implicit val nm = systemServiceOf[NotificationManager](Context.NOTIFICATION_SERVICE)
   implicit val am = systemServiceOf[AlarmManager](Context.ALARM_SERVICE)
-  
+
   implicit val li = systemServiceOf[LayoutInflater](Context.LAYOUT_INFLATER_SERVICE)
 
   implicit class SystemServices(context: Context) {

@@ -6,7 +6,7 @@
     <EditTextPreference
       android:key="version"
       android:title="Version"
-      android:enabled="false" 
+      android:enabled="false"
       android:selectable="false"
       android:persistent="false"
       android:shouldDisableView="false" />
