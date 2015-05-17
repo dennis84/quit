@@ -7,6 +7,7 @@ import android.text.Html
 import java.util.{ArrayList, Locale}
 import org.joda.time.Period
 import quit.tweaks.FullDsl._
+import quit.core.Day
 import quit.app.timeline._
 import quit.app._
 

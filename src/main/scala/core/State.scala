@@ -1,7 +1,6 @@
 package quit.core
 
 import org.joda.time.Days
-import quit.app.history.Day
 import com.github.nscala_time.time.Imports._
 
 case class State(

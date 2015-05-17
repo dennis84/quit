@@ -1,4 +1,4 @@
-package quit.app.stats
+package quit.core
 
 import org.joda.time.DateTime
 

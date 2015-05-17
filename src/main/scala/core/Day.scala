@@ -1,4 +1,4 @@
-package quit.app.history
+package quit.core
 
 import quit.tweaks.FullDsl._
 

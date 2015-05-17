@@ -1,7 +1,7 @@
 package quit.app.stats
 
 import lecho.lib.hellocharts.model.PointValue
-import quit.app.history.Day
+import quit.core.Day
 import quit.tweaks.FullDsl._
 
 object DataGenerator {

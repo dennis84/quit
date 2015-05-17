@@ -7,6 +7,7 @@ import android.text.Html
 import java.util.{ArrayList, Locale}
 import scala.math.BigDecimal
 import quit.tweaks.FullDsl._
+import quit.core.Week
 import quit.app._
 
 class WeekAdapter(
