@@ -1,4 +1,4 @@
-package quit.app.stats
+package com.github.dennis84.quit.ui.stats
 
 import android.widget.TextView
 

@@ -66,7 +66,7 @@
 
   <fragment
     android:id="@+id/button"
-    android:name="quit.app.button.ButtonFragment"
+    android:name="com.github.dennis84.quit.ui.button.ButtonFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="50dp"

@@ -1,14 +1,13 @@
-package quit.app.stats
+package com.github.dennis84.quit.ui.stats
 
 import android.os.Bundle
 import android.view.View
 import java.util.ArrayList
 import com.squareup.otto._
 import org.joda.time.Weeks
-import quit.tweaks.QListFragment
-import quit.tweaks.FullDsl._
-import quit.core._
-import quit.app._
+import com.github.dennis84.quit.tweaks.QListFragment
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.core._
 
 class WeeksFragment extends QListFragment[WeekAdapter] {
 

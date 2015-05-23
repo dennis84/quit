@@ -1,4 +1,4 @@
-package quit.app.history
+package com.github.dennis84.quit.ui.history
 
 import android.widget.AbsListView
 import android.widget.AbsListView.OnScrollListener

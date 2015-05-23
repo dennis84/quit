@@ -1,9 +1,9 @@
-package quit.tweaks
+package com.github.dennis84.quit.tweaks
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import com.squareup.otto._
-import quit.core._
+import com.github.dennis84.quit.core._
 
 trait QActivity extends FragmentActivity {
   val bus = new Bus

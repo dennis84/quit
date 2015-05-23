@@ -1,4 +1,4 @@
-package quit.app.tweaks
+package com.github.dennis84.quit.ui.tweaks
 
 import org.scalatest._
 

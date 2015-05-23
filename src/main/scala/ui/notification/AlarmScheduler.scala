@@ -1,8 +1,8 @@
-package quit.app.notification
+package com.github.dennis84.quit.ui.notification
 
 import android.app.{AlarmManager, PendingIntent}
 import android.content.{Context, Intent}
-import quit.tweaks.FullDsl._
+import com.github.dennis84.quit.tweaks.FullDsl._
 
 object AlarmScheduler {
 

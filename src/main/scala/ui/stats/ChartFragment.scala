@@ -1,4 +1,4 @@
-package quit.app.stats
+package com.github.dennis84.quit.ui.stats
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
@@ -9,10 +9,10 @@ import lecho.lib.hellocharts.gesture.ZoomType
 import java.util.Locale
 import scala.collection.JavaConversions._
 import com.squareup.otto._
-import quit.tweaks.QFragment
-import quit.tweaks.FullDsl._
-import quit.core._
-import quit.app._
+import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.R
 
 class ChartFragment extends QFragment {
 

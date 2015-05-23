@@ -1,6 +1,6 @@
-package quit.core
+package com.github.dennis84.quit.core
 
-import quit.tweaks.FullDsl._
+import com.github.dennis84.quit.tweaks.FullDsl._
 
 case class Day(
   val date: DateTime,

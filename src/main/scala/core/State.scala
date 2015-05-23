@@ -1,4 +1,4 @@
-package quit.core
+package com.github.dennis84.quit.core
 
 import org.joda.time.Days
 import com.github.nscala_time.time.Imports._

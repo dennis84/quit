@@ -1,7 +1,7 @@
-package quit.app.history
+package com.github.dennis84.quit.ui.history
 
 import android.widget.TextView
-import quit.app.timeline.TimelineView
+import com.github.dennis84.quit.ui.timeline.TimelineView
 
 case class ViewHolder(
   val pieces: TextView,

@@ -6,7 +6,7 @@
 
   <fragment
     android:id="@+id/toolbar_pieces"
-    android:name="quit.app.progress.PiecesFragment"
+    android:name="com.github.dennis84.quit.ui.progress.PiecesFragment"
     android:layout_width="wrap_content"
     android:layout_height="?android:attr/actionBarSize"
     android:layout_marginLeft="10dp" />

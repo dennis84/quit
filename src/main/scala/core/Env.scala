@@ -1,4 +1,4 @@
-package quit.core
+package com.github.dennis84.quit.core
 
 import android.content.Context
 import android.preference.PreferenceManager

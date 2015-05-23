@@ -1,11 +1,12 @@
-package quit.app.notification
+package com.github.dennis84.quit.ui.notification
 
 import android.app.{PendingIntent, Notification, NotificationManager}
 import android.preference.PreferenceManager
 import android.content.{Context, Intent, BroadcastReceiver}
 import android.graphics.Color
-import quit.tweaks.FullDsl._
-import quit.app._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.MainActivity
+import com.github.dennis84.quit.R
 
 class AlarmReceiver extends BroadcastReceiver {
 
@@ -17,7 +18,7 @@ class AlarmReceiver extends BroadcastReceiver {
     val contentIntent = new Intent(context, classOf[MainActivity])
     val contentPending = PendingIntent.getActivity(context, 0, contentIntent, 0)
 
-    val okIntent = new Intent("quit.app.notification.OK")
+    val okIntent = new Intent("com.github.dennis84.quit.notification.OK")
     val okPending = PendingIntent.getBroadcast(context, 1, okIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
     val notification = new Notification.Builder(context)

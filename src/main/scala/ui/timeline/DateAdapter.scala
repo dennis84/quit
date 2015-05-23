@@ -1,4 +1,4 @@
-package quit.app.timeline
+package com.github.dennis84.quit.ui.timeline
 
 import android.widget.{ArrayAdapter, TextView, RelativeLayout}
 import android.content.Context
@@ -8,8 +8,8 @@ import java.util.{ArrayList, Locale}
 import scala.collection.JavaConversions._
 import scala.util.Try
 import org.joda.time.{DateTime, Period}
-import quit.tweaks.FullDsl._
-import quit.app._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.R
 
 class DateAdapter(
   context: Context,

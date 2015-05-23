@@ -36,7 +36,7 @@
     android:textSize="16dp"
     android:textColor="@color/base00" />
 
-  <quit.app.timeline.TimelineView
+  <com.github.dennis84.quit.ui.timeline.TimelineView
     android:id="@+id/timeline"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

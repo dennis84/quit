@@ -1,4 +1,4 @@
-package quit.app.timeline
+package com.github.dennis84.quit.ui.timeline
 
 import android.database.DataSetObserver
 

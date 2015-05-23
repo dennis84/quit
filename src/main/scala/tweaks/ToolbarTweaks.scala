@@ -1,4 +1,4 @@
-package quit.app.tweaks
+package com.github.dennis84.quit.tweaks
 
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.Toolbar.OnMenuItemClickListener

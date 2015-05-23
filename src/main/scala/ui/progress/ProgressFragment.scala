@@ -1,4 +1,4 @@
-package quit.app.progress
+package com.github.dennis84.quit.ui.progress
 
 import android.app.Fragment
 import android.os.{Bundle, Handler}
@@ -8,10 +8,10 @@ import android.widget.{ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import com.squareup.otto._
-import quit.tweaks.QFragment
-import quit.tweaks.FullDsl._
-import quit.core._
-import quit.app._
+import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.R
 
 class ProgressFragment extends QFragment {
 

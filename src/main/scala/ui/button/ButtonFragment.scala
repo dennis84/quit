@@ -1,11 +1,11 @@
-package quit.app.button
+package com.github.dennis84.quit.ui.button
 
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import com.melnykov.fab.FloatingActionButton
-import quit.tweaks.QFragment
-import quit.tweaks.FullDsl._
-import quit.app._
+import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.R
 
 class ButtonFragment extends QFragment {
 

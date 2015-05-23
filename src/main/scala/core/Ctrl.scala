@@ -1,11 +1,11 @@
-package quit.core
+package com.github.dennis84.quit.core
 
 import android.app.NotificationManager
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
-import quit.app.notification._
-import quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.notification._
+import com.github.dennis84.quit.tweaks.FullDsl._
 
 class Ctrl(bus: Bus, dateRepo: DateRepo, configRepo: ConfigRepo) {
 

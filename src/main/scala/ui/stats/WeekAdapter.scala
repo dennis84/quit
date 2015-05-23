@@ -1,4 +1,4 @@
-package quit.app.stats
+package com.github.dennis84.quit.ui.stats
 
 import android.widget.{ArrayAdapter, TextView}
 import android.content.Context
@@ -6,9 +6,9 @@ import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
 import scala.math.BigDecimal
-import quit.tweaks.FullDsl._
-import quit.core.Week
-import quit.app._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.core.Week
+import com.github.dennis84.quit.R
 
 class WeekAdapter(
   context: Context,

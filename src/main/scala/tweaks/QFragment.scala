@@ -1,4 +1,4 @@
-package quit.tweaks
+package com.github.dennis84.quit.tweaks
 
 import android.support.v4.app.Fragment
 import android.os.Bundle

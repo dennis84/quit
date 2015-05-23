@@ -1,10 +1,10 @@
-package quit.app.notification
+package com.github.dennis84.quit.ui.notification
 
 import android.app.NotificationManager
 import android.content.{Context, Intent, BroadcastReceiver}
 import android.preference.PreferenceManager
-import quit.tweaks.FullDsl._
-import quit.app.MainActivity
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.MainActivity
 
 class NotificationReceiver extends BroadcastReceiver {
 
@@ -14,7 +14,7 @@ class NotificationReceiver extends BroadcastReceiver {
     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
     intent.getAction match {
-      case "quit.app.notification.OK" =>
+      case "com.github.dennis84.quit.notification.OK" =>
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val goal = DateTime.now + 30.minutes
         settings.edit.putLong("goal_date", goal.getMillis).commit

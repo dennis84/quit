@@ -1,9 +1,9 @@
-package quit.app.settings
+package com.github.dennis84.quit.ui.settings
 
 import android.os.Bundle
 import android.preference.PreferenceFragment
-import quit.tweaks.FullDsl._
-import quit.app._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.R
 
 class NotificationsFragment extends PreferenceFragment {
 

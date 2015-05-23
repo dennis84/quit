@@ -1,4 +1,4 @@
-package quit.app.history
+package com.github.dennis84.quit.ui.history
 
 import android.widget.{ArrayAdapter, TextView}
 import android.content.Context
@@ -6,10 +6,10 @@ import android.view.{LayoutInflater, View, ViewGroup}
 import android.text.Html
 import java.util.{ArrayList, Locale}
 import org.joda.time.Period
-import quit.tweaks.FullDsl._
-import quit.core.Day
-import quit.app.timeline._
-import quit.app._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.core.Day
+import com.github.dennis84.quit.ui.timeline._
+import com.github.dennis84.quit.R
 
 class DayAdapter(
   context: Context,

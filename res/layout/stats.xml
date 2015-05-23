@@ -7,13 +7,13 @@
   android:background="@color/base3">
 
   <fragment
-    android:name="quit.app.toolbar.ToolbarFragment"
+    android:name="com.github.dennis84.quit.ui.toolbar.ToolbarFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 
   <fragment
     android:id="@+id/weeks"
-    android:name="quit.app.stats.WeeksFragment"
+    android:name="com.github.dennis84.quit.ui.stats.WeeksFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 </LinearLayout>

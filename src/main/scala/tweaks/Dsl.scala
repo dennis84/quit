@@ -1,11 +1,11 @@
-package quit.tweaks
+package com.github.dennis84.quit.tweaks
 
 object FullDsl
-  extends quit.app.tweaks.ViewTweaks
-  with quit.app.tweaks.ToolbarTweaks
-  with quit.app.tweaks.SpinnerTweaks
-  with quit.app.tweaks.ContextTweaks
-  with quit.app.tweaks.LoggingTweaks
-  with quit.app.tweaks.ListTweaks
-  with quit.app.tweaks.UnitTweaks
-  with quit.app.tweaks.TimeTweaks
+  extends com.github.dennis84.quit.tweaks.ViewTweaks
+  with com.github.dennis84.quit.tweaks.ToolbarTweaks
+  with com.github.dennis84.quit.tweaks.SpinnerTweaks
+  with com.github.dennis84.quit.tweaks.ContextTweaks
+  with com.github.dennis84.quit.tweaks.LoggingTweaks
+  with com.github.dennis84.quit.tweaks.ListTweaks
+  with com.github.dennis84.quit.tweaks.UnitTweaks
+  with com.github.dennis84.quit.tweaks.TimeTweaks

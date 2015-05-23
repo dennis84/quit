@@ -1,15 +1,15 @@
-package quit.app.toolbar
+package com.github.dennis84.quit.ui.toolbar
 
 import android.os.Bundle
 import android.content.Intent
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.net.Uri
 import android.support.v7.widget.Toolbar
-import quit.app.settings.SettingsActivity
-import quit.app.stats.{StatsActivity, GraphActivity}
-import quit.tweaks.QFragment
-import quit.tweaks.FullDsl._
-import quit.app._
+import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.settings.SettingsActivity
+import com.github.dennis84.quit.ui.stats.{StatsActivity, GraphActivity}
+import com.github.dennis84.quit.R
 
 class ToolbarFragment extends QFragment {
 

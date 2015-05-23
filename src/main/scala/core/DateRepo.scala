@@ -1,4 +1,4 @@
-package quit.core
+package com.github.dennis84.quit.core
 
 import android.content.ContentValues
 import com.github.nscala_time.time.Imports._

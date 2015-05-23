@@ -1,8 +1,8 @@
-package quit.core
+package com.github.dennis84.quit.core
 
 import org.scalatest._
 import com.github.nscala_time.time.Imports._
-import quit.core.Humanize._
+import com.github.dennis84.quit.core.Humanize._
 
 class HumanizeSpec extends FlatSpec with Matchers {
 
