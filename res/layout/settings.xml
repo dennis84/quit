@@ -19,6 +19,12 @@
     android:layout_height="wrap_content" />
 
   <fragment
+    android:id="@+id/settings_data"
+    android:name="com.github.dennis84.quit.ui.settings.DataFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <fragment
     android:id="@+id/settings_about"
     android:name="com.github.dennis84.quit.ui.settings.AboutFragment"
     android:layout_width="match_parent"

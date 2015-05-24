@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="Danger Zone">
+    <Preference
+      android:key="data_delete"
+      android:title="Delete all data"
+      android:summary="Once you delete your data, there is no going back. Please be certain."
+      android:persistent="false"
+      android:shouldDisableView="false" />
+  </PreferenceCategory>
+</PreferenceScreen>
