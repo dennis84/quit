@@ -35,7 +35,7 @@
     <receiver android:name=".ui.notification.AlarmReceiver" />
     <receiver android:name=".ui.notification.NotificationReceiver">
       <intent-filter>
-        <action android:name="com.github.dennis84.notification.OK" />
+        <action android:name="com.github.dennis84.quit.notification.OK" />
       </intent-filter>
     </receiver>
   </application>
