@@ -9,7 +9,8 @@
       android:summary="Summary"
       android:dialogTitle="Dialog Title"
       android:singleLine="true"
-      android:numeric="integer" />
+      android:numeric="integer"
+      android:defaultValue="2" />
 
     <EditTextPreference
       android:key="goal_minutes"
@@ -17,7 +18,8 @@
       android:summary="Summary"
       android:dialogTitle="Dialog Title"
       android:singleLine="true"
-      android:numeric="integer" />
+      android:numeric="integer"
+      android:defaultValue="0" />
 
     <EditTextPreference
       android:key="goal_limit"
@@ -25,6 +27,7 @@
       android:summary="Summary"
       android:dialogTitle="Dialog Title"
       android:singleLine="true"
-      android:numeric="integer" />
+      android:numeric="integer"
+      android:defaultValue="10" />
   </PreferenceCategory>
 </PreferenceScreen>
