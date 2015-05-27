@@ -1,35 +1,14 @@
-import android.Keys._
-
-javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
-
 android.Plugin.androidBuild
 
 name := "quit"
 
+javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
+
 scalaVersion := "2.11.6"
+scalacOptions in Compile += "-feature"
+scalaSource in Test := baseDirectory.value / "test"
 
-proguardScala in Android := true
-
-proguardOptions in Android ++= Seq(
-  "-dontobfuscate",
-  "-dontoptimize",
-  "-keepattributes Signature",
-  "-printseeds target/seeds.txt",
-  "-printusage target/usage.txt",
-  "-keep class com.github.nscala_time.time.**",
-  "-keep class com.squareup.otto.**",
-  "-keepattributes *Annotation*",
-  """-keepclassmembers class ** {
-    @com.squareup.otto.Subscribe public *;
-    @com.squareup.otto.Produce public *;
-  }""",
-  "-dontwarn scala.collection.**" // required from Scala 2.11.4
-)
-
-apkbuildExcludes in Android ++= Seq(
-  "META-INF/LICENSE.txt",
-  "META-INF/NOTICE.txt"
-)
+run <<= run in Android
 
 resolvers += "jitpack" at "https://jitpack.io"
 
@@ -43,8 +22,18 @@ libraryDependencies ++= Seq(
   "com.github.lecho"       %  "hellocharts-library"  % "1.5.4"
 )
 
-scalaSource in Test := baseDirectory.value / "test"
+proguardScala in Android := true
 
-scalacOptions in Compile += "-feature"
+proguardOptions in Android ++= Seq(
+  "-ignorewarnings",
+  "-keepattributes *Annotation*",
+  """-keepclassmembers class ** {
+    @com.squareup.otto.Subscribe public *;
+    @com.squareup.otto.Produce public *;
+  }"""
+)
 
-run <<= run in Android
+apkbuildExcludes in Android ++= Seq(
+  "META-INF/LICENSE.txt",
+  "META-INF/NOTICE.txt"
+)
