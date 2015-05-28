@@ -1,4 +1,4 @@
-package com.github.dennis84.quit.tweaks
+package com.github.dennis84.quit.ui
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity

@@ -8,7 +8,7 @@ import android.widget.{ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import com.squareup.otto._
-import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
 import com.github.dennis84.quit.R

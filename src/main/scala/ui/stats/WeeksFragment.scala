@@ -5,7 +5,7 @@ import android.view.View
 import java.util.ArrayList
 import com.squareup.otto._
 import org.joda.time.Weeks
-import com.github.dennis84.quit.tweaks.QListFragment
+import com.github.dennis84.quit.ui.QListFragment
 import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
 

@@ -3,7 +3,7 @@ package com.github.dennis84.quit.ui.button
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import com.melnykov.fab.FloatingActionButton
-import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.R
 

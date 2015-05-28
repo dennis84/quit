@@ -9,7 +9,7 @@ import lecho.lib.hellocharts.gesture.ZoomType
 import java.util.Locale
 import scala.collection.JavaConversions._
 import com.squareup.otto._
-import com.github.dennis84.quit.tweaks.QFragment
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
 import com.github.dennis84.quit.R

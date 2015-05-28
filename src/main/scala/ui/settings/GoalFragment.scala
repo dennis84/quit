@@ -5,9 +5,9 @@ import android.preference.{PreferenceFragment, EditTextPreference}
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import java.util.concurrent.TimeUnit
+import com.github.dennis84.quit.ui.QActivity
 import com.github.dennis84.quit.ui.notification._
 import com.github.dennis84.quit.tweaks.FullDsl._
-import com.github.dennis84.quit.tweaks.QActivity
 import com.github.dennis84.quit.core._
 import com.github.dennis84.quit.R
 

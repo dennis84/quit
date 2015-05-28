@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.preference.{PreferenceFragment, Preference}
+import com.github.dennis84.quit.ui.QActivity
 import com.github.dennis84.quit.tweaks.FullDsl._
-import com.github.dennis84.quit.tweaks.QActivity
 import com.github.dennis84.quit.R
 
 class DataFragment extends PreferenceFragment {

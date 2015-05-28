@@ -6,7 +6,7 @@ import android.widget.{ListView, TextView}
 import android.support.v4.view.ViewPager
 import com.squareup.otto._
 import java.util.ArrayList
-import com.github.dennis84.quit.tweaks.QListFragment
+import com.github.dennis84.quit.ui.QListFragment
 import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
 import com.github.dennis84.quit.ui.timeline._

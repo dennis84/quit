@@ -1,4 +1,4 @@
-package com.github.dennis84.quit.tweaks
+package com.github.dennis84.quit.ui
 
 import android.app.ListFragment
 import android.os.Bundle
