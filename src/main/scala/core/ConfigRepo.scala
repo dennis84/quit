@@ -23,9 +23,7 @@ class ConfigRepo(db: Db) {
 
     if(cursor.moveToFirst) {
       do {
-        configs += Config(
-          cursor.getInt(1),
-          new DateTime(cursor.getLong(2)))
+        configs += Config(cursor getInt 1, new DateTime(cursor getLong 2))
       } while(cursor.moveToNext)
     }
 

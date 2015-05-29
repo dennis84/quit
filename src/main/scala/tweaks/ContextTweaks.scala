@@ -4,14 +4,14 @@ import android.app.{NotificationManager, AlarmManager}
 import android.view.LayoutInflater
 import android.content.Context
 
-trait SystemService[T] {
-  def get(context: Context): T
+trait SystemService[A] {
+  def get(context: Context): A
 }
 
 trait ContextTweaks {
 
-  private def systemServiceOf[T](const: String) = new SystemService[T] {
-    def get(context: Context) = context.getSystemService(const).asInstanceOf[T]
+  private def systemServiceOf[A](const: String) = new SystemService[A] {
+    def get(context: Context) = context.getSystemService(const).asInstanceOf[A]
   }
 
   implicit val nm = systemServiceOf[NotificationManager](Context.NOTIFICATION_SERVICE)
@@ -20,6 +20,6 @@ trait ContextTweaks {
   implicit val li = systemServiceOf[LayoutInflater](Context.LAYOUT_INFLATER_SERVICE)
 
   implicit class SystemServices(context: Context) {
-    def systemService[T : SystemService](implicit service: SystemService[T]) = service get context
+    def systemService[A : SystemService](implicit service: SystemService[A]) = service get context
   }
 }

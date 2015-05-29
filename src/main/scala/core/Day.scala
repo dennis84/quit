@@ -1,6 +1,6 @@
 package com.github.dennis84.quit.core
 
-import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.nscala_time.time.Imports._
 
 case class Day(
   val date: DateTime,

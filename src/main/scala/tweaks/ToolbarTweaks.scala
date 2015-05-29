@@ -9,7 +9,7 @@ trait ToolbarTweaks {
   implicit class ToolbarClick(toolbar: Toolbar) {
     def onClick(f: MenuItem => Unit) =
       toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener {
-        override def onMenuItemClick(item: MenuItem) = {
+        def onMenuItemClick(item: MenuItem) = {
           f(item)
           true
         }

@@ -25,7 +25,7 @@ class DateRepo(db: Db) {
 
     if(cursor.moveToFirst) {
       do {
-        dates += new DateTime(cursor.getLong(1))
+        dates += new DateTime(cursor getLong 1)
       } while(cursor.moveToNext)
     }
 
@@ -41,7 +41,7 @@ class DateRepo(db: Db) {
 
     if(cursor.moveToFirst) {
       do {
-        dates += new DateTime(cursor.getLong(1))
+        dates += new DateTime(cursor getLong 1)
       } while(cursor.moveToNext)
     }
 
@@ -59,7 +59,7 @@ class DateRepo(db: Db) {
       case null => None
       case c => {
         c.moveToFirst
-        Some(new DateTime(c.getLong(1)))
+        Some(new DateTime(c getLong 1))
       }
     }
   }
