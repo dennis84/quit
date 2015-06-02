@@ -4,13 +4,13 @@ import android.app.NotificationManager
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.otto.Bus
-import com.github.dennis84.quit.ui.notification._
+import com.github.dennis84.quit.ui.notification.AlarmScheduler
 import com.github.dennis84.quit.tweaks.FullDsl._
 
 class Ctrl(bus: Bus, dateRepo: DateRepo, configRepo: ConfigRepo) {
 
   def list(state: State, page: Int = 1) {
-    val newState = state.copy(connected = true, dates = state.dates ::: dateRepo.list(page))
+    val newState = state.copy(dates = state.dates ::: dateRepo.list(page))
     bus.post(new ChangeState(newState.withDays))
   }
 
@@ -37,7 +37,6 @@ class Ctrl(bus: Bus, dateRepo: DateRepo, configRepo: ConfigRepo) {
 
   def stats(state: State) {
     bus.post(new ChangeState(state.copy(
-      connected = true,
       dates = dateRepo.listAll,
       configs = configRepo.list
     ).withDays))

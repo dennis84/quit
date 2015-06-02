@@ -10,7 +10,6 @@ case class State(
   val goalDate: Option[DateTime] = None,
   val dates: List[DateTime] = Nil,
   val days: List[Day] = Nil,
-  val connected: Boolean = false,
   val configs: List[Config] = Nil) {
 
   def withDays = {

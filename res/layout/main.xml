@@ -10,10 +10,4 @@
     android:name="com.github.dennis84.quit.ui.history.HistoryFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
-
-  <fragment
-    android:id="@+id/loading"
-    android:name="com.github.dennis84.quit.ui.loading.LoadingFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
 </FrameLayout>
