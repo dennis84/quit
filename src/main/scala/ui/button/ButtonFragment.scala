@@ -18,6 +18,6 @@ class ButtonFragment extends QFragment {
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     val btn = view.find[FloatingActionButton](R.id.button_add)
-    btn onClick env.ctrl.add(state, activity)
+    btn onClick env.ctrl.add(env.state, activity)
   }
 }

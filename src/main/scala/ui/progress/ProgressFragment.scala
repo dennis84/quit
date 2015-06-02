@@ -8,9 +8,9 @@ import android.widget.{ProgressBar, RadioGroup}
 import android.support.v4.view.ViewPager
 import android.animation.ObjectAnimator
 import com.squareup.otto._
-import com.github.dennis84.quit.ui.QFragment
-import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.R
 
 class ProgressFragment extends QFragment {
@@ -59,7 +59,7 @@ class ProgressFragment extends QFragment {
     update(new UpdateUI)
     handler.postDelayed(new Runnable {
       override def run() {
-        bus.post(new UpdateUI)
+        env.bus.post(new UpdateUI)
         handler.postDelayed(this, 60000)
       }
     }, 60000)
@@ -72,9 +72,8 @@ class ProgressFragment extends QFragment {
 
   @Subscribe
   def update(event: UpdateUI) = for {
-    date <- state.dates.headOption
-    goalDate <- state.goalDate
-    if(viewCreated)
+    date <- env.state.dates.headOption
+    goalDate <- env.state.goalDate
     x = (DateTime.now.getMillis - date.getMillis)
     y = (goalDate.getMillis - date.getMillis)
     p = (x.toDouble / y.toDouble * 1000).toInt

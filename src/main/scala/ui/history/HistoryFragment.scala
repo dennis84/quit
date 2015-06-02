@@ -3,12 +3,11 @@ package com.github.dennis84.quit.ui.history
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.{ListView, TextView}
-import android.support.v4.view.ViewPager
 import com.squareup.otto._
 import java.util.ArrayList
-import com.github.dennis84.quit.ui.QListFragment
-import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.QListFragment
 import com.github.dennis84.quit.ui.timeline._
 import com.github.dennis84.quit.R
 
@@ -33,7 +32,7 @@ class HistoryFragment extends QListFragment[DayAdapter] {
     super.onViewCreated(view, savedInstanceState)
     getListView addHeaderView header
     setListAdapter(new DayAdapter(activity, new ArrayList[Day]))
-    env.ctrl.list(state)
+    env.ctrl.list(env.state)
 
     toggleTimeline onClick {
       if(View.VISIBLE == timeline.getVisibility) {
@@ -47,7 +46,7 @@ class HistoryFragment extends QListFragment[DayAdapter] {
 
     getListView.setOnScrollListener(new EndlessScrollListener {
       def onLoadMore(page: Int, totalItemsCount: Int) {
-        env.ctrl.list(state, page)
+        env.ctrl.list(env.state, page)
       }
     })
   }

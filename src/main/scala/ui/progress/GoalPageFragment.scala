@@ -5,9 +5,9 @@ import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
 import android.text.Html
 import com.squareup.otto._
-import com.github.dennis84.quit.ui.QFragment
-import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.R
 import Humanize._
 
@@ -35,10 +35,9 @@ class GoalPageFragment extends QFragment {
 
   @Subscribe
   def update(event: UpdateUI) {
-    if(!viewCreated) return
     (for {
-      date <- state.dates.headOption
-      goalDate <- state.goalDate
+      date <- env.state.dates.headOption
+      goalDate <- env.state.goalDate
     } yield {
       val html = (humanize(date).capitalize + " ago") replaceAll ("""(\d+)""", "<b>$1</b>")
       text.setText(Html fromHtml html)

@@ -42,8 +42,4 @@ class Ctrl(bus: Bus, dateRepo: DateRepo, configRepo: ConfigRepo) {
       configs = configRepo.list
     ).withDays))
   }
-
-  def updateConfig(config: Config) {
-    configRepo.insert(config)
-  }
 }

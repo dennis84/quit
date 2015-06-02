@@ -33,7 +33,7 @@ class ChartFragment extends QFragment {
 
   override def onResume {
     super.onResume
-    env.ctrl.stats(state)
+    env.ctrl.stats(env.state)
   }
 
   @Subscribe

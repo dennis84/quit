@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
 import com.squareup.otto._
-import com.github.dennis84.quit.ui.QFragment
-import com.github.dennis84.quit.tweaks.FullDsl._
 import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.R
 
 class PiecesFragment extends QFragment {
@@ -31,8 +31,7 @@ class PiecesFragment extends QFragment {
 
   @Subscribe
   def update(event: UpdateUI) {
-    if(!viewCreated) return
-    state.days.headOption foreach { today =>
+    env.state.days.headOption foreach { today =>
       nb.setText(today.dates.length.toString)
     }
   }

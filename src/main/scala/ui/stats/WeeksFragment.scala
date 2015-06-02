@@ -14,7 +14,7 @@ class WeeksFragment extends QListFragment[WeekAdapter] {
   override def onViewCreated(view: View, savedInstanceState: Bundle) {
     super.onViewCreated(view, savedInstanceState)
     setListAdapter(new WeekAdapter(activity, new ArrayList[Week]))
-    env.ctrl.stats(state)
+    env.ctrl.stats(env.state)
   }
 
   @Subscribe

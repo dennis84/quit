@@ -3,11 +3,11 @@ package com.github.dennis84.quit.ui.progress
 import android.os.Bundle
 import android.view.{LayoutInflater, ViewGroup, View}
 import android.widget.TextView
-import com.squareup.otto._
 import android.text.Html
-import com.github.dennis84.quit.ui.QFragment
-import com.github.dennis84.quit.tweaks.FullDsl._
+import com.squareup.otto._
 import com.github.dennis84.quit.core._
+import com.github.dennis84.quit.tweaks.FullDsl._
+import com.github.dennis84.quit.ui.QFragment
 import com.github.dennis84.quit.R
 
 class PiecesPageFragment extends QFragment {
@@ -34,11 +34,10 @@ class PiecesPageFragment extends QFragment {
 
   @Subscribe
   def update(event: UpdateUI) {
-    if(!viewCreated) return
-    state.days.headOption foreach { today =>
+    env.state.days.headOption foreach { today =>
       val html = s"${today.dates.length} pieces today" replaceAll ("""(\d+)""", "<b>$1</b>")
       pieces.setText(Html.fromHtml(html))
-      limit.setText(s"Only ${state.limit - today.dates.length} pieces left")
+      limit.setText(s"Only ${env.state.limit - today.dates.length} pieces left")
     }
   }
 }

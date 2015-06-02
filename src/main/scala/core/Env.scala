@@ -5,8 +5,9 @@ import android.preference.PreferenceManager
 import com.squareup.otto.Bus
 import org.joda.time.DateTime
 
-class Env(context: Context, bus: Bus) {
+class Env(context: Context) {
 
+  lazy val bus = new Bus
   lazy val db = new Db(context)
   lazy val dateRepo = new DateRepo(db)
   lazy val configRepo = new ConfigRepo(db)
